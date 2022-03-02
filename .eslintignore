@@ -1,2 +1,4 @@
 .eslintrc.js
 tsconfig.vite-config.json
+postcss.config.js
+tailwind.config.js

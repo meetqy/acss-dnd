@@ -3,7 +3,9 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <RouterView name="SideBar" />
-  <RouterView></RouterView>
-  <RouterView name="MenuBar" />
+  <div id="ultraseven" class="w-screen flex relative">
+    <RouterView name="SideBar" />
+    <RouterView></RouterView>
+    <RouterView name="MenuBar" />
+  </div>
 </template>
