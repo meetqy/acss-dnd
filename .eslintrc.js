@@ -1,4 +1,3 @@
-/* eslint-env node */
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
@@ -11,5 +10,8 @@ module.exports = {
   ],
   env: {
     "vue/setup-compiler-macros": true,
+  },
+  rules: {
+    "vue/multi-word-component-names": 0,
   },
 };
