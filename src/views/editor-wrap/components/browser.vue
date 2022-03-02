@@ -10,12 +10,17 @@
         class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b"
       >
         <div class="flex h-full items-center w-14 justify-between">
-          <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-          <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
-          <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
         </div>
         <div class="bg-white w-96 h-8 flex items-center justify-center rounded">
-          index.html
+          <span
+            class="text-blue-500 cursor-pointer underline underline-offset-2"
+            >移动端优先</span
+          >
+          <span class="mx-4 text-gray-200">|</span>
+          <span class="cursor-pointer text-gray-500">PC端优先</span>
         </div>
         <div class="flex w-24 justify-between">
           <svg

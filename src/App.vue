@@ -7,5 +7,6 @@ import { RouterView } from "vue-router";
     <RouterView name="SideBar" />
     <RouterView></RouterView>
     <RouterView name="MenuBar" />
+    <RouterView name="ComponentPreview"></RouterView>
   </div>
 </template>

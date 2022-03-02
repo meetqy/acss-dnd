@@ -1,5 +1,5 @@
 <template>
-  <aside class="h-screen w-72 bg-white flex-shrink-0 shadow">
+  <aside class="h-screen w-72 bg-white flex-shrink-0 shadow hidden">
     <p>
       <button>add Node</button>
     </p>
