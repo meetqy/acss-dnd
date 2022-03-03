@@ -23,12 +23,12 @@ useEventListener(element, "mousemove", (e: Event) => {
       <ul>
         <li
           class="nav-item"
-          :class="menuStore.current === item && 'bg-slate-100'"
+          :class="menuStore.current === item.id && 'bg-slate-100'"
           v-for="item in menuStore.menu"
-          :key="item"
-          :id="item"
+          :key="item.id"
+          :id="item.id"
         >
-          {{ item }}
+          {{ item.text }}
         </li>
       </ul>
     </div>

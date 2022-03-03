@@ -8,7 +8,9 @@
     <div
       class="component-preview"
       :class="menuStore.current ? 'left-72' : '-left-72'"
-    ></div>
+    >
+      {{ menuStore.curItem?.components }}
+    </div>
   </div>
 </template>
 
