@@ -4,7 +4,8 @@ import { defineStore } from "pinia";
 export const useMenuStore = defineStore({
   id: "menu",
   state: (): State => ({
-    current: "", // 当前选中
+    current: "", // 当前选中菜单
+    component: -1, // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
     menu: [
       {
         id: "1",
@@ -24,14 +25,20 @@ export const useMenuStore = defineStore({
     },
   },
   actions: {
-    checked(id: string) {
+    setCurrent(id: string) {
       this.current = id;
+      this.component = -1;
+    },
+
+    setComponent(index: number) {
+      this.component = index;
     },
   },
 });
 
 interface State {
   current: string;
+  component: number;
   menu: MenuComponent[];
 }
 

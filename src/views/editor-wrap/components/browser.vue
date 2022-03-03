@@ -1,13 +1,15 @@
+<script lang="ts" setup></script>
+
 <template>
   <div
     class="w-full max-w-screen-xl m-auto overflow-hidden flex-1 pb-10"
     style="max-height: 92vh"
   >
     <div
-      class="bg-white w-full flex rounded-xl overflow-hidden shadow flex-col h-full"
+      class="bg-white w-full flex overflow-hidden rounded-xl shadow flex-col h-full"
     >
       <div
-        class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b"
+        class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b relative z-10"
       >
         <div class="flex h-full items-center w-14 justify-between">
           <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -68,12 +70,14 @@
         </div>
       </div>
 
-      <div class="w-full h-full bg-white flex-1">
+      <div class="w-full h-full bg-white flex-1 rounded-b-xl">
         <iframe
           ref="iframe"
+          id="iframe-editor"
           class="w-full h-full"
           frameborder="0"
           title="edit page"
+          src="/iframe"
         />
       </div>
     </div>

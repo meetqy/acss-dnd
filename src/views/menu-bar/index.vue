@@ -8,7 +8,7 @@ const element = ref<HTMLDivElement>();
 useEventListener(element, "mousemove", (e: Event) => {
   const id = (e.target as HTMLElement).id;
   if (id) {
-    menuStore.checked(id);
+    menuStore.setCurrent(id);
   }
 });
 </script>

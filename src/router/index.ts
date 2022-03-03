@@ -16,6 +16,10 @@ const router = createRouter({
         ComponentPreview: ComponentPreview,
       },
     },
+    {
+      path: "/iframe",
+      component: import("@/views/iframe-content/index.vue"),
+    },
   ],
 });
 
