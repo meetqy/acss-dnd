@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
   },
   "dependencies": {
+    "@vueuse/core": "^7.7.0",
     "daisyui": "^2.2.2",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",

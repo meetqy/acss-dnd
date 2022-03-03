@@ -1,30 +1,30 @@
 <script lang="ts" setup>
-interface Props {
-  active: string;
-}
-defineProps<Props>();
+import { useMenuStore } from "@/stores/menu";
+import { useEventListener } from "@vueuse/core";
+import { ref } from "vue";
+const menuStore = useMenuStore();
 
-const emit = defineEmits<{
-  (e: "change", id: string): void;
-}>();
-
-const lis = ["文本", "容器"];
-
-const setOpts = (e: Event) => {
-  const target = e.target as HTMLElement;
-  emit("change", target.id);
-};
+const element = ref<HTMLDivElement>();
+useEventListener(element, "mousemove", (e: Event) => {
+  const id = (e.target as HTMLElement).id;
+  if (id) {
+    menuStore.checked(id);
+  }
+});
 </script>
 
 <template>
-  <aside class="h-screen w-72 bg-white flex-shrink-0 shadow">
+  <aside
+    ref="element"
+    class="h-screen w-72 bg-white flex-shrink-0 shadow relative z-20"
+  >
     <div class="p-4">
       <h2 class="font-semibold text-lg py-2 text-slate-700">基础</h2>
-      <ul @click="setOpts">
+      <ul>
         <li
-          :class="active === item && 'bg-slate-100'"
           class="nav-item"
-          v-for="item in lis"
+          :class="menuStore.current === item && 'bg-slate-100'"
+          v-for="item in menuStore.menu"
           :key="item"
           :id="item"
         >
@@ -37,6 +37,6 @@ const setOpts = (e: Event) => {
 
 <style scoped>
 .nav-item {
-  @apply py-2 px-4 cursor-pointer text-gray-700 hover:bg-slate-100 rounded-lg;
+  @apply py-2 px-4 cursor-pointer text-gray-700 rounded-lg;
 }
 </style>
