@@ -1,4 +1,4 @@
-import { h1, h2, h3, h4, h5, h6, p, span } from "@/template/text";
+import Text, { type Template } from "@/template/text";
 import { defineStore } from "pinia";
 
 export const useMenuStore = defineStore({
@@ -11,7 +11,7 @@ export const useMenuStore = defineStore({
         id: "1",
         text: "文本",
         wrapClass: ["prose"],
-        components: [h1, h2, h3, h4, h5, h6, p, span],
+        components: Text,
       },
     ],
   }),
@@ -46,5 +46,5 @@ export interface MenuComponent {
   id: string;
   text: string;
   wrapClass: string[];
-  components: JSX.Element[];
+  components: Template[];
 }

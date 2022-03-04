@@ -8,9 +8,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { initIframeElement } from "../iframe.io";
 import Browser from "./components/browser.vue";
 import Mode from "./components/mode.vue";
+
+onMounted(() => {
+  // 初始化iframe
+  const iframe = document.getElementById("iframe-editor") as HTMLIFrameElement;
+  initIframeElement(iframe);
+});
 
 // false  =>  dark
 // true   =>  light

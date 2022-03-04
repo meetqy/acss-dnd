@@ -1,6 +1,7 @@
 import { useMenuStore } from "@/stores/menu";
 import { useEventListener } from "@vueuse/core";
 import { computed, defineComponent, ref } from "vue";
+import { menuPostMessage } from "../iframe.io";
 import "./index.css";
 
 export default defineComponent({
@@ -30,12 +31,13 @@ export default defineComponent({
 
     const ondrag = (e: Event) => {
       const dragIndex = +(e.target as HTMLElement).id.split("_")[1];
+      if (dragIndex === menuStore.component) return;
       menuStore.setComponent(dragIndex);
-      const component = menuStore.curItem?.components[dragIndex];
     };
 
-    const ondragend = (e: Event) => {
-      console.log(e.target as HTMLElement, "dragend");
+    const ondragend = () => {
+      const component = menuStore.curItem?.components[menuStore.component];
+      menuPostMessage.component(component?.str);
     };
 
     return () => {
@@ -43,7 +45,7 @@ export default defineComponent({
         <div
           ref={element}
           class={`w-full h-full absolute transition-opacity ${
-            isShowComponent.value ? "opacity-100" : "opacity-0"
+            isShowComponent.value ? "opacity-100" : "opacity-0 hidden"
           }`}
         >
           <div class="mask mask-show" id="mask"></div>
@@ -63,9 +65,9 @@ export default defineComponent({
                   draggable
                   onDrag={ondrag}
                   onDragend={ondragend}
-                  class="translate-x-0 translate-y-0 card cursor-pointer p-4 mb-5 bg-base-100 shadow-sm border-4 border-transparent hover:border-primary"
+                  class="translate-x-0 translate-y-0 card cursor-pointer p-4 mb-5 bg-base-100 shadow-sm border-2 border-transparent hover:border-primary"
                 >
-                  {item}
+                  {item.jsx}
                 </li>
               ))}
             </ul>

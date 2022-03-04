@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <div
     class="w-full max-w-screen-xl m-auto overflow-hidden flex-1 pb-10"
