@@ -39,7 +39,7 @@ export default defineComponent({
     };
 
     return () => {
-      console.log(editorStore.container);
+      // console.log(editorStore.container);
       return (
         <main
           onDrop={ondrop}
@@ -67,7 +67,7 @@ const stringToJsx = (str: string): JSX.Element | null => {
   if (!t1) return null;
 
   // h1\s
-  const t2 = (t1[0] as string).match(/[^<].*?\s/);
+  const t2 = (t1[0] as string).match(/[^<].*?\s?/);
   if (!t2) return null;
 
   // h1
