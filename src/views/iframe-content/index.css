@@ -1,0 +1,7 @@
+.over-element {
+  @apply absolute border-2 border-dashed border-secondary;
+}
+
+.checked-element {
+  @apply absolute border-2 border-primary;
+}

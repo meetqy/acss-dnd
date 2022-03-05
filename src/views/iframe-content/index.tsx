@@ -1,14 +1,40 @@
 import { useEditorStore } from "@/stores/editor";
 import { defineComponent, onMounted, ref } from "vue";
+import { stringToJsx } from "./utils";
+import "./index.css";
 
 // iframe store 无法直接通信
 export default defineComponent({
   setup() {
     const editorStore = useEditorStore();
+    const element = ref<HTMLElement>();
+
+    // 当前选中的元素
+    const checkedElement = ref<HTMLElement | null>(null);
+
+    // 当前鼠标移上的元素
+    const overElement = ref<HTMLElement | null>(null);
 
     onMounted(() => {
       window.addEventListener("message", (e) => {
         editorStore.add(e.data.data);
+      });
+
+      element.value?.addEventListener("mouseover", (e) => {
+        const el = e.target as HTMLElement;
+        if (el.id === "iframe-main") return;
+        overElement.value = el;
+      });
+
+      element.value?.addEventListener("mouseleave", (e) => {
+        overElement.value = null;
+      });
+
+      element.value?.addEventListener("click", (e) => {
+        const el = e.target as HTMLElement;
+        if (el.id === "iframe-main") return;
+        checkedElement.value = el;
+        overElement.value = null;
       });
     });
 
@@ -39,47 +65,59 @@ export default defineComponent({
     };
 
     return () => {
-      // console.log(editorStore.container);
       return (
-        <main
-          onDrop={ondrop}
-          onDragenter={ondragenter}
-          onDragleave={ondragleave}
-          onDragover={ondragover}
-          class={`w-screen h-screen border-primary rounded-b-xl ${
-            isEnter.value ? "border-2" : "border-0"
-          }`}
-        >
-          {editorStore.container.map((item) => stringToJsx(item))}
-        </main>
+        <>
+          <main
+            ref={element}
+            onDrop={ondrop}
+            onDragenter={ondragenter}
+            onDragleave={ondragleave}
+            onDragover={ondragover}
+            id="iframe-main"
+            class={`w-screen h-screen border-primary rounded-b-xl cursor-default relative z-10 ${
+              isEnter.value ? "border-2" : "border-0"
+            }`}
+          >
+            {editorStore.container.map((item) => stringToJsx(item))}
+          </main>
+          {renderOverElementMask(overElement.value)}
+          {renderCheckedElementMask(checkedElement.value)}
+        </>
       );
     };
   },
 });
 
-/**
- * 因为 <template innerHtml={}></template>
- * 在jsx中无法使用，不能正常解析
- */
-const stringToJsx = (str: string): JSX.Element | null => {
-  // <h1 class="xxx" .....> tag 前部分
-  const t1 = str.match(/^<.*?>/);
-  if (!t1) return null;
+// 移上元素状态显示
+const renderOverElementMask = (el: HTMLElement | null) => {
+  return (
+    el && (
+      <div
+        class="over-element"
+        style={{
+          left: el.offsetLeft + "px",
+          width: el.clientWidth + "px",
+          top: el.offsetTop + "px",
+          height: el.clientHeight + "px",
+        }}
+      />
+    )
+  );
+};
 
-  // h1\s
-  const t2 = (t1[0] as string).match(/[^<].*?\s?/);
-  if (!t2) return null;
-
-  // h1
-  const tag = (t2[0] as string).replace(/\s/g, "");
-
-  // class="xxxx xxxx"
-  const t3 = (t1[0] as string).match(/class=[\"|\'].*?[\"|\']/);
-  const className = t3
-    ? (t3[0] as string).replace(/class=/, "").replace(/\'|"/g, "")
-    : "";
-
-  const innerHtml = str.replace(/^<.*?>/g, "").replace(/<\/.*?>$/, "");
-
-  return <tag class={className} v-html={innerHtml}></tag>;
+// 移上元素状态显示
+const renderCheckedElementMask = (el: HTMLElement | null) => {
+  return (
+    el && (
+      <div
+        class="checked-element"
+        style={{
+          left: el.offsetLeft + "px",
+          width: el.clientWidth + "px",
+          top: el.offsetTop + "px",
+          height: el.clientHeight + "px",
+        }}
+      />
+    )
+  );
 };
