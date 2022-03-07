@@ -7,9 +7,10 @@ export const initIframeElement = (el: HTMLIFrameElement) => {
   iframeElement = el;
 };
 
-enum IframeIoType {
+export enum IframeIoType {
   menu,
   component,
+  componentToOpt,
 }
 
 interface PostParam {
@@ -17,16 +18,36 @@ interface PostParam {
   data: unknown;
 }
 
-const post = (params: PostParam) => {
+// 父传子
+const parentToChild = (params: PostParam) => {
   return iframeElement.contentWindow?.postMessage(params);
 };
 
+const childToParent = (_win: Window, params: PostParam) => {
+  return _win.parent.postMessage(params);
+};
+
 // 菜单通知
-export const menuPostMessage = {
+export const iframeIo = {
   component: (data: unknown): void => {
-    post({
+    parentToChild({
       type: IframeIoType.component,
       data,
+    });
+  },
+
+  componentToOpt: (_win: Window, data: unknown): void => {
+    childToParent(_win, {
+      type: IframeIoType.componentToOpt,
+      data,
+    });
+  },
+
+  on: (type: IframeIoType, callback: (data: unknown) => void) => {
+    window.addEventListener("message", (e) => {
+      if (e.data.type === type) {
+        callback(e.data.data);
+      }
     });
   },
 };

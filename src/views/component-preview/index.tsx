@@ -1,7 +1,7 @@
 import { useMenuStore } from "@/stores/menu";
 import { useEventListener } from "@vueuse/core";
 import { computed, defineComponent, ref } from "vue";
-import { menuPostMessage } from "../iframe.io";
+import { iframeIo } from "../iframe.io";
 import "./index.css";
 
 export default defineComponent({
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const ondragend = () => {
       const component = menuStore.curItem?.components[menuStore.component];
-      menuPostMessage.component(component?.str);
+      iframeIo.component(component?.str);
     };
 
     return () => {

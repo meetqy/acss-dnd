@@ -1,7 +1,8 @@
 import { useEditorStore } from "@/stores/editor";
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import { stringToJsx } from "./utils";
 import "./index.css";
+import { iframeIo, IframeIoType } from "../iframe.io";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -15,9 +16,14 @@ export default defineComponent({
     // 当前鼠标移上的元素
     const overElement = ref<HTMLElement | null>(null);
 
+    watch(checkedElement, (val) => JSON.stringify(val));
+
     onMounted(() => {
-      window.addEventListener("message", (e) => {
-        editorStore.add(e.data.data);
+      // window.addEventListener("message", (e) => {
+      //   editorStore.add(e.data.data);
+      // });
+      iframeIo.on(IframeIoType.component, (data) => {
+        editorStore.add(data as string);
       });
 
       element.value?.addEventListener("mouseover", (e) => {
@@ -57,7 +63,9 @@ export default defineComponent({
     const ondragenter = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
-      isEnter.value = true;
+      if (!editorStore.container.length) {
+        isEnter.value = true;
+      }
     };
 
     const ondragleave = () => {
