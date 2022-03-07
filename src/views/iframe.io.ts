@@ -11,6 +11,7 @@ export enum IframeIoType {
   menu,
   component,
   editorToSide,
+  sideToEditor,
 }
 
 interface PostParam {
@@ -41,6 +42,10 @@ export const iframeIo = {
       type: IframeIoType.editorToSide,
       data,
     });
+  },
+
+  sideToEditor: (data: unknown): void => {
+    parentToChild({ type: IframeIoType.sideToEditor, data });
   },
 
   on: (type: IframeIoType, callback: (data: unknown) => void) => {

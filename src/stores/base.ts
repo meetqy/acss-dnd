@@ -1,4 +1,5 @@
 import Text, { type Template } from "@/template/text";
+import { iframeIo } from "@/views/iframe.io";
 // import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";
 
@@ -43,11 +44,11 @@ export const useBaseStore = defineStore({
     changeCheckElementClass(className: string) {
       if (this.checkedElement) {
         this.checkedElement.className = className;
+        iframeIo.sideToEditor(this.checkedElement?.className);
       }
     },
   },
 });
-
 interface State {
   current: string;
   component: number;

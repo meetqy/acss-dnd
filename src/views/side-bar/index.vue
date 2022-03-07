@@ -19,7 +19,6 @@ const classList = computed(() => {
 
 const addClass = () => {
   const newClassName = [...classList.value, classValue.value].join(" ");
-  console.log(newClassName);
   baseStore.changeCheckElementClass(newClassName);
   classValue.value = undefined;
 };
