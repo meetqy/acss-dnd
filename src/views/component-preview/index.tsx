@@ -1,4 +1,4 @@
-import { useMenuStore } from "@/stores/menu";
+import { useBaseStore } from "@/stores/base";
 import { useEventListener } from "@vueuse/core";
 import { computed, defineComponent, ref } from "vue";
 import { iframeIo } from "../iframe.io";
@@ -6,23 +6,23 @@ import "./index.css";
 
 export default defineComponent({
   setup() {
-    const menuStore = useMenuStore();
+    const baseStore = useBaseStore();
 
     const isShowComponent = computed(
-      () => menuStore.component === -1 && menuStore.current
+      () => baseStore.component === -1 && baseStore.current
     );
 
     const element = ref<HTMLElement>();
     useEventListener(element, "mousemove", (e: Event) => {
       const id = (e.target as HTMLElement).id;
       if (id === "mask") {
-        menuStore.setCurrent("");
+        baseStore.setCurrent("");
       }
     });
 
     useEventListener(element, "transitionend", (e) => {
       const target = e.target as HTMLElement;
-      if (menuStore.current && menuStore.component === -1) {
+      if (baseStore.current && baseStore.component === -1) {
         target.classList.remove("hidden");
       } else {
         target.classList.add("hidden");
@@ -31,12 +31,12 @@ export default defineComponent({
 
     const ondrag = (e: Event) => {
       const dragIndex = +(e.target as HTMLElement).id.split("_")[1];
-      if (dragIndex === menuStore.component) return;
-      menuStore.setComponent(dragIndex);
+      if (dragIndex === baseStore.component) return;
+      baseStore.setComponent(dragIndex);
     };
 
     const ondragend = () => {
-      const component = menuStore.curItem?.components[menuStore.component];
+      const component = baseStore.curItem?.components[baseStore.component];
       iframeIo.component(component?.str);
     };
 
@@ -55,13 +55,13 @@ export default defineComponent({
             }`}
           >
             <h2 class="text-2xl font-medium text-gray-900 my-4">
-              {menuStore.curItem?.text}
+              {baseStore.curItem?.text}
             </h2>
-            <ul class={menuStore.curItem?.wrapClass.join(" ")}>
-              {menuStore.curItem?.components.map((item, index) => (
+            <ul class={baseStore.curItem?.wrapClass.join(" ")}>
+              {baseStore.curItem?.components.map((item, index) => (
                 <li
                   key={index}
-                  id={`component-${menuStore.curItem?.id}_${index}`}
+                  id={`component-${baseStore.curItem?.id}_${index}`}
                   draggable
                   onDrag={ondrag}
                   onDragend={ondragend}

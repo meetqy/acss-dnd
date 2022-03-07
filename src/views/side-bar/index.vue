@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useMenuStore, type CheckedElement } from "@/stores/menu";
+import { useBaseStore, type CheckedElement } from "@/stores/base";
 import { computed, onMounted, ref } from "vue";
 import { iframeIo, IframeIoType } from "../iframe.io";
 
 const classValue = ref<string>();
-const menuStore = useMenuStore();
+const baseStore = useBaseStore();
 onMounted(() => {
   iframeIo.on(IframeIoType.editorToSide, (data) => {
-    menuStore.setCheckedElement(data as CheckedElement);
+    baseStore.setCheckedElement(data as CheckedElement);
   });
 });
 
 const classList = computed(() => {
-  const className = menuStore.checkedElement?.className;
+  const className = baseStore.checkedElement?.className;
   if (className) return className.split(" ");
   return [];
 });
@@ -20,7 +20,7 @@ const classList = computed(() => {
 const addClass = () => {
   const newClassName = [...classList.value, classValue.value].join(" ");
   console.log(newClassName);
-  menuStore.changeCheckElementClass(newClassName);
+  baseStore.changeCheckElementClass(newClassName);
   classValue.value = undefined;
 };
 </script>
@@ -29,16 +29,16 @@ const addClass = () => {
   <aside
     id="side-bar"
     class="h-screen w-72 bg-white flex-shrink-0 shadow"
-    :class="{ hidden: !menuStore.checkedElement }"
+    :class="{ hidden: !baseStore.checkedElement }"
   >
     <header class="flex justify-between px-4 pt-5">
       <span class="font-semibold">
-        {{ menuStore.checkedElement?.tagName }}
-        <span class="lowercase">({{ menuStore.checkedElement?.tagName }})</span>
+        {{ baseStore.checkedElement?.tagName }}
+        <span class="lowercase">({{ baseStore.checkedElement?.tagName }})</span>
       </span>
       <button
         class="btn btn-xs btn-square btn-outline text-base-300"
-        @click="menuStore.setCheckedElement(undefined)"
+        @click="baseStore.setCheckedElement(undefined)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

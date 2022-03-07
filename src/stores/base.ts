@@ -2,8 +2,8 @@ import Text, { type Template } from "@/template/text";
 // import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";
 
-export const useMenuStore = defineStore({
-  id: "menu",
+export const useBaseStore = defineStore({
+  id: "base",
   state: (): State => ({
     current: "", // 当前选中菜单
     component: -1, // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
