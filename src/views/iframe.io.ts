@@ -10,7 +10,7 @@ export const initIframeElement = (el: HTMLIFrameElement) => {
 export enum IframeIoType {
   menu,
   component,
-  componentToOpt,
+  editorToSide,
 }
 
 interface PostParam {
@@ -36,9 +36,9 @@ export const iframeIo = {
     });
   },
 
-  componentToOpt: (_win: Window, data: unknown): void => {
+  editorToSide: (_win: Window, data: unknown): void => {
     childToParent(_win, {
-      type: IframeIoType.componentToOpt,
+      type: IframeIoType.editorToSide,
       data,
     });
   },

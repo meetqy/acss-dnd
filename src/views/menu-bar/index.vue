@@ -17,6 +17,7 @@ useEventListener(element, "mousemove", (e: Event) => {
   <aside
     ref="element"
     class="h-screen w-72 bg-white flex-shrink-0 shadow relative z-20"
+    :class="{ hidden: menuStore.checkedElement }"
   >
     <div class="p-4">
       <h2 class="font-semibold text-lg py-2 text-slate-700">基础</h2>

@@ -16,12 +16,15 @@ export default defineComponent({
     // 当前鼠标移上的元素
     const overElement = ref<HTMLElement | null>(null);
 
-    watch(checkedElement, (val) => JSON.stringify(val));
+    watch(checkedElement, (val) =>
+      iframeIo.editorToSide(window, {
+        className: val?.className,
+        tagName: val?.tagName,
+        innerText: val?.innerText,
+      })
+    );
 
     onMounted(() => {
-      // window.addEventListener("message", (e) => {
-      //   editorStore.add(e.data.data);
-      // });
       iframeIo.on(IframeIoType.component, (data) => {
         editorStore.add(data as string);
       });
@@ -51,11 +54,10 @@ export default defineComponent({
       e.stopPropagation();
       isEnter.value = false;
       // editorStore.add();
-      // console.log(e, "drop");
+      console.log(e, "drop");
     };
 
     const ondragover = (e: Event) => {
-      // console.log(menuStore.component);
       e.preventDefault();
       e.stopPropagation();
     };
@@ -63,6 +65,7 @@ export default defineComponent({
     const ondragenter = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
+
       if (!editorStore.container.length) {
         isEnter.value = true;
       }

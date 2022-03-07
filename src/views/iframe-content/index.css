@@ -5,3 +5,8 @@
 .checked-element {
   @apply absolute border-2 border-primary;
 }
+
+span,
+label {
+  display: inline-block;
+}
