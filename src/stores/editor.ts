@@ -21,8 +21,22 @@ export const useEditorStore = defineStore({
       this.wrapElement = wrapElement;
     },
 
-    addNode(str: string) {
-      this.wrapElement?.append(stringToNode(str));
+    // 添加元素到画布
+    // el存在 会放在el后面
+    addNode(str: string, el?: HTMLElement | null) {
+      const newEl = stringToNode(str);
+      if (el && el.id != "iframe-main") {
+        const parentNode = el.parentNode;
+        const referenceNode = this.wrapElement?.querySelector(
+          `[data-uuid="${el.getAttribute("data-uuid")}"]`
+        );
+        if (typeof newEl != "string" && referenceNode) {
+          // parentNode === wrapElement 的情况，如果不是暂未测试
+          parentNode?.insertBefore(newEl, referenceNode.nextSibling);
+        }
+      } else {
+        this.wrapElement?.append(newEl);
+      }
     },
   },
 });

@@ -34,7 +34,10 @@ export const useBaseStore = defineStore({
     },
 
     setComponent(index: number) {
-      this.component = index;
+      if (this.component != index) {
+        iframeIo.component(this.curItem?.components[index].str);
+        this.component = index;
+      }
     },
 
     setCheckedElement(el: CheckedElement | undefined) {

@@ -17,6 +17,12 @@ export default defineComponent({
     // 当前鼠标移上的元素
     const overElement = ref<HTMLElement>();
 
+    // 拖拽时经过的元素
+    const dragEnterElement = ref<HTMLElement>();
+
+    // 当前拖拽的元素，只有在drop触发时，并且在main标签中时，才会显示在画布上
+    let _menuToEditorElementStr = "";
+
     watch(checkedElement, (val) =>
       iframeIo.editorToSide(window, {
         className: val?.className,
@@ -30,8 +36,15 @@ export default defineComponent({
     const ondrop = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
+
       isEnter.value = false;
-      // editorStore.add();
+
+      if (_menuToEditorElementStr) {
+        editorStore.addNode(_menuToEditorElementStr, dragEnterElement.value);
+      }
+
+      dragEnterElement.value = undefined;
+
       console.log(e, "drop");
     };
 
@@ -44,9 +57,13 @@ export default defineComponent({
       e.preventDefault();
       e.stopPropagation();
 
+      const el = e.target as HTMLElement;
+
       if (!editorStore.wrapElement?.children.length) {
         isEnter.value = true;
       }
+
+      dragEnterElement.value = el;
     };
 
     const ondragleave = () => {
@@ -54,8 +71,9 @@ export default defineComponent({
     };
 
     onMounted(() => {
+      // 接受iframe传过来的元素
       iframeIo.on(IframeIoType.component, (data) => {
-        editorStore.addNode(data as string);
+        _menuToEditorElementStr = data as string;
       });
 
       // 修改属性
@@ -93,10 +111,6 @@ export default defineComponent({
       }
     });
 
-    const add = () => {
-      editorStore.addNode(`<h1 class="text-center">Hello World</h1>`);
-    };
-
     return () => (
       <>
         <main
@@ -112,10 +126,26 @@ export default defineComponent({
         ></main>
         {renderOverElementMask(overElement.value)}
         {renderCheckedElementMask(checkedElement.value)}
+        {renderDragEnterElement(dragEnterElement.value)}
       </>
     );
   },
 });
+
+const renderDragEnterElement = (el: HTMLElement | undefined) => {
+  if (!el || el.id === "iframe-main") return null;
+  return (
+    <div
+      class="drag-enter_element"
+      style={{
+        left: el.offsetLeft + "px",
+        width: el.clientWidth + "px",
+        top: el.offsetTop + "px",
+        height: el.clientHeight + "px",
+      }}
+    />
+  );
+};
 
 // 移上元素状态显示
 const renderOverElementMask = (el: HTMLElement | undefined) => {

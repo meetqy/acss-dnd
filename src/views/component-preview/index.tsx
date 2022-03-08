@@ -1,7 +1,6 @@
 import { useBaseStore } from "@/stores/base";
 import { useEventListener } from "@vueuse/core";
 import { computed, defineComponent, ref } from "vue";
-import { iframeIo } from "../iframe.io";
 import "./index.css";
 
 export default defineComponent({
@@ -35,10 +34,10 @@ export default defineComponent({
       baseStore.setComponent(dragIndex);
     };
 
-    const ondragend = () => {
-      const component = baseStore.curItem?.components[baseStore.component];
-      iframeIo.component(component?.str);
-    };
+    // const ondragend = () => {
+    //   const component = baseStore.curItem?.components[baseStore.component];
+    //   iframeIo.component(component?.str);
+    // };
 
     return () => {
       return (
@@ -64,7 +63,7 @@ export default defineComponent({
                   id={`component-${baseStore.curItem?.id}_${index}`}
                   draggable
                   onDrag={ondrag}
-                  onDragend={ondragend}
+                  // onDragend={ondragend}
                   class="translate-x-0 translate-y-0 card cursor-pointer p-4 mb-5 bg-base-100 shadow-sm border-2 border-transparent hover:border-primary"
                 >
                   {item.jsx}

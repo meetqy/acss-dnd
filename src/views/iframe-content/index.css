@@ -6,6 +6,10 @@
   @apply absolute border-2 border-primary;
 }
 
+.drag-enter_element {
+  @apply absolute border-b-2 border-primary;
+}
+
 span,
 label {
   display: inline-block;
