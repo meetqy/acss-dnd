@@ -4,19 +4,36 @@
 
 ## ✨ 特点
 
-- 树形结构的 dom 结构，更加符合开发者的布局方式
-- 因为基于 tailwind，所以提高了 ui 的下限
-- 响应式，拖拽出来的网页天生就是响应式
-- 多种选择，无论你是移动端优先，还是 pc 端优先
+- 简单易用
+- 树结构的布局方式，便于阅读
+- 响应式
 - 适配暗黑模式
-- 不受框架限制，只要支持 html，均可使用
+- class 分类，便于操作
 
 ## 💻 在线体验
 
 - [Github](https://meetqy.github.io/ultraseven/)
 - [Gitee](https://meetqy.gitee.io/ultraseven)
 
+## 项目结构
+
+```
+- template   # 存放模板配置
+- views      # 模块
+    - component-preview     # 组件预览
+    - editor-wrap           # 编辑器外部的样式
+    - iframe-content        # 画布
+    - menu-bar              # 菜单
+    - side-bar              # 属性操作
+```
+
 ## 基础库
 
+- [vue3](https://vuejs.org/)
+- [vite](https://vitejs.dev/)
 - [tailwind](https://tailwindcss.com/)
 - [daisy ui](https://daisyui.com/)
+
+## 近期计划
+
+[github project](https://github.com/meetqy/ultraseven/projects/1)
