@@ -2,6 +2,7 @@ import { useEditorStore } from "@/stores/editor";
 import { defineComponent, onMounted, ref, watch } from "vue";
 import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
+import type { CheckedElement } from "@/types";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -23,13 +24,17 @@ export default defineComponent({
     // 当前拖拽的元素，只有在drop触发时，并且在main标签中时，才会显示在画布上
     let _menuToEditorElementStr = "";
 
-    watch(checkedElement, (val) =>
-      iframeIo.editorToSide(window, {
-        className: val?.className,
-        tagName: val?.tagName,
-        innerText: val?.innerText,
-      })
-    );
+    watch(checkedElement, (val) => {
+      if (val?.tagName) {
+        const el: CheckedElement = {
+          className: val?.className || "",
+          tagName: val.tagName,
+          innerText: val?.innerText || "",
+        };
+
+        iframeIo.editorToSide(window, el);
+      }
+    });
 
     const isEnter = ref<boolean>(false);
 

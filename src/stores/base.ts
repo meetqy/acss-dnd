@@ -1,4 +1,5 @@
 import Text, { type Template } from "@/template/text";
+import type { CheckedElement } from "@/types";
 import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";
 
@@ -66,10 +67,4 @@ export interface MenuComponent {
   // eg: 文本标签 h1 h2 p ... 外面的 prose,可以直接格式化其中的文本
   wrapClass: string[];
   components: Template[];
-}
-
-export interface CheckedElement {
-  tagName: string;
-  className: string;
-  innerText: string;
 }

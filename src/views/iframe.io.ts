@@ -1,5 +1,7 @@
 // import type { VNode } from "@/stores/editor";
 
+import type { CheckedElement } from "@/types";
+
 let iframeElement: HTMLIFrameElement;
 
 // 初始化 iframe
@@ -37,7 +39,7 @@ export const iframeIo = {
     });
   },
 
-  editorToSide: (_win: Window, data: unknown): void => {
+  editorToSide: (_win: Window, data: CheckedElement): void => {
     childToParent(_win, {
       type: IframeIoType.editorToSide,
       data,
