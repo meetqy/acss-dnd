@@ -15,6 +15,12 @@ const addClass = () => {
   baseStore.changeCheckElementClass(newClassName);
   classValue.value = undefined;
 };
+
+const delClass = (index: number) => {
+  const classList = props.classList;
+  classList.splice(index, 1);
+  baseStore.changeCheckElementClass(classList.join(" "));
+};
 </script>
 
 <template>
@@ -33,8 +39,13 @@ const addClass = () => {
         v-model="classValue"
         @keyup.enter="addClass"
       />
-      <div class="badge gap-1 mr-2 mt-2" v-for="item in classList" :key="item">
+      <div
+        class="badge gap-1 mr-2 mt-2"
+        v-for="(item, index) in classList"
+        :key="item"
+      >
         <svg
+          @click="delClass(index)"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

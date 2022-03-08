@@ -49,7 +49,7 @@ const classList = computed(() => {
         </svg>
       </button>
     </header>
-    <div class="divider">OR</div>
+    <div class="divider"></div>
     <ClassName :class-list="classList" />
   </aside>
 </template>
