@@ -48,7 +48,11 @@ export const useBaseStore = defineStore({
     changeCheckElementClass(className: string) {
       if (this.checkedElement) {
         this.checkedElement.className = className;
-        iframeIo.sideToEditor(className);
+        iframeIo.sideToEditor({
+          tagName: this.checkedElement.tagName,
+          className: this.checkedElement.className,
+          innerText: this.checkedElement.innerText,
+        });
       }
     },
   },

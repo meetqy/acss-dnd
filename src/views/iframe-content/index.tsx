@@ -82,11 +82,12 @@ export default defineComponent({
       });
 
       // 修改属性
-      iframeIo.on(IframeIoType.sideToEditor, (className) => {
-        editorStore.changeClassName(
-          checkedElement.value?.getAttribute("data-uuid") || "",
-          className as string
-        );
+      iframeIo.on(IframeIoType.sideToEditor, (data) => {
+        const el = data as CheckedElement;
+        const uuid = checkedElement.value?.getAttribute("data-uuid");
+        if (uuid) {
+          editorStore.changeElement(uuid, el);
+        }
       });
 
       mainElement.value?.addEventListener("mouseover", (e) => {

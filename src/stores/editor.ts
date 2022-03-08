@@ -1,7 +1,7 @@
 import { TextNode } from "@/constants";
+import type { CheckedElement } from "@/types";
 import { stringToNode } from "@/views/utils";
 import { defineStore } from "pinia";
-import type { CheckedElement } from "./base";
 
 export const useEditorStore = defineStore({
   id: "editor",

@@ -26,11 +26,11 @@ function parentToChild<T>(params: PostParam<T>) {
   return iframeElement.contentWindow?.postMessage(params);
 }
 
+// 子传父
 function childToParent<T>(_win: Window, params: PostParam<T>) {
   return _win.parent.postMessage(params);
 }
 
-// 菜单通知
 export const iframeIo = {
   component: (data: string): void => {
     parentToChild({
@@ -46,11 +46,14 @@ export const iframeIo = {
     });
   },
 
-  sideToEditor: (data: unknown): void => {
+  sideToEditor: (data: CheckedElement): void => {
     parentToChild({ type: IframeIoType.sideToEditor, data });
   },
 
-  on: (type: IframeIoType, callback: (data: unknown) => void) => {
+  on: (
+    type: IframeIoType,
+    callback: (data: CheckedElement | string) => void
+  ) => {
     window.addEventListener("message", (e) => {
       if (e.data.type === type) {
         callback(e.data.data);
