@@ -1,46 +1,22 @@
 # ultraseven
 
-This template should help get you started developing with Vue 3 in Vite.
+只需要简单的拖拽，你就能创建一个漂亮的响应式网页。
 
-## Recommended IDE Setup
+## ✨ 特点
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+- 树形结构的 dom 结构，更加符合开发者的布局方式
+- 因为基于 tailwind，所以提高了 ui 的下限
+- 响应式，拖拽出来的网页天生就是响应式
+- 多种选择，无论你是移动端优先，还是 pc 端优先
+- 适配暗黑模式
+- 不受框架限制，只要支持 html，均可使用
 
-## Type Support for `.vue` Imports in TS
+## 💻 在线体验
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- [Github](https://meetqy.github.io/ultraseven/)
+- [Gitee](https://meetqy.gitee.io/ultraseven)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 基础库
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [tailwind](https://tailwindcss.com/)
+- [daisy ui](https://daisyui.com/)
