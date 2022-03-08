@@ -75,9 +75,14 @@
           class="w-full h-full"
           frameborder="0"
           title="edit page"
-          src="/iframe"
+          :src="`${baseUrl}iframe`"
         />
       </div>
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+const baseUrl = import.meta.env.BASE_URL;
+console.log(baseUrl);
+</script>
