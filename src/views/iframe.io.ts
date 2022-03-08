@@ -14,23 +14,23 @@ export enum IframeIoType {
   sideToEditor,
 }
 
-interface PostParam {
+interface PostParam<T> {
   type: IframeIoType;
-  data: unknown;
+  data: T;
 }
 
 // 父传子
-const parentToChild = (params: PostParam) => {
+function parentToChild<T>(params: PostParam<T>) {
   return iframeElement.contentWindow?.postMessage(params);
-};
+}
 
-const childToParent = (_win: Window, params: PostParam) => {
+function childToParent<T>(_win: Window, params: PostParam<T>) {
   return _win.parent.postMessage(params);
-};
+}
 
 // 菜单通知
 export const iframeIo = {
-  component: (data: unknown): void => {
+  component: (data: string): void => {
     parentToChild({
       type: IframeIoType.component,
       data,

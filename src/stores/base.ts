@@ -1,6 +1,5 @@
 import Text, { type Template } from "@/template/text";
 import { iframeIo } from "@/views/iframe.io";
-// import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";
 
 export const useBaseStore = defineStore({
@@ -34,20 +33,21 @@ export const useBaseStore = defineStore({
     },
 
     setComponent(index: number) {
-      if (this.component != index) {
-        iframeIo.component(this.curItem?.components[index].str);
+      const jsxStr = this.curItem?.components[index].str;
+      if (this.component != index && jsxStr) {
+        iframeIo.component(jsxStr);
         this.component = index;
       }
     },
 
-    setCheckedElement(el: CheckedElement | undefined) {
+    setCheckedElement(el: CheckedElement) {
       this.checkedElement = el;
     },
 
     changeCheckElementClass(className: string) {
       if (this.checkedElement) {
         this.checkedElement.className = className;
-        iframeIo.sideToEditor(this.checkedElement?.className);
+        iframeIo.sideToEditor(className);
       }
     },
   },
@@ -69,7 +69,7 @@ export interface MenuComponent {
 }
 
 export interface CheckedElement {
-  tagName: string | undefined;
-  className: string | undefined;
-  innerText: string | undefined;
+  tagName: string;
+  className: string;
+  innerText: string;
 }

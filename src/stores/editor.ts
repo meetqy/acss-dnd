@@ -1,11 +1,13 @@
+import { TextNode } from "@/constants";
 import { stringToNode } from "@/views/utils";
 import { defineStore } from "pinia";
+import type { CheckedElement } from "./base";
 
 export const useEditorStore = defineStore({
   id: "editor",
   state: (): State => {
     return {
-      wrapElement: undefined,
+      wrapElement: null,
     };
   },
   // "<h1 class=\"text-center text-yellow-500\">这是标题1</h1>"
@@ -14,6 +16,16 @@ export const useEditorStore = defineStore({
       const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
       if (node) {
         node.className = className;
+      }
+    },
+
+    changeElement(uuid: string, el: CheckedElement) {
+      const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
+      if (node) {
+        node.className = el.className;
+        if (TextNode.has(node.tagName)) {
+          (node as HTMLElement).innerText = el.innerText;
+        }
       }
     },
 
@@ -42,5 +54,5 @@ export const useEditorStore = defineStore({
 });
 
 interface State {
-  wrapElement: Element | undefined;
+  wrapElement: Element | null;
 }
