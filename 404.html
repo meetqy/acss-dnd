@@ -5,15 +5,21 @@
     <link rel="icon" href="/ultraseven/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <script
-      type="module"
-      crossorigin
-      src="/ultraseven/assets/index.8049f720.js"
-    ></script>
-    <link rel="modulepreload" href="/ultraseven/assets/vendor.69a4f07b.js" />
-    <link rel="stylesheet" href="/ultraseven/assets/index.5021b65b.css" />
+    <script type="module" crossorigin src="/ultraseven/assets/index.8049f720.js"></script>
+    <link rel="modulepreload" href="/ultraseven/assets/vendor.69a4f07b.js">
+    <link rel="stylesheet" href="/ultraseven/assets/index.5021b65b.css">
   </head>
   <body>
+    <script>
+      (function () {
+        let redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <div id="app"></div>
+    
   </body>
 </html>
