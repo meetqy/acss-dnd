@@ -25,6 +25,9 @@
     - iframe-content        # 画布
     - menu-bar              # 菜单
     - side-bar              # 属性操作
+        - file-a            # 一个文件夹相当于一个分类
+        - file-b            
+        ...
 ```
 
 ## 基础库
