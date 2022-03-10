@@ -86,7 +86,8 @@ export default defineComponent({
         const el = data as CheckedElement;
         const uuid = checkedElement.value?.getAttribute("data-uuid");
         if (uuid) {
-          editorStore.changeElement(uuid, el);
+          console.log(el);
+          editorStore.updateElement(uuid, el);
         }
       });
 

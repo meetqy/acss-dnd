@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { useBaseStore, type CheckedElement } from "@/stores/base";
+import { useBaseStore } from "@/stores/base";
+import type { CheckedElement } from "@/types";
 import { computed, onMounted } from "vue";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import ClassName from "./class-name/index.vue";
+import TextInput from "./text-input/index.vue";
 
 const baseStore = useBaseStore();
 onMounted(() => {
@@ -11,23 +13,19 @@ onMounted(() => {
   });
 });
 
-const classList = computed(() => {
-  const className = baseStore.checkedElement?.className;
-  if (className) return className.split(" ");
-  return [];
-});
+const checkedElement = computed(() => baseStore.checkedElement);
 </script>
 
 <template>
   <aside
     id="side-bar"
     class="h-screen w-72 bg-white flex-shrink-0 shadow"
-    :class="{ hidden: !baseStore.checkedElement }"
+    :class="{ hidden: !checkedElement }"
   >
     <header class="flex justify-between px-4 pt-5">
       <span class="font-semibold">
-        {{ baseStore.checkedElement?.tagName }}
-        <span class="lowercase">({{ baseStore.checkedElement?.tagName }})</span>
+        {{ checkedElement?.tagName }}
+        <span class="lowercase">({{ checkedElement?.tagName }})</span>
       </span>
       <button
         class="btn btn-xs btn-square btn-outline text-base-300"
@@ -50,6 +48,7 @@ const classList = computed(() => {
       </button>
     </header>
     <div class="divider"></div>
-    <ClassName :class-list="classList" />
+    <ClassName v-show="checkedElement" :element="checkedElement || null" />
+    <TextInput v-show="checkedElement" :element="checkedElement || null" />
   </aside>
 </template>

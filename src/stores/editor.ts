@@ -12,13 +12,6 @@ export const useEditorStore = defineStore({
   },
   // "<h1 class=\"text-center text-yellow-500\">这是标题1</h1>"
   actions: {
-    changeClassName(uuid: string, className: string) {
-      const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
-      if (node) {
-        node.className = className;
-      }
-    },
-
     updateElement(uuid: string, el: CheckedElement) {
       const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
       if (node) {
