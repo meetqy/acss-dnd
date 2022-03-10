@@ -6,9 +6,9 @@ import { defineStore } from "pinia";
 export const useBaseStore = defineStore({
   id: "base",
   state: (): State => ({
-    current: "", // 当前选中菜单
-    component: -1, // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
-    checkedElement: undefined, // editor中当前选中的元素
+    current: "",
+    component: -1,
+    checkedElement: null, // editor中当前选中的元素
     menu: [
       {
         id: "1",
@@ -41,8 +41,10 @@ export const useBaseStore = defineStore({
       }
     },
 
-    setCheckedElement(el: CheckedElement | undefined) {
+    // 初始化选中的元素
+    initCheckedElement(el: CheckedElement | null) {
       this.checkedElement = el;
+      iframeIo.sideToEditor(el);
     },
 
     updateCheckedElement(el: CheckedElement) {
@@ -60,10 +62,12 @@ export const useBaseStore = defineStore({
   },
 });
 interface State {
+  // 当前选中菜单
   current: string;
+  // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
   component: number;
   menu: MenuComponent[];
-  checkedElement: CheckedElement | undefined;
+  checkedElement: CheckedElement | null;
 }
 
 export interface MenuComponent {

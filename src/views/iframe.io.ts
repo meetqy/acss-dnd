@@ -46,7 +46,8 @@ export const iframeIo = {
     });
   },
 
-  sideToEditor: (data: CheckedElement): void => {
+  // null: 点击sideBar关闭按钮
+  sideToEditor: (data: CheckedElement | null): void => {
     parentToChild({ type: IframeIoType.sideToEditor, data });
   },
 
