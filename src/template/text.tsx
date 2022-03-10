@@ -5,7 +5,7 @@ export interface Template {
 
 export const article: Template = {
   jsx: (
-    <article class="prose">
+    <article class="prose m-auto">
       <h1>文本容器 article</h1>
       <h2>文本容器 article</h2>
       <h3>文本容器 article</h3>
@@ -20,11 +20,11 @@ export const article: Template = {
       </p>
     </article>
   ),
-  str: ` <article class="prose">
+  str: ` <article class="prose m-auto">
   <h1>文本容器 article</h1>
   <h2>文本容器 article</h2>
   <h3>文本容器 article</h3>
-  <h3>文本容器 article</h3>
+  <h4>文本容器 article</h4>
   <p>
     文本容器 article - 这是一段文本。By default, Tailwind removes all of the
     default browser styling from paragraphs, headings, lists and more. This
@@ -40,8 +40,8 @@ export const article: Template = {
  * template的 str 不支持 class={"sss"} 变量逻辑运算的用法
  */
 export const h1: Template = {
-  jsx: <h1 class="text-center">这是标题1</h1>,
-  str: `<h1 class="text-center">这是标题1</h1>`,
+  jsx: <h1>这是标题1</h1>,
+  str: `<h1>这是标题1</h1>`,
 };
 
 export const h2: Template = {
