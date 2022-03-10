@@ -4,7 +4,7 @@
     :class="TextNode.has(props.element?.tagName || '') ? 'block' : 'hidden'"
   >
     <p class="flex justify-between items-center">
-      <span class="text-base"> Text - {{}} </span>
+      <span class="text-base"> Text </span>
     </p>
     <div class="mt-4">
       <input
