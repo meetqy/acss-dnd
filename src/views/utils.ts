@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 // 当前元素转为string outerHtml 有时候转不出来
 export const elementToString = (el: Element): string => {
   const div = document.createElement("div");
@@ -17,7 +19,7 @@ export const stringToNode = (str: string): Node | null => {
 
 // Node 的每一项添加 uuid
 export const nodeAddUuid = (el: Element) => {
-  el.setAttribute("data-uuid", Date.now().toString());
+  el.setAttribute("data-uuid", v4());
   const children = [...el.children];
 
   if (children.length > 0) {

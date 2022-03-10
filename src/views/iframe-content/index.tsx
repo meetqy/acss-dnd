@@ -100,6 +100,7 @@ export default defineComponent({
 
       // 修改属性
       iframeIo.on(IframeIoType.sideToEditor, (data) => {
+        console.log(data, checkedElement.value);
         if (!data) {
           return (checkedElement.value = null);
         }
