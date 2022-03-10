@@ -3,6 +3,39 @@ export interface Template {
   str: string;
 }
 
+export const article: Template = {
+  jsx: (
+    <article class="prose">
+      <h1>文本容器 article</h1>
+      <h2>文本容器 article</h2>
+      <h3>文本容器 article</h3>
+      <h4>文本容器 article</h4>
+      <p>
+        文本容器 article - 这是一段文本。By default, Tailwind removes all of the
+        default browser styling from paragraphs, headings, lists and more. This
+        ends up being really useful for building application UIs because you
+        spend less time undoing user-agent styles, but when you really are just
+        trying to style some content that came from a rich-text editor in a CMS
+        or a markdown file, it can be surprising and unintuitive.
+      </p>
+    </article>
+  ),
+  str: ` <article class="prose">
+  <h1>文本容器 article</h1>
+  <h2>文本容器 article</h2>
+  <h3>文本容器 article</h3>
+  <h3>文本容器 article</h3>
+  <p>
+    文本容器 article - 这是一段文本。By default, Tailwind removes all of the
+    default browser styling from paragraphs, headings, lists and more. This
+    ends up being really useful for building application UIs because you
+    spend less time undoing user-agent styles, but when you really are just
+    trying to style some content that came from a rich-text editor in a CMS
+    or a markdown file, it can be surprising and unintuitive.
+  </p>
+</article>`,
+};
+
 /**
  * template的 str 不支持 class={"sss"} 变量逻辑运算的用法
  */
@@ -68,6 +101,6 @@ export const span: Template = {
 </span>`,
 };
 
-const temp: Template[] = [h1, h2, h3, h4, h5, h6, p, span];
+const temp: Template[] = [article, h1, h2, h3, h4, h5, h6, p, span];
 
 export default temp;
