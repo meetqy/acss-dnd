@@ -50,7 +50,7 @@ const delClass = (index: number) => {
     <div class="mt-4">
       <input
         type="text"
-        placeholder="添加className"
+        placeholder="添加 class，回车确认"
         class="input input-bordered input-primary w-full max-w-xs input-sm mb-2"
         v-model="classValue"
         @keyup.enter="addClass"
