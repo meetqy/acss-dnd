@@ -52,7 +52,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
       </button>
     </header>
     <div class="divider"></div>
-    <ClassName v-show="checkedElement" :element="checkedElement || null" />
-    <TextInput v-show="checkedElement" :element="checkedElement || null" />
+    <ClassName v-if="checkedElement" :element="checkedElement" />
+    <TextInput v-if="checkedElement" :element="checkedElement" />
   </aside>
 </template>

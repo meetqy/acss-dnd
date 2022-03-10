@@ -4,7 +4,7 @@ import type { CheckedElement } from "@/types";
 import { computed, ref } from "vue";
 
 interface Props {
-  element: CheckedElement | null;
+  element: CheckedElement;
 }
 
 const classList = computed(() => {

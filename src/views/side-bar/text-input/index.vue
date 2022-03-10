@@ -1,7 +1,10 @@
 <template>
-  <div class="px-4" v-show="TextNode.has(props.element?.tagName || '')">
+  <div
+    class="px-4"
+    :class="TextNode.has(props.element?.tagName || '') ? 'block' : 'hidden'"
+  >
     <p class="flex justify-between items-center">
-      <span class="text-base">Text</span>
+      <span class="text-base"> Text - {{}} </span>
     </p>
     <div class="mt-4">
       <input
@@ -21,7 +24,7 @@ import type { CheckedElement } from "@/types";
 import { ref, watch } from "vue";
 
 interface Props {
-  element: CheckedElement | null;
+  element: CheckedElement;
 }
 
 const baseStore = useBaseStore();
