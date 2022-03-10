@@ -5,10 +5,24 @@ export const elementToString = (el: Element): string => {
   return div.innerHTML;
 };
 
-export const stringToNode = (str: string): Node | string => {
+// 把 string 转为 node 节点
+export const stringToNode = (str: string): Node | null => {
   const div = document.createElement("div");
   div.innerHTML = str.trim();
   const child = div.querySelector("*");
-  child?.setAttribute("data-uuid", Date.now().toString());
-  return child || "";
+  // 浅拷贝 可以直接修改到child
+  child && nodeAddUuid(child);
+  return child;
+};
+
+// Node 的每一项添加 uuid
+export const nodeAddUuid = (el: Element) => {
+  el.setAttribute("data-uuid", Date.now().toString());
+  const children = [...el.children];
+
+  if (children.length > 0) {
+    children.forEach((item) => {
+      nodeAddUuid(item);
+    });
+  }
 };
