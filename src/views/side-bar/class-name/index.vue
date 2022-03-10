@@ -18,6 +18,7 @@ const baseStore = useBaseStore();
 
 const classValue = ref<string>();
 const addClass = () => {
+  if (!classValue.value) return;
   const newClassName = [...classList.value, classValue.value].join(" ");
   props.element &&
     baseStore.updateCheckedElement({
