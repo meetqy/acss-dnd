@@ -1,5 +1,5 @@
 import { useEditorStore } from "@/stores/editor";
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
@@ -13,7 +13,7 @@ export default defineComponent({
     const mainElement = ref<Element>();
 
     // 当前选中的元素
-    const checkedElement = ref<HTMLElement>();
+    const checkedElement = ref<HTMLElement | null>();
 
     // 当前鼠标移上的元素
     const overElement = ref<HTMLElement>();
@@ -75,6 +75,23 @@ export default defineComponent({
       isEnter.value = false;
     };
 
+    function mainMouseOverFn(e: Event) {
+      const el = e.target as HTMLElement;
+      if (el.id === "iframe-main") return;
+      overElement.value = el;
+    }
+
+    function mainMouseLeaveFn(e: Event) {
+      overElement.value = undefined;
+    }
+
+    function mainClickFn(e: Event) {
+      const el = e.target as HTMLElement;
+      if (el.id === "iframe-main") return;
+      checkedElement.value = el;
+      overElement.value = undefined;
+    }
+
     onMounted(() => {
       // 接受iframe传过来的元素
       iframeIo.on(IframeIoType.component, (data) => {
@@ -83,32 +100,28 @@ export default defineComponent({
 
       // 修改属性
       iframeIo.on(IframeIoType.sideToEditor, (data) => {
+        if (!data) {
+          return (checkedElement.value = null);
+        }
         const el = data as CheckedElement;
+
         const uuid = checkedElement.value?.getAttribute("data-uuid");
         if (uuid) {
-          console.log(el);
           editorStore.updateElement(uuid, el);
         }
       });
 
-      mainElement.value?.addEventListener("mouseover", (e) => {
-        const el = e.target as HTMLElement;
-        if (el.id === "iframe-main") return;
-        overElement.value = el;
-      });
-
-      mainElement.value?.addEventListener("mouseleave", (e) => {
-        overElement.value = undefined;
-      });
-
-      mainElement.value?.addEventListener("click", (e) => {
-        const el = e.target as HTMLElement;
-        if (el.id === "iframe-main") return;
-        checkedElement.value = el;
-        overElement.value = undefined;
-      });
+      mainElement.value?.addEventListener("mouseover", mainMouseOverFn);
+      mainElement.value?.addEventListener("mouseleave", mainMouseLeaveFn);
+      mainElement.value?.addEventListener("click", mainClickFn);
 
       mainElement.value && editorStore.init(mainElement.value);
+    });
+
+    onUnmounted(() => {
+      mainElement.value?.removeEventListener("mouseover", mainMouseOverFn);
+      mainElement.value?.removeEventListener("mouseleave", mainMouseLeaveFn);
+      mainElement.value?.removeEventListener("click", mainClickFn);
     });
 
     watch(editorStore, (val) => {
@@ -132,7 +145,9 @@ export default defineComponent({
           }`}
         ></main>
         {renderOverElementMask(overElement.value)}
-        {renderCheckedElementMask(checkedElement.value)}
+        {checkedElement.value
+          ? renderCheckedElementMask(checkedElement.value)
+          : null}
         {renderDragEnterElement(dragEnterElement.value)}
       </>
     );
@@ -156,6 +171,7 @@ const renderDragEnterElement = (el: HTMLElement | undefined) => {
 
 // 移上元素状态显示
 const renderOverElementMask = (el: HTMLElement | undefined) => {
+  // console.log(el, "over-element");
   return (
     el && (
       <div
@@ -171,8 +187,9 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
   );
 };
 
-// 移上元素状态显示
-const renderCheckedElementMask = (el: HTMLElement | undefined) => {
+// 选中元素状态显示
+const renderCheckedElementMask = (el: HTMLElement) => {
+  console.log(el, "checked-element");
   return (
     el && (
       <div

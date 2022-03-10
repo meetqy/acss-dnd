@@ -9,9 +9,13 @@ import TextInput from "./text-input/index.vue";
 const baseStore = useBaseStore();
 onMounted(() => {
   iframeIo.on(IframeIoType.editorToSide, (data) => {
-    baseStore.setCheckedElement(data as CheckedElement);
+    baseStore.initCheckedElement(data as CheckedElement);
   });
 });
+
+const close = () => {
+  baseStore.initCheckedElement(null);
+};
 
 const checkedElement = computed(() => baseStore.checkedElement);
 </script>
@@ -29,7 +33,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
       </span>
       <button
         class="btn btn-xs btn-square btn-outline text-base-300"
-        @click="baseStore.setCheckedElement(undefined)"
+        @click="close"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

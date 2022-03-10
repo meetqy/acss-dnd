@@ -31,7 +31,6 @@ const innerText = ref<string>();
 
 watch(props, (val) => {
   innerText.value = val.element?.innerText;
-  console.log(innerText.value);
 });
 
 watch(innerText, (val) => {
