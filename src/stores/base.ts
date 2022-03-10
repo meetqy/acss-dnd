@@ -8,7 +8,7 @@ export const useBaseStore = defineStore({
   state: (): State => ({
     current: "", // 当前选中菜单
     component: -1, // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
-    checkedElement: undefined,
+    checkedElement: undefined, // editor中当前选中的元素
     menu: [
       {
         id: "1",
@@ -41,13 +41,15 @@ export const useBaseStore = defineStore({
       }
     },
 
-    setCheckedElement(el: CheckedElement) {
+    setCheckedElement(el: CheckedElement | undefined) {
       this.checkedElement = el;
     },
 
-    changeCheckElementClass(className: string) {
+    updateCheckedElement(el: CheckedElement) {
       if (this.checkedElement) {
-        this.checkedElement.className = className;
+        this.checkedElement.className = el.className;
+        this.checkedElement.innerText = el.innerText;
+        this.checkedElement.tagName = el.tagName;
         iframeIo.sideToEditor({
           tagName: this.checkedElement.tagName,
           className: this.checkedElement.className,

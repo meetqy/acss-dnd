@@ -19,7 +19,7 @@ export const useEditorStore = defineStore({
       }
     },
 
-    changeElement(uuid: string, el: CheckedElement) {
+    updateElement(uuid: string, el: CheckedElement) {
       const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
       if (node) {
         node.className = el.className;

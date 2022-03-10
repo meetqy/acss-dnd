@@ -1,32 +1,47 @@
 <script lang="ts" setup>
 import { useBaseStore } from "@/stores/base";
-import { ref } from "vue";
+import type { CheckedElement } from "@/types";
+import { computed, ref } from "vue";
 
 interface Props {
-  classList: string[];
+  element: CheckedElement | null;
 }
+
+const classList = computed(() => {
+  const className = props.element?.className;
+  if (className) return className.split(" ");
+  return [];
+});
 
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
 
 const classValue = ref<string>();
 const addClass = () => {
-  const newClassName = [...props.classList, classValue.value].join(" ");
-  baseStore.changeCheckElementClass(newClassName);
+  const newClassName = [...classList.value, classValue.value].join(" ");
+  props.element &&
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: newClassName,
+    });
   classValue.value = undefined;
 };
 
 const delClass = (index: number) => {
-  const classList = props.classList;
-  classList.splice(index, 1);
-  baseStore.changeCheckElementClass(classList.join(" "));
+  classList.value.splice(index, 1);
+
+  props.element &&
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: classList.value.join(" "),
+    });
 };
 </script>
 
 <template>
   <div class="px-4">
     <p class="flex justify-between items-center">
-      <span class="text-base">className</span>
+      <span class="text-base">ClassName</span>
       <span class="badge badge-outline badge-secondary">{{
         classList?.length
       }}</span>
