@@ -1,5 +1,5 @@
 module.exports = {
-  content: process.env.NODE_ENV === 'production' ? [] : ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: 'media', // or 'class'
   plugins: [require('@tailwindcss/typography'), require("daisyui")],
 }
