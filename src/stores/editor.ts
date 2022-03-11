@@ -20,6 +20,7 @@ export const useEditorStore = defineStore({
           (node as HTMLElement).innerText = el.innerText;
         }
       }
+      return node;
     },
 
     init(wrapElement: Element) {

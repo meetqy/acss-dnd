@@ -100,7 +100,7 @@ export default defineComponent({
 
       // 修改属性
       iframeIo.on(IframeIoType.sideToEditor, (data) => {
-        console.log(data, checkedElement.value);
+        // console.log(data, checkedElement.value);
         if (!data) {
           return (checkedElement.value = null);
         }
@@ -108,7 +108,9 @@ export default defineComponent({
 
         const uuid = checkedElement.value?.getAttribute("data-uuid");
         if (uuid) {
-          editorStore.updateElement(uuid, el);
+          const newNode = editorStore.updateElement(uuid, el) as HTMLElement;
+          checkedElement.value = null; // 触发视图更新
+          checkedElement.value = newNode;
         }
       });
 
@@ -145,6 +147,9 @@ export default defineComponent({
             isEnter.value ? "border-2" : "border-0"
           }`}
         ></main>
+        <div class="absolute right-0 top-0 z-50">
+          {checkedElement.value?.offsetLeft}
+        </div>
         {renderOverElementMask(overElement.value)}
         {checkedElement.value
           ? renderCheckedElementMask(checkedElement.value)
@@ -190,7 +195,7 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
 
 // 选中元素状态显示
 const renderCheckedElementMask = (el: HTMLElement) => {
-  // console.log(el, "checked-element");
+  console.log(el, "checked-element");
   return (
     el && (
       <div
