@@ -34,25 +34,24 @@ export default defineComponent({
       baseStore.setComponent(dragIndex);
     };
 
-    // const ondragend = () => {
-    //   const component = baseStore.curItem?.components[baseStore.component];
-    //   iframeIo.component(component?.str);
-    // };
+    const ondragend = () => {
+      baseStore.setComponent(-1);
+      baseStore.setCurrent(null);
+    };
 
     return () => {
       return (
         <div
           ref={element}
-          class={`w-full h-full absolute transition-opacity ${
+          class={`w-80 h-full absolute transition-opacity left-80 top-0 ${
             isShowComponent.value ? "opacity-100" : "opacity-0 hidden"
           }`}
         >
-          <div class="mask mask-show" id="mask"></div>
           <div
-            class={`component-preview scrollbar ${
-              isShowComponent.value ? "left-72" : "-left-96"
-            }`}
-          >
+            class="fixed w-screen h-screen bg-neutral bg-opacity-40"
+            onClick={ondragend}
+          />
+          <div class={`component-preview overscroll-y-contain`}>
             <h2 class="text-2xl font-medium text-gray-900 my-4">
               {baseStore.curItem?.text}
             </h2>
@@ -63,7 +62,7 @@ export default defineComponent({
                   id={`component-${baseStore.curItem?.id}_${index}`}
                   draggable
                   onDrag={ondrag}
-                  // onDragend={ondragend}
+                  onDragend={ondragend}
                   class="translate-x-0 translate-y-0 card cursor-pointer p-4 mb-5 bg-base-100 shadow-sm border-2 border-transparent hover:border-primary"
                 >
                   {item.jsx}

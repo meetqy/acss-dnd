@@ -12,8 +12,8 @@ const router = createRouter({
       path: "/",
       components: {
         default: EditorWrap,
-        SideBar: MenuBar,
-        MenuBar: SideBar,
+        SideBar: SideBar,
+        MenuBar: MenuBar,
         ComponentPreview: ComponentPreview,
       },
     },

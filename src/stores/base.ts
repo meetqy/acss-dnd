@@ -28,12 +28,13 @@ export const useBaseStore = defineStore({
     },
   },
   actions: {
-    setCurrent(id: string) {
+    setCurrent(id: string | null) {
       this.current = id;
       this.component = -1;
     },
 
     setComponent(index: number) {
+      if (index < 0) return;
       const jsxStr = this.curItem?.components[index].str;
       if (this.component != index && jsxStr) {
         iframeIo.component(jsxStr);
@@ -63,7 +64,7 @@ export const useBaseStore = defineStore({
 });
 interface State {
   // 当前选中菜单
-  current: string;
+  current: string | null;
   // 当前选中（拖拽）的组件的索引， `$current_$component` 可以锁定一个组件
   component: number;
   menu: MenuComponent[];
