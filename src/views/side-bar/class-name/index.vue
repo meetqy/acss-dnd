@@ -1,42 +1,42 @@
 <script lang="ts" setup>
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { computed, ref } from "vue";
+import { ref, watch } from "vue";
+import InputSearch from "../components/input-search/index.vue";
 
 interface Props {
-  element: CheckedElement;
+  // 必须要接受 null，不然无法监听选中element
+  element: CheckedElement | null;
 }
-
-const classList = computed(() => {
-  const className = props.element?.className;
-  if (className) return className.split(" ");
-  return [];
-});
 
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
 
-const classValue = ref<string>();
-const addClass = () => {
-  if (!classValue.value) return;
-  const newClassName = [...classList.value, classValue.value].join(" ");
-  props.element &&
-    baseStore.updateCheckedElement({
-      ...props.element,
-      className: newClassName,
-    });
-  classValue.value = undefined;
+const classList = ref<string[]>([]);
+const changeClassList = (e: string[]) => {
+  classList.value = e;
+};
+const delClassList = (index: number) => {
+  const val = classList.value;
+  val.splice(index, 1);
+  classList.value = [...val];
 };
 
-const delClass = (index: number) => {
-  classList.value.splice(index, 1);
+watch(props, (val) => {
+  if (val.element) {
+    classList.value = val.element.className.split(" ");
+  }
+});
 
-  props.element &&
+watch(classList, (val) => {
+  console.log(val, "----");
+  if (props.element) {
     baseStore.updateCheckedElement({
       ...props.element,
-      className: classList.value.join(" "),
+      className: val.join(" "),
     });
-};
+  }
+});
 </script>
 
 <template>
@@ -47,21 +47,23 @@ const delClass = (index: number) => {
         classList?.length
       }}</span>
     </p>
-    <div class="mt-4">
-      <input
+    <div class="mt-4 relative">
+      <!-- <input
         type="text"
         placeholder="添加 class，回车确认"
         class="input input-bordered input-primary w-full max-w-xs input-sm mb-2"
         v-model="classValue"
         @keyup.enter="addClass"
-      />
+      /> -->
+      <InputSearch :class-list="classList" @change="changeClassList" />
+
       <div
         class="badge gap-1 mr-2 mt-2"
         v-for="(item, index) in classList"
         :key="item"
       >
         <svg
-          @click="delClass(index)"
+          @click="delClassList(index)"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

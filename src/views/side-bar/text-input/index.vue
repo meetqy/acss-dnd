@@ -6,11 +6,11 @@
     <p class="flex justify-between items-center">
       <span class="text-base"> Text </span>
     </p>
-    <div class="mt-4">
+    <div class="mt-4 relative">
       <input
         type="text"
         placeholder="输入文本"
-        class="input input-bordered input-primary w-full max-w-xs input-sm mb-2"
+        class="input w-full max-w-xs input-sm mb-2"
         v-model="innerText"
       />
     </div>

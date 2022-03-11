@@ -195,7 +195,7 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
 
 // 选中元素状态显示
 const renderCheckedElementMask = (el: HTMLElement) => {
-  console.log(el, "checked-element");
+  // console.log(el, "checked-element");
   return (
     el && (
       <div
