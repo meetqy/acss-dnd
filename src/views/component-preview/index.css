@@ -7,5 +7,5 @@
 
 .component-preview {
   width: 520px;
-  @apply bg-slate-50 h-full absolute transition-all z-20 px-6 pb-6 overflow-y-auto;
+  @apply bg-base-200 h-full absolute transition-all z-20 px-6 pb-6 overflow-y-auto;
 }

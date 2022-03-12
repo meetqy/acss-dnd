@@ -4,28 +4,27 @@
     style="max-height: 92vh"
   >
     <div
-      class="bg-base-100 w-full flex rounded-box border border-base-200 shadow-base-100 flex-col h-full"
+      class="bg-base-300 bg-opacity-60 w-full flex rounded-box 0 shadow-base-100 flex-col h-full overflow-hidden"
     >
       <div
-        class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b relative z-10"
+        class="h-12 w-full px-4 flex justify-between items-center bg-base flex-shrink-0 border-b border-base-100 relative z-10"
       >
         <div class="flex h-full items-center w-14 justify-between">
           <div class="w-3 h-3 bg-red-500 rounded-full"></div>
           <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
           <div class="w-3 h-3 bg-green-600 rounded-full"></div>
         </div>
-        <div class="bg-white w-96 h-8 flex items-center justify-center rounded">
-          <span
-            class="text-blue-500 cursor-pointer underline underline-offset-2"
-            >移动端优先</span
-          >
-          <span class="mx-4 text-gray-200">|</span>
-          <span class="cursor-pointer text-gray-500">PC端优先</span>
+        <div
+          class="bg-base-200 w-96 h-8 flex items-center justify-center rounded"
+        >
+          <span class="cursor-pointer text-primary"> 移动端优先 </span>
+          <span class="mx-4 text-base-300">|</span>
+          <span class="cursor-pointer text-base-content">PC端优先</span>
         </div>
         <div class="flex w-24 justify-between">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-blue-500"
+            class="h-6 w-6 text-primary"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

@@ -52,7 +52,7 @@ export default defineComponent({
             onClick={ondragend}
           />
           <div class={`component-preview scrollbar`}>
-            <h2 class="text-2xl font-medium text-gray-900 my-4">
+            <h2 class="text-2xl font-medium text-base-content my-4">
               {baseStore.curItem?.text}
             </h2>
             <ul class={baseStore.curItem?.wrapClass.join(" ")}>

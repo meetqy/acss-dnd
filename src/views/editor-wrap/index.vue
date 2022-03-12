@@ -25,7 +25,7 @@ watch(mode, (val) => {
 const setDataTheme = (doc: Document | HTMLIFrameElement, mode: boolean) => {
   doc
     .querySelector("html")
-    ?.setAttribute("data-theme", mode ? "light" : "dark");
+    ?.setAttribute("data-theme", mode ? "light" : "emerald");
 };
 
 onMounted(() => {
