@@ -3,6 +3,7 @@ import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
+import { useWindowScroll } from "@vueuse/core";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -92,6 +93,8 @@ export default defineComponent({
       overElement.value = undefined;
     }
 
+    const { x, y } = useWindowScroll();
+
     onMounted(() => {
       // 接受iframe传过来的元素
       iframeIo.on(IframeIoType.component, (data) => {
@@ -147,17 +150,20 @@ export default defineComponent({
             isEnter.value ? "border-2" : "border-0"
           }`}
         ></main>
-        {renderOverElementMask(overElement.value)}
+        {renderOverElementMask(overElement.value, y.value)}
         {checkedElement.value
-          ? renderCheckedElementMask(checkedElement.value)
+          ? renderCheckedElementMask(checkedElement.value, y.value)
           : null}
-        {renderDragEnterElement(dragEnterElement.value)}
+        {renderDragEnterElement(dragEnterElement.value, y.value)}
       </>
     );
   },
 });
 
-const renderDragEnterElement = (el: HTMLElement | undefined) => {
+const renderDragEnterElement = (
+  el: HTMLElement | undefined,
+  scrollY: number
+) => {
   if (!el || el.id === "iframe-main") return null;
   const rect = el.getBoundingClientRect();
   return (
@@ -166,7 +172,7 @@ const renderDragEnterElement = (el: HTMLElement | undefined) => {
       style={{
         left: rect.left + "px",
         width: rect.width + "px",
-        top: rect.top + "px",
+        top: rect.top + scrollY + "px",
         height: rect.height + "px",
       }}
     />
@@ -174,7 +180,10 @@ const renderDragEnterElement = (el: HTMLElement | undefined) => {
 };
 
 // 移上元素状态显示
-const renderOverElementMask = (el: HTMLElement | undefined) => {
+const renderOverElementMask = (
+  el: HTMLElement | undefined,
+  scrollY: number
+) => {
   const rect = el?.getBoundingClientRect();
   return (
     rect && (
@@ -183,7 +192,7 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
         style={{
           left: rect.left + "px",
           width: rect.width + "px",
-          top: rect.top + "px",
+          top: rect.top + scrollY + "px",
           height: rect.height + "px",
         }}
       />
@@ -192,7 +201,7 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
 };
 
 // 选中元素状态显示
-const renderCheckedElementMask = (el: HTMLElement) => {
+const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
   const rect = el.getBoundingClientRect();
   return (
     el && (
@@ -201,7 +210,7 @@ const renderCheckedElementMask = (el: HTMLElement) => {
         style={{
           left: rect.left + "px",
           width: rect.width + "px",
-          top: rect.top + "px",
+          top: rect.top + scrollY + "px",
           height: rect.height + "px",
         }}
       />
