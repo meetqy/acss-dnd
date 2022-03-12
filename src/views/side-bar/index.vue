@@ -24,18 +24,41 @@ const checkedElement = computed(() => baseStore.checkedElement);
 <template>
   <aside
     id="side-bar"
-    class="h-screen w-72 bg-base-100 flex-shrink-0 shadow"
+    class="h-screen w-80 bg-base-100 flex-shrink-0 shadow"
     :class="{ hidden: !checkedElement }"
   >
-    <header class="flex justify-between px-4 pt-5">
-      <span class="font-semibold">
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">
+          {{ checkedElement?.tagName }}
+          <span class="lowercase">({{ checkedElement?.tagName }})</span>
+        </a>
+      </div>
+      <div class="flex-none">
+        <button class="btn btn-square btn-ghost" @click="close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- <header class="flex justify-between px-4 pt-5">
+      <p>
         {{ checkedElement?.tagName }}
         <span class="lowercase">({{ checkedElement?.tagName }})</span>
-      </span>
-      <button
-        class="btn btn-xs btn-square btn-outline text-base-300"
-        @click="close"
-      >
+      </p>
+      <button class="btn btn-xs btn-circle btn-outline" @click="close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -51,8 +74,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
           />
         </svg>
       </button>
-    </header>
-    <div class="divider"></div>
+    </header> -->
     <ClassName :element="checkedElement || null" />
     <TextInput v-if="checkedElement" :element="checkedElement" />
     <Background />

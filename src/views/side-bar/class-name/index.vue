@@ -41,21 +41,19 @@ watch(classList, (val) => {
 </script>
 
 <template>
-  <div class="px-4">
-    <p class="flex justify-between items-center">
-      <span class="text-base">ClassName</span>
-      <span class="badge badge-outline badge-secondary">{{
-        classList?.length
-      }}</span>
-    </p>
-    <div class="mt-4 relative">
-      <!-- <input
-        type="text"
-        placeholder="添加 class，回车确认"
-        class="input input-bordered input-primary w-full max-w-xs input-sm mb-2"
-        v-model="classValue"
-        @keyup.enter="addClass"
-      /> -->
+  <div>
+    <ul
+      class="menu bg-base-100 w-full border-t border-base-300 border-opacity-30"
+    >
+      <li>
+        <a
+          class="hover:bg-transparent active:bg-base-100 active:text-base-content"
+        >
+          ClassName
+        </a>
+      </li>
+    </ul>
+    <div class="relative px-4">
       <InputSearch :class-list="classList" @change="changeClassList" />
 
       <div

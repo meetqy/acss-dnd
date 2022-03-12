@@ -1,16 +1,22 @@
 <template>
   <div
-    class="px-4"
+    class=""
     :class="TextNode.has(props.element?.tagName || '') ? 'block' : 'hidden'"
   >
-    <p class="flex justify-between items-center">
-      <span class="text-base"> Text </span>
-    </p>
-    <div class="mt-4 relative">
+    <ul class="menu bg-base-100 w-full">
+      <li>
+        <a
+          class="hover:bg-transparent active:bg-base-100 active:text-base-content"
+        >
+          Text 文本
+        </a>
+      </li>
+    </ul>
+    <div class="relative px-4">
       <input
         type="text"
         placeholder="输入文本"
-        class="input w-full max-w-xs input-sm mb-2 input-primary"
+        class="input w-full max-w-xs mb-2 input-primary"
         v-model="innerText"
       />
     </div>
