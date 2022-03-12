@@ -1116,7 +1116,7 @@ let _useableClassesArr: string[] = [];
 
 export const getClasses = (): string[] => {
   if (_useableClassesArr.length > 0) return _useableClassesArr;
-  for (let key in useableClasses) {
+  for (const key in useableClasses) {
     const value = useableClasses[key];
     _useableClassesArr = _useableClassesArr.concat(value);
   }
