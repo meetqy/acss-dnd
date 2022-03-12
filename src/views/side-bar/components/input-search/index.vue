@@ -1,29 +1,26 @@
 <template>
-  <div class="relative">
-    <input
-      type="text"
-      placeholder="添加 class，回车确认"
-      class="input input-bordered input-primary w-full max-w-xs mb-2"
-      @input="search"
-    />
-    <div
-      class="w-full max-h-96 overflow-y-scroll absolute z-20 scrollbar pr-2 bg-base-100"
+  <div class="dropdown w-full">
+    <label tabindex="0" class="w-full">
+      <input
+        type="text"
+        placeholder="添加 class，回车确认"
+        class="input input-bordered input-primary w-full max-w-xs mb-2"
+        @input="search"
+      />
+    </label>
+    <ul
+      tabindex="0"
+      class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-96 overflow-y-scroll scrollbar"
     >
-      <ul
-        class="w-full menu menu-compact p-2 relative z-20 bg-base-200"
-        :class="showClasses.length > 0 ? 'block' : 'hidden'"
-        ref="target"
-      >
-        <li v-for="item in showClasses" :key="item">
-          <a
-            @click="addClass(item)"
-            :class="{ active: classList.includes(item) }"
-          >
-            {{ item }}
-          </a>
-        </li>
-      </ul>
-    </div>
+      <li v-for="item in showClasses" :key="item">
+        <a
+          @click="addClass(item)"
+          :class="{ active: classList.includes(item) }"
+        >
+          {{ item }}
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -43,6 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 onMounted(() => {
   useableClasses.value = getClasses();
+  showClasses.value = useableClasses.value;
 });
 
 const target = ref();
@@ -59,7 +57,7 @@ const showClasses = ref<string[]>([]);
 
 const search = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
-  if (!value) return;
+  if (!value) return (showClasses.value = useableClasses.value);
   showClasses.value = useableClasses.value.filter(
     (item) => item.indexOf(value) > -1
   );
