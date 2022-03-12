@@ -9,6 +9,8 @@ export const initIframeElement = (el: HTMLIFrameElement) => {
   iframeElement = el;
 };
 
+export const getIframe = () => iframeElement;
+
 export enum IframeIoType {
   menu,
   component,

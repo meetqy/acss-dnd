@@ -8,18 +8,34 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { initIframeElement } from "../iframe.io";
+import { onMounted, ref, watch } from "vue";
+import { initIframeElement, getIframe } from "../iframe.io";
 import Browser from "./components/browser.vue";
 import Mode from "./components/mode.vue";
+
+// false  =>  dark
+// true   =>  light
+const mode = ref<boolean>(false);
+watch(mode, (val) => {
+  setDataTheme(document, val);
+  const doc = getIframe().contentWindow?.document;
+  doc && setDataTheme(doc, val);
+});
+
+const setDataTheme = (doc: Document | HTMLIFrameElement, mode: boolean) => {
+  doc
+    .querySelector("html")
+    ?.setAttribute("data-theme", mode ? "light" : "dark");
+};
 
 onMounted(() => {
   // 初始化iframe
   const iframe = document.getElementById("iframe-editor") as HTMLIFrameElement;
   initIframeElement(iframe);
-});
 
-// false  =>  dark
-// true   =>  light
-const mode = ref<boolean>(false);
+  const res = window.matchMedia("prefers-color-scheme: dark").matches;
+  mode.value = !res;
+  const doc = iframe.contentWindow?.document;
+  doc && setDataTheme(doc, mode.value);
+});
 </script>

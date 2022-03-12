@@ -24,12 +24,13 @@ const delClassList = (index: number) => {
 
 watch(props, (val) => {
   if (val.element) {
-    classList.value = val.element.className.split(" ");
+    classList.value = val.element.className
+      ? val.element.className.split(" ")
+      : [];
   }
 });
 
 watch(classList, (val) => {
-  console.log(val, "----");
   if (props.element) {
     baseStore.updateCheckedElement({
       ...props.element,

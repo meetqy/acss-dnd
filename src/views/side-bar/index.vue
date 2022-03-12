@@ -24,7 +24,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
 <template>
   <aside
     id="side-bar"
-    class="h-screen w-72 bg-white flex-shrink-0 shadow"
+    class="h-screen w-72 bg-base-100 flex-shrink-0 shadow"
     :class="{ hidden: !checkedElement }"
   >
     <header class="flex justify-between px-4 pt-5">
