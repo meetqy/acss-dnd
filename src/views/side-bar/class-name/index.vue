@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import { getClasses } from "@/constants/useClasses";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import InputSearch from "../components/input-search/index.vue";
 
 interface Props {
@@ -11,6 +12,12 @@ interface Props {
 
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
+
+const useableClasses = ref<string[]>([]);
+
+onMounted(() => {
+  useableClasses.value = getClasses();
+});
 
 const classList = ref<string[]>([]);
 const changeClassList = (e: string[]) => {
@@ -54,7 +61,12 @@ watch(classList, (val) => {
       </li>
     </ul>
     <div class="relative px-4">
-      <InputSearch :class-list="classList" @change="changeClassList" />
+      <InputSearch
+        :useableClasses="useableClasses"
+        :class-list="classList"
+        placeholder="添加class"
+        @change="changeClassList"
+      />
 
       <div
         class="badge gap-1 mr-2 mt-2"

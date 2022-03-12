@@ -53,28 +53,6 @@ const checkedElement = computed(() => baseStore.checkedElement);
         </button>
       </div>
     </div>
-    <!-- <header class="flex justify-between px-4 pt-5">
-      <p>
-        {{ checkedElement?.tagName }}
-        <span class="lowercase">({{ checkedElement?.tagName }})</span>
-      </p>
-      <button class="btn btn-xs btn-circle btn-outline" @click="close">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </header> -->
     <ClassName :element="checkedElement || null" />
     <TextInput v-if="checkedElement" :element="checkedElement" />
     <Background />

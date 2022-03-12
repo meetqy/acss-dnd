@@ -18,6 +18,7 @@ export const article: Template = {
         trying to style some content that came from a rich-text editor in a CMS
         or a markdown file, it can be surprising and unintuitive.
       </p>
+      <span>这是一个span标签</span>
     </article>
   ),
   str: ` <article class="prose m-auto">
@@ -33,6 +34,7 @@ export const article: Template = {
     trying to style some content that came from a rich-text editor in a CMS
     or a markdown file, it can be surprising and unintuitive.
   </p>
+  <span>这是一个span标签</span>
 </article>`,
 };
 

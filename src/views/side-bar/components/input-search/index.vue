@@ -1,16 +1,18 @@
 <template>
-  <div class="dropdown w-full">
+  <div class="dropdown w-full max-h-96 h-full">
     <label tabindex="0" class="w-full">
       <input
         type="text"
-        placeholder="添加 class，回车确认"
-        class="input input-bordered input-primary w-full max-w-xs mb-2"
+        :placeholder="props.placeholder"
+        class="input w-full max-w-xs mb-2"
+        :class="props.inputClass"
         @input="search"
+        @focus="search"
       />
     </label>
     <ul
       tabindex="0"
-      class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-96 overflow-y-scroll scrollbar"
+      class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-80 overflow-y-scroll scrollbar"
     >
       <li v-for="item in showClasses" :key="item">
         <a
@@ -25,23 +27,22 @@
 </template>
 
 <script lang="ts" setup>
-import { getClasses } from "@/useClasses";
 import { onClickOutside } from "@vueuse/core";
-import { onMounted, ref } from "vue";
-const useableClasses = ref<string[]>([]);
+import { ref } from "vue";
 
 interface Props {
   classList: string[];
+  useableClasses: string[];
+  placeholder?: string;
+  inputClass?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  classList: () => [],
+  placeholder: "",
+  inputClass: "input-bordered input-primary",
 });
 
-onMounted(() => {
-  useableClasses.value = getClasses();
-  showClasses.value = useableClasses.value;
-});
+const showClasses = ref<string[]>([]);
 
 const target = ref();
 onClickOutside(target, () => (showClasses.value = []));
@@ -53,12 +54,10 @@ const addClass = (className: string) => {
   emit("change", [...props.classList, className]);
 };
 
-const showClasses = ref<string[]>([]);
-
 const search = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
-  if (!value) return (showClasses.value = useableClasses.value);
-  showClasses.value = useableClasses.value.filter(
+  if (!value) return (showClasses.value = props.useableClasses);
+  showClasses.value = props.useableClasses.filter(
     (item) => item.indexOf(value) > -1
   );
 };
