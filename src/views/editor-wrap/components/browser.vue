@@ -68,16 +68,14 @@
         </div>
       </div>
 
-      <div class="w-full h-full bg-white flex-1 rounded-b-xl">
-        <iframe
-          ref="iframe"
-          id="iframe-editor"
-          class="w-full h-full"
-          frameborder="0"
-          title="edit page"
-          :src="`${baseUrl}iframe`"
-        />
-      </div>
+      <iframe
+        ref="iframe"
+        id="iframe-editor"
+        class="w-full h-full flex-1"
+        frameborder="0"
+        title="edit page"
+        :src="`${baseUrl}iframe`"
+      />
     </div>
   </div>
 </template>
