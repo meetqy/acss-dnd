@@ -1,13 +1,16 @@
 .over-element {
-  @apply absolute border-2 border-dashed border-secondary;
+  @apply absolute border-2 border-dashed border-secondary pointer-events-none;
+  z-index: 999999;
 }
 
 .checked-element {
-  @apply absolute border-2 border-primary;
+  @apply absolute border-2 border-primary pointer-events-none;
+  z-index: 999999;
 }
 
 .drag-enter_element {
-  @apply absolute border-b-2 border-primary;
+  @apply absolute border-b-2 border-primary pointer-events-none;
+  z-index: 999999;
 }
 
 span,

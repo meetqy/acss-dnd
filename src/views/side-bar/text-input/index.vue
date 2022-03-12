@@ -10,7 +10,7 @@
       <input
         type="text"
         placeholder="输入文本"
-        class="input w-full max-w-xs input-sm mb-2"
+        class="input w-full max-w-xs input-sm mb-2 input-primary"
         v-model="innerText"
       />
     </div>
