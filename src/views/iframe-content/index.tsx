@@ -159,14 +159,15 @@ export default defineComponent({
 
 const renderDragEnterElement = (el: HTMLElement | undefined) => {
   if (!el || el.id === "iframe-main") return null;
+  const rect = el.getBoundingClientRect();
   return (
     <div
       class="drag-enter_element"
       style={{
-        left: el.offsetLeft + "px",
-        width: el.clientWidth + "px",
-        top: el.offsetTop + "px",
-        height: el.clientHeight + "px",
+        left: rect.left + "px",
+        width: rect.width + "px",
+        top: rect.top + "px",
+        height: rect.height + "px",
       }}
     />
   );
@@ -174,16 +175,16 @@ const renderDragEnterElement = (el: HTMLElement | undefined) => {
 
 // 移上元素状态显示
 const renderOverElementMask = (el: HTMLElement | undefined) => {
-  // console.log(el, "over-element");
+  const rect = el?.getBoundingClientRect();
   return (
-    el && (
+    rect && (
       <div
         class="over-element"
         style={{
-          left: el.offsetLeft + "px",
-          width: el.clientWidth + "px",
-          top: el.offsetTop + "px",
-          height: el.clientHeight + "px",
+          left: rect.left + "px",
+          width: rect.width + "px",
+          top: rect.top + "px",
+          height: rect.height + "px",
         }}
       />
     )
@@ -192,16 +193,16 @@ const renderOverElementMask = (el: HTMLElement | undefined) => {
 
 // 选中元素状态显示
 const renderCheckedElementMask = (el: HTMLElement) => {
-  // console.log(el, "checked-element");
+  const rect = el.getBoundingClientRect();
   return (
     el && (
       <div
         class="checked-element"
         style={{
-          left: el.offsetLeft + "px",
-          width: el.clientWidth + "px",
-          top: el.offsetTop + "px",
-          height: el.clientHeight + "px",
+          left: rect.left + "px",
+          width: rect.width + "px",
+          top: rect.top + "px",
+          height: rect.height + "px",
         }}
       />
     )
