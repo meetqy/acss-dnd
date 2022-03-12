@@ -11,3 +11,13 @@
 .scrollbar::-webkit-scrollbar-thumb {
   @apply bg-base-300 shadow-inner rounded;
 }
+
+html::-webkit-scrollbar {
+  @apply w-2 h-2 bg-base-200 rounded;
+}
+html::-webkit-scrollbar-track {
+  @apply bg-transparent shadow-inner rounded;
+}
+html::-webkit-scrollbar-thumb {
+  @apply bg-base-300 shadow-inner rounded;
+}

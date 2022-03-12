@@ -1,10 +1,10 @@
 <template>
   <div
-    class="w-full max-w-screen-xl m-auto overflow-hidden flex-1 pb-10"
+    class="w-full max-w-screen-xl m-auto h-full pb-10"
     style="max-height: 92vh"
   >
     <div
-      class="bg-base-100 w-full flex overflow-hidden rounded-box border border-base-200 shadow-base-100 flex-col h-full"
+      class="bg-base-100 w-full flex rounded-box border border-base-200 shadow-base-100 flex-col h-full"
     >
       <div
         class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b relative z-10"
@@ -67,11 +67,10 @@
           </svg>
         </div>
       </div>
-
       <iframe
         ref="iframe"
         id="iframe-editor"
-        class="w-full h-full flex-1"
+        class="w-full h-full flex-1 scrollbar"
         frameborder="0"
         title="edit page"
         :src="`${baseUrl}iframe`"

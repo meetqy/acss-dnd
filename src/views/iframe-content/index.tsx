@@ -143,7 +143,7 @@ export default defineComponent({
           onDragleave={ondragleave}
           onDragover={ondragover}
           id="iframe-main"
-          class={`w-screen h-screen border-primary rounded-b-xl cursor-default relative z-10 ${
+          class={`border-primary max-w-screen min-h-screen rounded-b-xl cursor-default relative z-10 ${
             isEnter.value ? "border-2" : "border-0"
           }`}
         ></main>

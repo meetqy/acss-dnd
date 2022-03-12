@@ -20,6 +20,7 @@ const router = createRouter({
     {
       path: "/iframe",
       component: iframeContent,
+      name: "iframe",
     },
   ],
 });

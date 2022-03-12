@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
-import { initIframeElement } from "../iframe.io";
+import { getIframe, initIframeElement } from "../iframe.io";
 import Browser from "./components/browser.vue";
 import Mode from "./components/mode.vue";
 
@@ -18,8 +18,8 @@ import Mode from "./components/mode.vue";
 const mode = ref<boolean>(false);
 watch(mode, (val) => {
   setDataTheme(document, val);
-  // const doc = getIframe().contentWindow?.document;
-  // doc && setDataTheme(doc, val);
+  const doc = getIframe().contentWindow?.document;
+  doc && setDataTheme(doc, val);
 });
 
 const setDataTheme = (doc: Document | HTMLIFrameElement, mode: boolean) => {
@@ -33,9 +33,9 @@ onMounted(() => {
   const iframe = document.getElementById("iframe-editor") as HTMLIFrameElement;
   initIframeElement(iframe);
 
-  // const res = window.matchMedia("prefers-color-scheme: dark").matches;
-  // mode.value = !res;
-  // const doc = iframe.contentWindow?.document;
-  // doc && setDataTheme(doc, mode.value);
+  const res = window.matchMedia("prefers-color-scheme: dark").matches;
+  mode.value = !res;
+  const doc = iframe.contentWindow?.document;
+  doc && setDataTheme(doc, mode.value);
 });
 </script>

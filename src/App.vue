@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { RouterView } from "vue-router";
+import { computed, ref, watch } from "vue";
+import { RouterView, useRoute } from "vue-router";
 import { useBaseStore } from "./stores/base";
 
 const isDrawEnd = ref<boolean>(false);
@@ -8,10 +8,18 @@ const baseStore = useBaseStore();
 watch(baseStore, (store) => {
   isDrawEnd.value = !!store.checkedElement;
 });
+
+const route = useRoute();
+
+const routeName = computed(() => route.name);
 </script>
 
 <template>
+  <template v-if="routeName === 'iframe'">
+    <RouterView></RouterView>
+  </template>
   <div
+    v-else
     class="drawer h-screen w-full drawer-mobile"
     :class="{ 'drawer-end': isDrawEnd }"
   >
@@ -28,7 +36,11 @@ watch(baseStore, (store) => {
       <RouterView name="ComponentPreview" />
     </div>
 
-    <div class="drawer-side" :class="{ 'draw-hidden': !isDrawEnd }">
+    <div
+      class="drawer-side"
+      style="overflow: hidden"
+      :class="{ 'draw-hidden': !isDrawEnd }"
+    >
       <label for="drawer-right" class="drawer-overlay"></label>
       <RouterView name="SideBar" />
     </div>
