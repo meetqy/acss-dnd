@@ -4,7 +4,7 @@
     style="max-height: 92vh"
   >
     <div
-      class="bg-white w-full flex overflow-hidden rounded-xl shadow flex-col h-full"
+      class="bg-base-100 w-full flex overflow-hidden rounded-box border border-base-200 shadow-base-100 flex-col h-full"
     >
       <div
         class="h-12 w-full px-4 flex justify-between items-center bg-gray-50 flex-shrink-0 border-b relative z-10"

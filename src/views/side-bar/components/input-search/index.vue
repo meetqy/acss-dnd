@@ -6,25 +6,24 @@
       class="input input-bordered input-primary w-full max-w-xs input-sm mb-2"
       @input="search"
     />
-    <ul
-      class="w-full max-h-96 border rounded-md overflow-y-auto scrollbar cursor-pointer text-neutral bg-primary-content"
-      :class="showClasses.length > 0 ? 'block' : 'hidden'"
-      ref="target"
+    <div
+      class="w-full max-h-96 overflow-y-scroll absolute z-20 scrollbar pr-2 bg-base-100"
     >
-      <li
-        v-for="item in showClasses"
-        :key="item"
-        @click="addClass(item)"
-        class="px-4 py-1"
-        :class="
-          classList.includes(item)
-            ? 'bg-primary'
-            : 'bg-transparent hover:bg-primary'
-        "
+      <ul
+        class="w-full menu menu-compact p-2 relative z-20 bg-base-200"
+        :class="showClasses.length > 0 ? 'block' : 'hidden'"
+        ref="target"
       >
-        {{ item }}
-      </li>
-    </ul>
+        <li v-for="item in showClasses" :key="item">
+          <a
+            @click="addClass(item)"
+            :class="{ active: classList.includes(item) }"
+          >
+            {{ item }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

@@ -147,9 +147,6 @@ export default defineComponent({
             isEnter.value ? "border-2" : "border-0"
           }`}
         ></main>
-        <div class="absolute right-0 top-0 z-50">
-          {checkedElement.value?.offsetLeft}
-        </div>
         {renderOverElementMask(overElement.value)}
         {checkedElement.value
           ? renderCheckedElementMask(checkedElement.value)

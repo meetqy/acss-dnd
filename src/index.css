@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .scrollbar::-webkit-scrollbar {
-  @apply w-2 h-2 bg-slate-50;
+  @apply w-2 h-2 bg-base-200 rounded;
 }
 .scrollbar::-webkit-scrollbar-track {
-  @apply bg-transparent shadow-inner;
+  @apply bg-transparent shadow-inner rounded;
 }
 .scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 shadow-inner;
+  @apply bg-base-300 shadow-inner rounded;
 }

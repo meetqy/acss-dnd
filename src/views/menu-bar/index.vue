@@ -17,7 +17,7 @@ useEventListener(element, "mousemove", (e: Event) => {
 
 <template>
   <aside
-    class="h-screen w-80 bg-base-200 z-50"
+    class="h-screen w-80 bg-base-100 z-50"
     :class="{ hidden: baseStore.checkedElement }"
   >
     <Logo />
@@ -31,20 +31,6 @@ useEventListener(element, "mousemove", (e: Event) => {
         </span>
       </li>
     </ul>
-    <!-- <div class="p-4">
-      <h2 class="py-2">基础</h2>
-      <ul>
-        <li
-          class="nav-item"
-          :class="baseStore.current === item.id && 'bg-primary'"
-          v-for="item in baseStore.menu"
-          :key="item.id"
-          :id="item.id"
-        >
-          {{ item.text }}
-        </li>
-      </ul>
-    </div> -->
   </aside>
 </template>
 

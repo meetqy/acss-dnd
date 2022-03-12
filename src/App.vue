@@ -11,13 +11,6 @@ watch(baseStore, (store) => {
 </script>
 
 <template>
-  <!-- <div id="ultraseven" class="w-screen flex relative drawer h-screen">
-    <RouterView name="SideBar" />
-    <RouterView></RouterView>
-    <RouterView name="MenuBar" />
-    <RouterView name="ComponentPreview"></RouterView>
-  </div> -->
-
   <div
     class="drawer h-screen w-full drawer-mobile"
     :class="{ 'drawer-end': isDrawEnd }"
@@ -25,7 +18,7 @@ watch(baseStore, (store) => {
     <input id="drawer-left" type="checkbox" class="drawer-toggle" />
     <input id="drawer-right" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content flex justify-center">
+    <div class="drawer-content flex justify-center scrollbar">
       <RouterView></RouterView>
     </div>
 
