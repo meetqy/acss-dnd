@@ -55,6 +55,6 @@ const checkedElement = computed(() => baseStore.checkedElement);
     </div>
     <ClassName :element="checkedElement || null" />
     <TextInput v-if="checkedElement" :element="checkedElement" />
-    <Background />
+    <Background :element="checkedElement" />
   </aside>
 </template>

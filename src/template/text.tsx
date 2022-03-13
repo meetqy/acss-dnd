@@ -5,7 +5,7 @@ export interface Template {
 
 export const article: Template = {
   jsx: (
-    <article class="prose m-auto">
+    <article class="prose m-auto bg-yellow-500 bg-opacity-75">
       <h1>文本容器 article</h1>
       <h2>文本容器 article</h2>
       <h3>文本容器 article</h3>
@@ -21,7 +21,7 @@ export const article: Template = {
       <span>这是一个span标签</span>
     </article>
   ),
-  str: ` <article class="prose m-auto">
+  str: ` <article class="prose m-auto bg-yellow-500 bg-opacity-75">
   <h1>文本容器 article</h1>
   <h2>文本容器 article</h2>
   <h3>文本容器 article</h3>

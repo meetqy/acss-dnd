@@ -34,8 +34,8 @@ onMounted(() => {
   initIframeElement(iframe);
 
   const res = window.matchMedia("prefers-color-scheme: dark").matches;
+  // setTimeout(() => {
   mode.value = !res;
-  const doc = iframe.contentWindow?.document;
-  doc && setDataTheme(doc, mode.value);
+  // }, 1000);
 });
 </script>

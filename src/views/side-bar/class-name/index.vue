@@ -20,9 +20,7 @@ onMounted(() => {
 });
 
 const classList = ref<string[]>([]);
-const changeClassList = (e: string[]) => {
-  classList.value = e;
-};
+
 const delClassList = (index: number) => {
   const val = classList.value;
   val.splice(index, 1);
@@ -65,11 +63,11 @@ watch(classList, (val) => {
         :useableClasses="useableClasses"
         :class-list="classList"
         placeholder="添加class"
-        @change="changeClassList"
+        @change="(e) => (classList = e)"
       />
 
       <div
-        class="badge gap-1 mr-2 mt-2"
+        class="badge badge-accent gap-1 mr-2 mt-2"
         v-for="(item, index) in classList"
         :key="item"
       >

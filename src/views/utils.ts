@@ -28,3 +28,8 @@ export const nodeAddUuid = (el: Element) => {
     });
   }
 };
+
+// className字符串 转 数组
+export const classNameToArray = (className: string) => {
+  return className ? className.split(" ") : [];
+};

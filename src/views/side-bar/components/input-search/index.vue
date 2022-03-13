@@ -47,7 +47,9 @@ const showClasses = ref<string[]>([]);
 const target = ref();
 onClickOutside(target, () => (showClasses.value = []));
 
-const emit = defineEmits(["change"]);
+const emit = defineEmits<{
+  (e: "change", value: string[]): void;
+}>();
 
 const addClass = (className: string) => {
   if (props.classList.includes(className)) return;
