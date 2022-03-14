@@ -3,12 +3,13 @@
     <div class="dropdown w-full max-h-96 h-full relative">
       <label tabindex="0" class="w-full">
         <input
+          id="class-select-input"
           ref="inputRef"
           type="text"
           class="input w-full max-w-xs mb-2 input-bordered input-primary"
           :placeholder="props.placeholder"
           v-model="inputValue"
-          :style="{ paddingLeft: inputBadge?.clientWidth + 'px' }"
+          :style="{ paddingLeft: (inputBadge?.clientWidth || 0) + 16 + 'px' }"
         />
       </label>
 
@@ -17,13 +18,14 @@
         @click="dropdownOpen"
         v-show="!props.multiple && value.length > 0"
       >
-        <Badge
-          ref="inputBadge"
-          :label="value[0] || ''"
-          show-close
-          class-name="badge-accent"
-          @close="delValueByIndex(0)"
-        />
+        <div ref="inputBadge">
+          <Badge
+            :label="value[0] || ''"
+            show-close
+            class-name="badge-accent"
+            @close="delValueByIndex(0)"
+          />
+        </div>
       </div>
 
       <ul
@@ -87,6 +89,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
+import type { ClassSelectOption } from ".";
 import Badge from "./badge.vue";
 
 interface Props {
@@ -94,11 +97,6 @@ interface Props {
   options: ClassSelectOption[];
   placeholder?: string;
   multiple?: boolean;
-}
-
-interface ClassSelectOption {
-  label: string;
-  value: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -116,6 +114,9 @@ const dropdownOpen = () => {
 };
 
 const inputBadge = ref<HTMLHRElement>();
+watch(inputBadge, (val) => {
+  console.log(val?.clientWidth);
+});
 
 const value = ref<string[]>([]);
 // 不能使用watch value，然后 emit方式
