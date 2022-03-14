@@ -7,7 +7,7 @@
       fill="none"
       viewBox="0 0 24 24"
       class="inline-block w-4 h-4 stroke-current cursor-pointer"
-      @click="emit('close', $event)"
+      @click.stop="emit('close', $event)"
     >
       <path
         stroke-linecap="round"
