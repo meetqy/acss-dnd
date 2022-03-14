@@ -9,15 +9,16 @@ import { getClasses } from "@/constants/useClasses";
 import { ref, watch } from "vue";
 import ClassSelect from "../components/class-select/index.vue";
 
-const useableClasses = getClasses();
-const options = useableClasses.map((item) => {
-  return {
-    label: item,
-    value: item,
-  };
-});
+const options = ref<{ label: string; value: string }[]>(
+  getClasses().map((item) => {
+    return {
+      label: item,
+      value: item,
+    };
+  })
+);
 
-const value = ref<string[]>(["bg-yellow-500"]);
+const value = ref<string[]>(["bg-yellow-500", "text-red-500"]);
 watch(value, (e) => {
   console.log(e);
 });

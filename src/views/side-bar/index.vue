@@ -6,6 +6,7 @@ import { iframeIo, IframeIoType } from "../iframe.io";
 import ClassName from "./class-name/index.vue";
 import TextInput from "./text-input/index.vue";
 import Background from "./background/index.vue";
+// import TestSelect from "./test-select/index.vue";
 
 const baseStore = useBaseStore();
 onMounted(() => {
@@ -53,6 +54,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
         </button>
       </div>
     </div>
+    <!-- <TestSelect /> -->
     <ClassName :element="checkedElement || null" />
     <TextInput v-if="checkedElement" :element="checkedElement" />
     <Background :element="checkedElement" />
