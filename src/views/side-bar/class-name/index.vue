@@ -2,8 +2,7 @@
 import { getClasses } from "@/constants/useClasses";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { onMounted, ref, watch } from "vue";
-import InputSearch from "../components/input-search/index.vue";
+import { ref, watch } from "vue";
 import ClassSelect from "../components/class-select/index.vue";
 
 interface Props {

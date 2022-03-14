@@ -1,5 +1,5 @@
 <template>
-  <div class="badge gap-1 mr-1" :class="props.className">
+  <div class="badge gap-1 mr-1" :class="props.className" :id="uuid">
     {{ props.label }}
     <svg
       v-show="props.showClose"
@@ -20,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+import { v4 } from "uuid";
+import { watch } from "vue";
+
 interface Props {
   label: string;
   className?: string;
@@ -28,7 +31,17 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const uuid = v4();
+
+watch(props, () => {
+  setTimeout(() => {
+    const el = document.getElementById(uuid);
+    el && emit("elChange", el);
+  });
+});
+
 const emit = defineEmits<{
   (e: "close", event: MouseEvent): void;
+  (e: "elChange", element: HTMLElement): void;
 }>();
 </script>

@@ -9,7 +9,7 @@
           class="input w-full max-w-xs mb-2 input-bordered input-primary"
           :placeholder="props.placeholder"
           v-model="inputValue"
-          :style="{ paddingLeft: (inputBadge?.clientWidth || 0) + 16 + 'px' }"
+          :style="{ paddingLeft: inputPaddingLeft + 'px' }"
         />
       </label>
 
@@ -18,14 +18,13 @@
         @click="dropdownOpen"
         v-show="!props.multiple && value.length > 0"
       >
-        <div ref="inputBadge">
-          <Badge
-            :label="value[0] || ''"
-            show-close
-            class-name="badge-accent"
-            @close="delValueByIndex(0)"
-          />
-        </div>
+        <Badge
+          :label="value[0] || ''"
+          show-close
+          class-name="badge-accent"
+          @close="delValueByIndex(0)"
+          @el-change="badgeElChange"
+        />
       </div>
 
       <ul
@@ -108,15 +107,15 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: string[]): void;
 }>();
 
+const inputPaddingLeft = ref<number>();
+const badgeElChange = (element: HTMLElement) => {
+  inputPaddingLeft.value = element.clientWidth + 16 + 16;
+};
+
 const inputRef = ref<HTMLElement>();
 const dropdownOpen = () => {
   inputRef.value?.focus();
 };
-
-const inputBadge = ref<HTMLHRElement>();
-watch(inputBadge, (val) => {
-  console.log(val?.clientWidth);
-});
 
 const value = ref<string[]>([]);
 // 不能使用watch value，然后 emit方式
