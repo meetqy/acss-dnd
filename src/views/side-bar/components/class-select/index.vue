@@ -105,11 +105,15 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string[]): void;
+  // 移除tag时触发，返回当前tag值
+  (e: "removeTag", value: string): void;
 }>();
 
 const inputPaddingLeft = ref<number>();
 const badgeElChange = (element: HTMLElement) => {
-  inputPaddingLeft.value = element.clientWidth + 16 + 16;
+  if (element.clientWidth) {
+    inputPaddingLeft.value = element.clientWidth + 16 + 16;
+  }
 };
 
 const inputRef = ref<HTMLElement>();
@@ -120,7 +124,7 @@ const dropdownOpen = () => {
 const value = ref<string[]>([]);
 // 不能使用watch value，然后 emit方式
 // 这里要监听props改变给value赋值，如果在watch value 会死循环
-watch(props, (p) => (value.value = p.modelValue));
+watch(props, (p) => (value.value = [...p.modelValue]));
 const change = (opt: ClassSelectOption) => {
   // 单选
   if (!props.multiple) {
@@ -138,6 +142,7 @@ const change = (opt: ClassSelectOption) => {
   emit("update:modelValue", value.value);
 };
 const delValueByIndex = (index: number) => {
+  emit("removeTag", value.value[index]);
   value.value.splice(index, 1);
   value.value = [...value.value];
   emit("update:modelValue", value.value);

@@ -13,12 +13,10 @@
         <label class="label">
           <span class="label-text">background-color</span>
         </label>
-        <InputSearch
-          :class-list="bgClassList"
-          :useable-classes="bgUseableClasses"
-          placeholder="bg-*"
-          input-class="input-secondary border"
-          @change="(e) => (bgClassList = e)"
+        <ClassSelect
+          :options="options.bg"
+          :model-value="bgValue"
+          @update:model-value="changeBgValue"
         />
       </div>
 
@@ -28,12 +26,10 @@
         <label class="label">
           <span class="label-text">background-opacity</span>
         </label>
-        <InputSearch
-          :class-list="bgOpacityClassList"
-          :useable-classes="bgOpacityUseableClasses"
-          placeholder="bg-opacity-*"
-          input-class="input-secondary border"
-          @change="(e) => (bgOpacityClassList = e)"
+        <ClassSelect
+          :options="options.bgOpacity"
+          :model-value="bgOpacityValue"
+          @update:model-value="changeBgOpacityValue"
         />
       </div>
       <div class="h-96"></div>
@@ -43,42 +39,81 @@
 
 <script lang="ts" setup>
 import { useableClasses } from "@/constants/useClasses";
+import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { classNameToArray } from "@/views/utils";
-import { computed, ref, watch } from "vue";
-import InputSearch from "../components/input-search/index.vue";
+import { computed, reactive, ref, watch } from "vue";
+import type { ClassSelectOption } from "../components/class-select";
+import ClassSelect from "../components/class-select/index.vue";
 
 interface Props {
   element: CheckedElement | null;
 }
 
 const props = defineProps<Props>();
+const baseStore = useBaseStore();
 
-const classList = computed(() =>
-  classNameToArray(props.element?.className || "")
-);
-
-const bgClassList = ref<string[]>([]);
-const bgUseableClasses = ref<string[]>(useableClasses["background-color"]);
-
-const bgOpacityClassList = ref<string[]>([]);
-const bgOpacityUseableClasses = ref<string[]>(
-  useableClasses["background-opacity"]
-);
-
-// className中获取 background-color
-watch(classList, (val) => {
-  const res = val.filter((item) => bgUseableClasses.value.includes(item));
-
-  bgClassList.value = [...res];
+const options = reactive<{
+  bg: ClassSelectOption[];
+  bgOpacity: ClassSelectOption[];
+}>({
+  bg: createOptions("background-color"),
+  bgOpacity: createOptions("background-opacity"),
 });
 
-// className中获取 background-opacity
+// 当前元素的所有class
+const classList = computed(() => props.element?.className.split(" ") || []);
+
+const bgValue = ref<string[]>([]);
+const bgOpacityValue = ref<string[]>([]);
 watch(classList, (val) => {
-  const res = val.filter((item) =>
-    bgOpacityUseableClasses.value.includes(item)
+  bgValue.value = val.filter((item) =>
+    useableClasses["background-color"].includes(item)
   );
 
-  bgOpacityClassList.value = [...res];
+  bgOpacityValue.value = val.filter((item) =>
+    useableClasses["background-opacity"].includes(item)
+  );
 });
+
+const changeBgValue = (value: string[]) => changeValue(value, "bg");
+const changeBgOpacityValue = (value: string[]) =>
+  changeValue(value, "bgOpacity");
+
+const changeValue = (value: string[], name: "bg" | "bgOpacity") => {
+  const temp = classList.value;
+  const currentValue = name === "bg" ? bgValue.value : bgOpacityValue.value;
+  const oldIndex = temp.indexOf(currentValue[0]);
+
+  if (oldIndex > -1) {
+    if (value.length === 0) {
+      // 删除
+      temp.splice(oldIndex, 1);
+    } else {
+      // 替换
+      temp.splice(oldIndex, 1, value[0]);
+    }
+  } else {
+    // 新增
+    temp.push(value[0]);
+  }
+
+  if (props.element) {
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: temp.join(" "),
+    });
+  }
+
+  name === "bg" ? (bgValue.value = value) : (bgOpacityValue.value = value);
+};
+
+// 创建对应的options
+function createOptions(name: string): ClassSelectOption[] {
+  return useableClasses[name].map((item) => {
+    return {
+      label: item,
+      value: item,
+    };
+  });
+}
 </script>

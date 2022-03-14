@@ -21,6 +21,7 @@ const options = useableClasses.map((item) => {
   };
 });
 
+// 当前元素的所有class
 const classList = ref<string[]>([]);
 
 watch(props, (val) => {
