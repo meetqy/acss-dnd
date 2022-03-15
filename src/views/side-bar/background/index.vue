@@ -9,7 +9,7 @@
     <div
       class="collapse-content peer-checked:bg-base peer-checked:text-base-content px-4 relative"
     >
-      <div class="form-control w-full max-w-xs border-t border-base-300 h-96">
+      <div class="form-control w-full max-w-xs border-t border-base-300">
         <label class="label">
           <span class="label-text">
             颜色（<span class="text-secondary">background-color</span>）
@@ -22,9 +22,7 @@
         />
       </div>
 
-      <div
-        class="form-control w-full px-4 max-w-xs h-96 absolute top-24 left-0"
-      >
+      <div class="form-control w-full max-w-xs">
         <label class="label">
           <span class="label-text">
             透明度 （<span class="text-secondary">background-opacity</span>）
@@ -36,11 +34,8 @@
           @update:model-value="(e) => changeValue(e, 'opacity')"
         />
       </div>
-      <div class="h-96"></div>
 
-      <div
-        class="form-control w-full px-4 max-w-xs h-96 absolute top-48 left-0"
-      >
+      <div class="form-control w-full max-w-xs">
         <label class="label">
           <span class="label-text">
             效果（<span class="text-secondary">background</span>）
@@ -52,7 +47,6 @@
           @update:model-value="(e) => changeValue(e, 'effect')"
         />
       </div>
-      <div class="h-96"></div>
     </div>
   </div>
 </template>

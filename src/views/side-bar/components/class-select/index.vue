@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="dropdown w-full max-h-96 h-full relative">
+    <div class="dropdown w-full max-h-96 h-full relative" :id="uuid">
       <label tabindex="0" class="w-full">
         <input
           id="class-select-input"
@@ -28,7 +28,9 @@
       </div>
 
       <ul
+        :id="dropdownContentId"
         tabindex="0"
+        style="position: fixed"
         class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-80 overflow-y-scroll scrollbar"
       >
         <li v-for="item in searchResult" :key="item.value">
@@ -87,7 +89,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from "vue";
+import { v4 } from "uuid";
+import { computed, onMounted, ref, watch } from "vue";
 import type { ClassSelectOption } from ".";
 import Badge from "./badge.vue";
 
@@ -109,6 +112,9 @@ const emit = defineEmits<{
   (e: "removeTag", value: string): void;
 }>();
 
+const uuid = ref(v4());
+const dropdownContentId = computed(() => uuid.value + "dropdown-content");
+
 const inputPaddingLeft = ref<number>();
 const badgeElChange = (element: HTMLElement) => {
   if (element.clientWidth) {
@@ -119,6 +125,19 @@ const badgeElChange = (element: HTMLElement) => {
 };
 
 const inputRef = ref<HTMLElement>();
+
+// onMounted(() => {
+//   inputRef.value?.addEventListener("focus", () => {
+//     const wrap = document.getElementById(uuid.value);
+//     if (wrap) {
+//       const rect = wrap.getBoundingClientRect();
+//       const cont = document.getElementById(dropdownContentId.value);
+//       console.log(rect);
+//       // cont?.style.setProperty('left', )
+//     }
+//   });
+// });
+
 const dropdownOpen = () => {
   inputRef.value?.focus();
 };

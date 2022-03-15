@@ -16,10 +16,8 @@
         />
       </div>
 
-      <div
-        class="form-control w-full px-4 max-w-xs h-96 absolute top-16 left-0"
-      >
-        <label class="label">
+      <div class="form-control w-full max-w-xs">
+        <label class="label mt-1">
           <span class="label-text">
             文本颜色 （<span class="text-secondary">text-color</span>）
           </span>
@@ -30,7 +28,6 @@
           @update:model-value="(e) => changeValue(e, 'color')"
         />
       </div>
-      <div class="h-96"></div>
     </div>
   </div>
 </template>
