@@ -58,9 +58,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useableClasses } from "@/constants/useClasses";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
+import { createOptions, usageClassFilter } from "@/views/utils";
 import { computed, reactive, watch } from "vue";
 import type { ClassSelectOption } from "../components/class-select";
 import ClassSelect from "../components/class-select/index.vue";
@@ -73,7 +73,9 @@ const props = defineProps<Props>();
 const baseStore = useBaseStore();
 
 // 当前元素的所有class
-const classList = computed(() => props.element?.className.split(" ") || []);
+const classList = computed(() =>
+  props.element?.className ? props.element?.className.split(" ") : []
+);
 
 // 所有options
 const options = reactive<{
@@ -85,16 +87,6 @@ const options = reactive<{
   opacity: createOptions("background-opacity"),
   effect: createOptions("background"),
 });
-
-// 创建对应的options
-function createOptions(name: string): ClassSelectOption[] {
-  return useableClasses[name].map((item) => {
-    return {
-      label: item,
-      value: item,
-    };
-  });
-}
 
 interface ValueType {
   color: string[];
@@ -110,17 +102,9 @@ const value = reactive<ValueType>({
 });
 
 watch(classList, (val) => {
-  value.color = val.filter((item) =>
-    useableClasses["background-color"].includes(item)
-  );
-
-  value.opacity = val.filter((item) =>
-    useableClasses["background-opacity"].includes(item)
-  );
-
-  value.effect = val.filter((item) =>
-    useableClasses["background"].includes(item)
-  );
+  value.color = usageClassFilter(val, "background-color");
+  value.opacity = usageClassFilter(val, "background-opacity");
+  value.effect = usageClassFilter(val, "background");
 });
 
 const changeValue = (modelValue: string[], name: keyof ValueType) => {

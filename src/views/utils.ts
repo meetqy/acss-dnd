@@ -1,4 +1,6 @@
+import { useableClasses } from "@/constants/useClasses";
 import { v4 } from "uuid";
+import type { ClassSelectOption } from "./side-bar/components/class-select";
 
 // 当前元素转为string outerHtml 有时候转不出来
 export const elementToString = (el: Element): string => {
@@ -38,4 +40,24 @@ const handleA = (el: HTMLAnchorElement) => {
   el.href = "javascript:void(0);";
   el.removeAttribute("target");
   return el;
+};
+
+// 通过name 创建对应的options
+export function createOptions(name: string): ClassSelectOption[] {
+  return useableClasses[name].map((item) => {
+    return {
+      label: item,
+      value: item,
+    };
+  });
+}
+
+/**
+ * 筛选当前classes中 符合 name 分类的类
+ * @param classes
+ * @param name
+ * @returns
+ */
+export const usageClassFilter = (classes: string[], name: string) => {
+  return classes.filter((item) => useableClasses[name].includes(item));
 };
