@@ -11,12 +11,14 @@
     >
       <div class="form-control w-full max-w-xs border-t border-base-300 h-96">
         <label class="label">
-          <span class="label-text">background-color</span>
+          <span class="label-text">
+            颜色（<span class="text-secondary">background-color</span>）
+          </span>
         </label>
         <ClassSelect
-          :options="options.bg"
-          :model-value="bgValue"
-          @update:model-value="changeBgValue"
+          :options="options.color"
+          :model-value="value.color"
+          @update:model-value="(e) => changeValue(e, 'color')"
         />
       </div>
 
@@ -24,12 +26,30 @@
         class="form-control w-full px-4 max-w-xs h-96 absolute top-24 left-0"
       >
         <label class="label">
-          <span class="label-text">background-opacity</span>
+          <span class="label-text">
+            透明度 （<span class="text-secondary">background-opacity</span>）
+          </span>
         </label>
         <ClassSelect
-          :options="options.bgOpacity"
-          :model-value="bgOpacityValue"
-          @update:model-value="changeBgOpacityValue"
+          :options="options.opacity"
+          :model-value="value.opacity"
+          @update:model-value="(e) => changeValue(e, 'opacity')"
+        />
+      </div>
+      <div class="h-96"></div>
+
+      <div
+        class="form-control w-full px-4 max-w-xs h-96 absolute top-48 left-0"
+      >
+        <label class="label">
+          <span class="label-text">
+            效果（<span class="text-secondary">background</span>）
+          </span>
+        </label>
+        <ClassSelect
+          :options="options.effect"
+          :model-value="value.effect"
+          @update:model-value="(e) => changeValue(e, 'effect')"
         />
       </div>
       <div class="h-96"></div>
@@ -41,7 +61,7 @@
 import { useableClasses } from "@/constants/useClasses";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { computed, reactive, ref, watch } from "vue";
+import { computed, reactive, watch } from "vue";
 import type { ClassSelectOption } from "../components/class-select";
 import ClassSelect from "../components/class-select/index.vue";
 
@@ -52,60 +72,19 @@ interface Props {
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
 
-const options = reactive<{
-  bg: ClassSelectOption[];
-  bgOpacity: ClassSelectOption[];
-}>({
-  bg: createOptions("background-color"),
-  bgOpacity: createOptions("background-opacity"),
-});
-
 // 当前元素的所有class
 const classList = computed(() => props.element?.className.split(" ") || []);
 
-const bgValue = ref<string[]>([]);
-const bgOpacityValue = ref<string[]>([]);
-watch(classList, (val) => {
-  bgValue.value = val.filter((item) =>
-    useableClasses["background-color"].includes(item)
-  );
-
-  bgOpacityValue.value = val.filter((item) =>
-    useableClasses["background-opacity"].includes(item)
-  );
+// 所有options
+const options = reactive<{
+  color: ClassSelectOption[];
+  opacity: ClassSelectOption[];
+  effect: ClassSelectOption[];
+}>({
+  color: createOptions("background-color"),
+  opacity: createOptions("background-opacity"),
+  effect: createOptions("background"),
 });
-
-const changeBgValue = (value: string[]) => changeValue(value, "bg");
-const changeBgOpacityValue = (value: string[]) =>
-  changeValue(value, "bgOpacity");
-
-const changeValue = (value: string[], name: "bg" | "bgOpacity") => {
-  const temp = classList.value;
-  const currentValue = name === "bg" ? bgValue.value : bgOpacityValue.value;
-  const oldIndex = temp.indexOf(currentValue[0]);
-
-  if (oldIndex > -1) {
-    if (value.length === 0) {
-      // 删除
-      temp.splice(oldIndex, 1);
-    } else {
-      // 替换
-      temp.splice(oldIndex, 1, value[0]);
-    }
-  } else {
-    // 新增
-    temp.push(value[0]);
-  }
-
-  if (props.element) {
-    baseStore.updateCheckedElement({
-      ...props.element,
-      className: temp.join(" "),
-    });
-  }
-
-  name === "bg" ? (bgValue.value = value) : (bgOpacityValue.value = value);
-};
 
 // 创建对应的options
 function createOptions(name: string): ClassSelectOption[] {
@@ -116,4 +95,59 @@ function createOptions(name: string): ClassSelectOption[] {
     };
   });
 }
+
+interface ValueType {
+  color: string[];
+  opacity: string[];
+  effect: string[];
+}
+
+// 所有value
+const value = reactive<ValueType>({
+  color: [],
+  opacity: [],
+  effect: [],
+});
+
+watch(classList, (val) => {
+  value.color = val.filter((item) =>
+    useableClasses["background-color"].includes(item)
+  );
+
+  value.opacity = val.filter((item) =>
+    useableClasses["background-opacity"].includes(item)
+  );
+
+  value.effect = val.filter((item) =>
+    useableClasses["background"].includes(item)
+  );
+});
+
+const changeValue = (modelValue: string[], name: keyof ValueType) => {
+  const temp = classList.value;
+  let currentValue = value[name];
+  const oldIndex = temp.indexOf(currentValue[0]);
+
+  if (oldIndex > -1) {
+    if (modelValue.length === 0) {
+      // 删除
+      temp.splice(oldIndex, 1);
+    } else {
+      // 替换
+      temp.splice(oldIndex, 1, modelValue[0]);
+    }
+  } else {
+    // 新增
+    temp.push(modelValue[0]);
+  }
+
+  if (props.element) {
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: temp.join(" "),
+    });
+  }
+
+  value[name] = modelValue;
+};
 </script>
