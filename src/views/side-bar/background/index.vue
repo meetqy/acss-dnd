@@ -2,7 +2,7 @@
   <div tabindex="0" class="collapse bg-base-100 rounded-box collapse-plus">
     <input type="checkbox" class="peer" />
     <div
-      class="collapse-title peer-checked:bg-base peer-checked:text-base-content"
+      class="collapse-title peer-checked:bg-base peer-checked:text-base-content text-xl font-medium"
     >
       Background
     </div>

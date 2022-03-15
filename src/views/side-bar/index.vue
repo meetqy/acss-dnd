@@ -4,9 +4,8 @@ import type { CheckedElement } from "@/types";
 import { computed, onMounted } from "vue";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import ClassName from "./class-name/index.vue";
-import TextInput from "./text-input/index.vue";
+import Text from "./text/index.vue";
 import Background from "./background/index.vue";
-// import TestSelect from "./test-select/index.vue";
 
 const baseStore = useBaseStore();
 onMounted(() => {
@@ -30,7 +29,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
   >
     <div class="navbar bg-base-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">
+        <a class="btn btn-ghost normal-case text-xl text-primary font-medium">
           {{ checkedElement?.tagName }}
           <span class="lowercase">({{ checkedElement?.tagName }})</span>
         </a>
@@ -54,9 +53,8 @@ const checkedElement = computed(() => baseStore.checkedElement);
         </button>
       </div>
     </div>
-    <!-- <TestSelect /> -->
     <ClassName :element="checkedElement || null" />
-    <TextInput v-if="checkedElement" :element="checkedElement" />
+    <Text v-if="checkedElement" :element="checkedElement" />
     <Background :element="checkedElement" />
   </aside>
 </template>

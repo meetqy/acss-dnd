@@ -49,7 +49,7 @@ watch(classList, (val) => {
     >
       <li>
         <a
-          class="hover:bg-transparent active:bg-base-100 active:text-base-content"
+          class="hover:bg-transparent active:bg-base-100 active:text-base-content text-xl font-medium"
         >
           ClassName
         </a>
