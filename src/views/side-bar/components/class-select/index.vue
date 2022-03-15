@@ -113,6 +113,8 @@ const inputPaddingLeft = ref<number>();
 const badgeElChange = (element: HTMLElement) => {
   if (element.clientWidth) {
     inputPaddingLeft.value = element.clientWidth + 16 + 16;
+  } else {
+    inputPaddingLeft.value = 16;
   }
 };
 
