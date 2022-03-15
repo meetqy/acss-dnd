@@ -130,8 +130,10 @@ export default defineComponent({
       mainElement.value?.removeEventListener("click", mainClickFn);
     });
 
+    // 将页面渲染到画布
     watch(editorStore, (val) => {
       const el = val.wrapElement;
+      
       if (mainElement.value) {
         mainElement.value.innerHTML = el?.innerHTML || "";
       }

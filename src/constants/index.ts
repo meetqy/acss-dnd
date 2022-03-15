@@ -8,4 +8,5 @@ export const TextNode = new Set([
   "H6",
   "P",
   "SPAN",
+  "A",
 ]);
