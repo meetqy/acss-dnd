@@ -5,36 +5,52 @@ export interface Template {
 
 export const article: Template = {
   jsx: (
-    <article class="prose m-auto bg-yellow-500 bg-opacity-75">
-      <h1>文本容器 article</h1>
-      <h2>文本容器 article</h2>
-      <h3>文本容器 article</h3>
-      <h4>文本容器 article</h4>
-      <p>
-        文本容器 article - 这是一段文本。By default, Tailwind removes all of the
-        default browser styling from paragraphs, headings, lists and more. This
-        ends up being really useful for building application UIs because you
-        spend less time undoing user-agent styles, but when you really are just
-        trying to style some content that came from a rich-text editor in a CMS
-        or a markdown file, it can be surprising and unintuitive.
-      </p>
-      <span>这是一个span标签</span>
+    <article class="prose m-auto mt-4">
+      <h1>ultraseven</h1>
+      <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
+      <h2>✨ 特点</h2>
+      <ul>
+        <li>简单易用</li>
+        <li>树结构的布局方式，便于阅读</li>
+        <li>响应式</li>
+        <li>多种主题模式</li>
+        <li>class 分类，便于操作</li>
+      </ul>
+      <h2>🏷 基础库</h2>
+      <ul>
+        <li><a href="https://vuejs.org/" target='_blank'>vue3</a></li>
+        <li><a href="https://vitejs.dev/" target='_blank'>vite</a></li>
+        <li><a href="https://tailwindcss.com/" target='_blank'>tailwind</a></li>
+        <li><a href="https://daisyui.com/" target='_blank'>daisyui</a></li>
+      </ul>
+      <blockquote>
+        这段文字的布局方式来源与daiyui布局中的<a href="https://daisyui.com/docs/layout-and-typography/">Layout and Typography</a>,
+        使用方式很简单，在最外层的<code>&lt;article&gt;</code>标签中，添加了一个 <code>prose</code> 的 classname
+      </blockquote>
     </article>
   ),
-  str: ` <article class="prose m-auto bg-yellow-500 bg-opacity-75">
-  <h1>文本容器 article</h1>
-  <h2>文本容器 article</h2>
-  <h3>文本容器 article</h3>
-  <h4>文本容器 article</h4>
-  <p>
-    文本容器 article - 这是一段文本。By default, Tailwind removes all of the
-    default browser styling from paragraphs, headings, lists and more. This
-    ends up being really useful for building application UIs because you
-    spend less time undoing user-agent styles, but when you really are just
-    trying to style some content that came from a rich-text editor in a CMS
-    or a markdown file, it can be surprising and unintuitive.
-  </p>
-  <span>这是一个span标签</span>
+  str: `<article class="prose m-auto mt-4">
+  <h1>ultraseven</h1>
+  <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
+  <h2>✨ 特点</h2>
+  <ul>
+    <li>简单易用</li>
+    <li>树结构的布局方式，便于阅读</li>
+    <li>响应式</li>
+    <li>多种主题模式</li>
+    <li>class 分类，便于操作</li>
+  </ul>
+  <h2>🏷 基础库</h2>
+  <ul>
+    <li><a href="https://vuejs.org/" target='_blank'>vue3</a></li>
+    <li><a href="https://vitejs.dev/" target='_blank'>vite</a></li>
+    <li><a href="https://tailwindcss.com/" target='_blank'>tailwind</a></li>
+    <li><a href="https://daisyui.com/" target='_blank'>daisyui</a></li>
+  </ul>
+  <blockquote>
+    这段文字的布局方式来源与daiyui布局中的<a href="https://daisyui.com/docs/layout-and-typography/">Layout and Typography</a>,
+    使用方式很简单，在最外层的<code>&lt;article&gt;</code>标签中，添加了一个 <code>prose</code> 的classname
+  </blockquote>
 </article>`,
 };
 
