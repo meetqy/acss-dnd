@@ -13,7 +13,8 @@ export const getIframe = () => iframeElement;
 
 export enum IframeIoType {
   menu,
-  component,
+  mainToEditor,
+  tempToEditor,
   editorToSide,
   sideToEditor,
 }
@@ -34,9 +35,14 @@ function childToParent<T>(_win: Window, params: PostParam<T>) {
 }
 
 export const iframeIo = {
-  component: (data: string): void => {
+  // main通知到editor
+  mainToEditor: (data: "notice"): void => {
+    parentToChild({ type: IframeIoType.mainToEditor, data });
+  },
+
+  tempToEditor: (data: string): void => {
     parentToChild({
-      type: IframeIoType.component,
+      type: IframeIoType.tempToEditor,
       data,
     });
   },

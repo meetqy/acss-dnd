@@ -97,9 +97,17 @@ export default defineComponent({
 
     onMounted(() => {
       // 接受iframe传过来的元素
-      iframeIo.on(IframeIoType.component, (data) => {
+      iframeIo.on(IframeIoType.tempToEditor, (data) => {
         _menuToEditorElementStr = data as string;
       });
+
+      iframeIo.on(IframeIoType.mainToEditor, data => {
+        if(data === 'notice') {
+          const node = checkedElement.value;
+          checkedElement.value = null;
+          checkedElement.value = node;
+        }
+      })
 
       // 修改属性
       iframeIo.on(IframeIoType.sideToEditor, (data) => {

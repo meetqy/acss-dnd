@@ -132,7 +132,6 @@ onMounted(() => {
     if (wrap) {
       const rect = wrap.getBoundingClientRect();
       const cont = document.getElementById(dropdownContentId.value);
-      console.log(rect);
       cont?.style.setProperty("width", rect.width + "px");
     }
   });

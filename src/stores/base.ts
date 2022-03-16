@@ -37,7 +37,7 @@ export const useBaseStore = defineStore({
       if (index < 0) return;
       const jsxStr = this.curItem?.components[index].str;
       if (this.component != index && jsxStr) {
-        iframeIo.component(jsxStr);
+        iframeIo.tempToEditor(jsxStr);
         this.component = index;
       }
     },

@@ -20,9 +20,9 @@
 ```
 - template   # 存放模板配置
 - views      # 模块
-    - component-preview     # 组件预览
-    - editor-wrap           # 编辑器外部的样式
-    - iframe-content        # 画布
+    - template              # 模板
+    - main                  # 编辑器外部的样式
+    - editor                # 画布
     - menu-bar              # 菜单
     - side-bar              # 属性操作
         - file-a            # 一个文件夹相当于一个分类
