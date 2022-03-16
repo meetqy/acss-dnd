@@ -42,7 +42,7 @@ import type { ClassSelectOption } from "../components/class-select";
 import ClassSelect from "../components/class-select/index.vue";
 
 interface Props {
-  element: CheckedElement;
+  element: CheckedElement | null;
 }
 
 const baseStore = useBaseStore();
