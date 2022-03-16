@@ -2,6 +2,15 @@
   "name": "acss-dnd",
   "version": "0.0.0",
   "description": "acss-dnd是一款基于原子类 css 特性，实现拖拽布局的一个工具。",
+  "keywords": [
+    "tailwindcss",
+    "acss-dnd",
+    "css",
+    "daisyui",
+    "dnd",
+    "drag and drop",
+    "atomic css"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "cross-env NODE_ENV=production vue-tsc --noEmit && vite build",
@@ -37,5 +46,16 @@
     "typescript": "~4.5.5",
     "vite": "^2.8.4",
     "vue-tsc": "^0.31.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/meetqy/acss-dnd/issues"
+  },
+  "homepage": "https://github.com/meetqy/acss-dnd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meetqy/acss-dnd.git"
+  },
+  "main": ".eslintrc.js",
+  "author": "meetqy",
+  "license": "MIT"
 }
