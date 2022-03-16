@@ -6,7 +6,7 @@ export interface Template {
 export const article: Template = {
   jsx: (
     <article class="prose m-auto mt-4">
-      <h1>ultraseven</h1>
+      <h1>acss-dnd</h1>
       <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
       <h2>✨ 特点</h2>
       <ul>
@@ -29,8 +29,8 @@ export const article: Template = {
       </blockquote>
     </article>
   ),
-  str: `<article class="prose m-auto mt-4">
-  <h1>ultraseven</h1>
+  str: `<article class="prose m-auto mt-4 ">
+  <h1>acss-dnd</h1>
   <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
   <h2>✨ 特点</h2>
   <ul>

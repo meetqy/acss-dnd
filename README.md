@@ -1,19 +1,18 @@
-# ultraseven
+# acss-dnd (atomic css drag and drop)
 
-只需要简单的拖拽，你就能创建一个漂亮的响应式网页。
+`acss-dnd`是一款基于原子类 css 特性，实现拖拽布局的一个工具。
 
 ## ✨ 特点
 
 - 简单易用
-- 树结构的布局方式，便于阅读
+- 导出符合 html 规范代码，利于二次开发
 - 响应式
 - 多种主题模式
-- class 分类，便于操作
 
 ## 💻 在线体验
 
-- [Github](https://meetqy.github.io/ultraseven/)
-- [Gitee](https://meetqy.gitee.io/ultraseven)
+- [Github](https://meetqy.github.io/acss-dnd/)
+- [Gitee](https://meetqy.gitee.io/acss-dnd)
 
 ## 项目结构
 
@@ -39,4 +38,4 @@
 
 ## 近期计划
 
-[github project](https://github.com/meetqy/ultraseven/projects/1)
+[github project](https://github.com/meetqy/acss-dnd/projects/1)
