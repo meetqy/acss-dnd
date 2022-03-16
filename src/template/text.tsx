@@ -7,14 +7,13 @@ export const article: Template = {
   jsx: (
     <article class="prose m-auto mt-4">
       <h1>acss-dnd</h1>
-      <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
+      <p><i class="text-primary">acss-dnd</i>(atomic css drag and drop) 是一款基于原子类 css 特性，实现拖拽布局的一个工具。</p>
       <h2>✨ 特点</h2>
       <ul>
         <li>简单易用</li>
-        <li>树结构的布局方式，便于阅读</li>
+        <li>导出符合 html 规范代码，利于二次开发</li>
         <li>响应式</li>
         <li>多种主题模式</li>
-        <li>class 分类，便于操作</li>
       </ul>
       <h2>🏷 基础库</h2>
       <ul>
@@ -31,14 +30,13 @@ export const article: Template = {
   ),
   str: `<article class="prose m-auto mt-4 ">
   <h1>acss-dnd</h1>
-  <p>ultraserve名称来源于赛文奥特曼，一个基于tailwind的可视化编辑器，只需要简单的拖拽，你就能创建一个漂亮的响应式网页。</p>
+  <p><i class="text-primary">acss-dnd</i>(atomic css drag and drop) 是一款基于原子类 css 特性，实现拖拽布局的一个工具。</p>
   <h2>✨ 特点</h2>
   <ul>
     <li>简单易用</li>
-    <li>树结构的布局方式，便于阅读</li>
+    <li>导出符合 html 规范代码，利于二次开发</li>
     <li>响应式</li>
     <li>多种主题模式</li>
-    <li>class 分类，便于操作</li>
   </ul>
   <h2>🏷 基础库</h2>
   <ul>

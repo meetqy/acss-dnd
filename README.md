@@ -1,6 +1,6 @@
 # acss-dnd (atomic css drag and drop)
 
-`acss-dnd`是一款基于原子类 css 特性，实现拖拽布局的一个工具。
+acss-dnd 是一款基于原子类 css 特性，实现拖拽布局的一个工具。
 
 ## ✨ 特点
 

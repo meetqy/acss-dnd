@@ -20,7 +20,7 @@
         >
           <span class="cursor-pointer text-primary"> 移动端优先 </span>
           <span class="mx-4 text-base-300">
-            &lt; <i class="text-secondary">{{ curDevice.width }}</i> &gt;
+            &lt; <i class="text-secondary">{{ curDevice.width }}px</i> &gt;
           </span>
           <span class="cursor-pointer text-base-content">PC端优先</span>
         </div>

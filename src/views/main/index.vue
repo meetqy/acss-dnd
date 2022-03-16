@@ -34,8 +34,13 @@ onMounted(() => {
   initIframeElement(iframe);
 
   const res = window.matchMedia("prefers-color-scheme: dark").matches;
-  // setTimeout(() => {
-  mode.value = !res;
-  // }, 1000);
+
+  // 监听iframe是否加载完成
+  let t = setInterval(() => {
+    if (iframe.contentWindow?.document.querySelector("html")) {
+      mode.value = !res;
+      clearInterval(t);
+    }
+  }, 50);
 });
 </script>
