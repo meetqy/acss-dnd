@@ -24,11 +24,13 @@ const checkedElement = computed(() => baseStore.checkedElement);
 <template>
   <aside
     id="side-bar"
-    class="h-screen w-80 bg-base-100 flex-shrink-0 shadow sticky"
+    class="h-screen w-80 bg-base-100 flex-shrink-0 shadow overflow-y-scroll overflow-x-hidden scrollbar"
     :class="{ hidden: !checkedElement }"
   >
-    <div class="navbar bg-base-100">
-      <div class="flex-1">
+    <div
+      class="navbar bg-base-100 sticky top-0 z-50 border-b border-base-300 border-opacity-30"
+    >
+      <div class="flex-1 w-full">
         <a class="btn btn-ghost normal-case text-xl text-primary font-medium">
           {{ checkedElement?.tagName }}
           <span class="lowercase">({{ checkedElement?.tagName }})</span>

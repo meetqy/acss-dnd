@@ -126,17 +126,17 @@ const badgeElChange = (element: HTMLElement) => {
 
 const inputRef = ref<HTMLElement>();
 
-// onMounted(() => {
-//   inputRef.value?.addEventListener("focus", () => {
-//     const wrap = document.getElementById(uuid.value);
-//     if (wrap) {
-//       const rect = wrap.getBoundingClientRect();
-//       const cont = document.getElementById(dropdownContentId.value);
-//       console.log(rect);
-//       // cont?.style.setProperty('left', )
-//     }
-//   });
-// });
+onMounted(() => {
+  inputRef.value?.addEventListener("focus", () => {
+    const wrap = document.getElementById(uuid.value);
+    if (wrap) {
+      const rect = wrap.getBoundingClientRect();
+      const cont = document.getElementById(dropdownContentId.value);
+      console.log(rect);
+      cont?.style.setProperty("width", rect.width + "px");
+    }
+  });
+});
 
 const dropdownOpen = () => {
   inputRef.value?.focus();

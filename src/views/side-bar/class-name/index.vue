@@ -44,9 +44,7 @@ watch(classList, (val) => {
 
 <template>
   <div>
-    <ul
-      class="menu bg-base-100 w-full border-t border-base-300 border-opacity-30"
-    >
+    <ul class="menu bg-base-100 w-full">
       <li>
         <a
           class="hover:bg-transparent active:bg-base-100 active:text-base-content text-xl font-medium"
