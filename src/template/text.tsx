@@ -28,7 +28,7 @@ export const article: Template = {
       </blockquote>
     </article>
   ),
-  str: `<article class="prose m-auto mt-4 ">
+  str: `<article class=" prose     m-auto    mt-4 ">
   <h1>acss-dnd</h1>
   <p><i class="text-primary">acss-dnd</i>(atomic css drag and drop) 是一款基于原子类 css 特性，实现拖拽布局的一个工具。</p>
   <h2>✨ 特点</h2>

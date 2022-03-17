@@ -28,10 +28,12 @@ export default defineComponent({
     watch(checkedElement, (val) => {
       if (val?.tagName) {
         const el: CheckedElement = {
-          className: val?.className || "",
+          // className 替换为正常的 删除多余的 空格，以及末尾的空格
+          className: val?.className.replace(/\s+/g, ' ').replace(/^\s+/, '').replace(/\s+$/, '') || "",
           tagName: val.tagName,
           innerText: val?.innerText || "",
         };
+        // console.log(el);
 
         iframeIo.editorToSide(window, el);
       }
