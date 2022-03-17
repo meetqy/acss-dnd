@@ -53,10 +53,12 @@ export const useBaseStore = defineStore({
         this.checkedElement.className = el.className;
         this.checkedElement.innerText = el.innerText;
         this.checkedElement.tagName = el.tagName;
+        this.checkedElement.innerHTML = el.innerHTML;
         iframeIo.sideToEditor({
           tagName: this.checkedElement.tagName,
           className: this.checkedElement.className,
           innerText: this.checkedElement.innerText,
+          innerHTML: this.checkedElement.innerHTML,
         });
       }
     },

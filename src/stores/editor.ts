@@ -17,7 +17,7 @@ export const useEditorStore = defineStore({
       if (node) {
         node.className = el.className;
         if (TextNode.has(node.tagName)) {
-          (node as HTMLElement).innerText = el.innerText;
+          (node as HTMLElement).innerHTML = el.innerHTML;
         }
       }
       return node;

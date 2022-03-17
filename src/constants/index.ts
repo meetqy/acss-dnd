@@ -12,4 +12,5 @@ export const TextNode = new Set([
   "CODE",
   "I",
   "BLOCKQUOTE",
+  "LI",
 ]);

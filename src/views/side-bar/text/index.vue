@@ -4,12 +4,25 @@
     <div class="collapse-title text-xl font-medium">Text</div>
     <div class="collapse-content relative">
       <div v-if="isShow">
-        <input
-          type="text"
-          placeholder="输入文本"
-          class="input w-full max-w-xs input-primary"
-          v-model="innerText"
-        />
+        <div
+          class="form-control w-full max-w-xs mb-2"
+          v-for="(item, index) in childNodes"
+          :key="index"
+        >
+          <label class="label">
+            <span class="label-text">
+              <i class="text-primary font-medium">nodeName</i>:
+              {{ item.nodeName }}
+            </span>
+          </label>
+          <input
+            type="text"
+            placeholder="输入文本"
+            class="input w-full max-w-xs input-primary"
+            v-model="item.textContent"
+            @input="changeNodes"
+          />
+        </div>
       </div>
 
       <div class="form-control w-full max-w-xs">
@@ -52,20 +65,42 @@ watch(isShow, (val) => {
 });
 
 const props = defineProps<Props>();
-const innerText = ref<string>();
+// 1.获取当前选中的元素
+// 2.根据元素组装一个innerHTML
+// 3.获取里面所有的childNodes
+// 4.渲染到页面
+// 5.双向绑定
+// 6.组装改变之后的元素
+// watch不能监听到childNodes,所以通过@input触发去代替
+const childNodes = ref<Node[]>();
 
 watch(props, (val) => {
-  innerText.value = val.element?.innerText;
-});
-
-watch(innerText, (val) => {
-  if (props.element && props.element?.innerText != val) {
-    baseStore.updateCheckedElement({
-      ...props.element,
-      innerText: val || "",
-    });
+  const el = val.element;
+  if (el) {
+    const div = document.createElement("div");
+    div.innerHTML = `<${el.tagName} class="${el.className}">${el.innerHTML}</${el.tagName}>`;
+    const original = div.querySelector("*");
+    if (original) {
+      childNodes.value = [...original.childNodes];
+    }
   }
 });
+
+const changeNodes = () => {
+  const el = props.element;
+  if (el) {
+    const newEl = document.createElement(el.tagName);
+    newEl.className = el.className;
+    childNodes.value?.forEach((item) => {
+      newEl.appendChild(item);
+    });
+
+    baseStore.updateCheckedElement({
+      ...props.element,
+      innerHTML: newEl.innerHTML,
+    });
+  }
+};
 
 // 当前元素的所有class
 const classList = computed(() =>

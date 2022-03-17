@@ -32,6 +32,7 @@ export default defineComponent({
           className: val?.className.replace(/\s+/g, ' ').replace(/^\s+/, '').replace(/\s+$/, '') || "",
           tagName: val.tagName,
           innerText: val?.innerText || "",
+          innerHTML: val?.innerHTML || "",
         };
         // console.log(el);
 
