@@ -18,7 +18,13 @@
       href="javascript:;"
       class="link link-hover font-mono text-xs text-opacity-50"
     >
-      <div data-tip="v0.0.1" class="tooltip tooltip-bottom">0.0.1</div>
+      <div :data-tip="pkg.version" class="tooltip tooltip-bottom">
+        {{ pkg.version }}
+      </div>
     </a>
   </div>
 </template>
+
+<script lang="ts" setup>
+import pkg from "@/constants/pkg";
+</script>
