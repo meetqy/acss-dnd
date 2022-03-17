@@ -1,6 +1,6 @@
 {
   "name": "acss-dnd",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "acss-dnd是一款基于原子类 css 特性，实现拖拽布局的一个工具。",
   "keywords": [
     "tailwindcss",
