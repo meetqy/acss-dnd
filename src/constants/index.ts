@@ -9,4 +9,7 @@ export const TextNode = new Set([
   "P",
   "SPAN",
   "A",
+  "CODE",
+  "I",
+  "BLOCKQUOTE",
 ]);
