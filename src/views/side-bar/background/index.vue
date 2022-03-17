@@ -19,7 +19,11 @@
           :options="options.color"
           :model-value="value.color"
           @update:model-value="(e) => changeValue(e, 'color')"
-        />
+        >
+          <template #lead="{ item }">
+            <div class="badge badge-lg mr-2" :class="item.value" />
+          </template>
+        </ClassSelect>
       </div>
 
       <div class="form-control w-full max-w-xs">

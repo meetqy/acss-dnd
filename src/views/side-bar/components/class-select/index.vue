@@ -35,7 +35,10 @@
       >
         <li v-for="item in searchResult" :key="item.value">
           <a class="flex justify-between" @click="change(item)">
-            {{ item.label }}
+            <span class="flex items-center">
+              <slot name="lead" :item="item"></slot>
+              {{ item.label }}
+            </span>
             <svg
               v-show="props.modelValue.includes(item.value)"
               xmlns="http://www.w3.org/2000/svg"

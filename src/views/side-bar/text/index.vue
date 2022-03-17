@@ -35,7 +35,16 @@
           :options="options.color"
           :model-value="value.color"
           @update:model-value="(e) => changeValue(e, 'color')"
-        />
+        >
+          <template #lead="{ item }">
+            <button
+              class="btn btn-circle btn-xs mr-2 glass"
+              :class="item.value"
+            >
+              A
+            </button>
+          </template>
+        </ClassSelect>
       </div>
     </div>
   </div>
