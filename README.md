@@ -19,9 +19,9 @@ acss-dnd 是一款基于原子类 css 特性，实现拖拽布局的一个工具
 ```
 - template   # 存放模板配置
 - views      # 模块
-    - template              # 模板
     - main                  # 编辑器外部的样式
     - editor                # 画布
+    - template              # 模板预览 选中菜单，弹出对应的template
     - menu-bar              # 菜单
     - side-bar              # 属性操作
         - file-a            # 一个文件夹相当于一个分类
