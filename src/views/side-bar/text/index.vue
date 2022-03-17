@@ -1,13 +1,9 @@
 <template>
-  <div
-    tabindex="0"
-    class="collapse collapse-plus bg-base-100 rounded-box"
-    :class="{ hidden: !isShow }"
-  >
+  <div tabindex="0" class="collapse collapse-plus bg-base-100 rounded-box">
     <input type="checkbox" class="peer" ref="collapse" />
     <div class="collapse-title text-xl font-medium">Text</div>
     <div class="collapse-content relative">
-      <div class="border-t border-base-300 pt-4">
+      <div v-if="isShow">
         <input
           type="text"
           placeholder="输入文本"
@@ -17,7 +13,7 @@
       </div>
 
       <div class="form-control w-full max-w-xs">
-        <label class="label mt-1">
+        <label class="label">
           <span class="label-text">
             文本颜色 （<span class="text-secondary">text-color</span>）
           </span>
@@ -107,7 +103,6 @@ const changeValue = (modelValue: string[], name: keyof ValueType) => {
   } else {
     // 新增
     temp.push(modelValue[0]);
-    console.log(temp, "111");
   }
 
   if (props.element) {
@@ -120,3 +115,8 @@ const changeValue = (modelValue: string[], name: keyof ValueType) => {
   value[name] = modelValue;
 };
 </script>
+<style scoped>
+.collapse-content > div:first-child {
+  @apply border-t border-base-300 pt-4 mb-1;
+}
+</style>
