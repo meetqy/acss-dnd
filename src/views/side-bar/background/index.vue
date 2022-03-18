@@ -36,7 +36,7 @@
           :options="options.opacity"
           :model-value="value.opacity"
           @update:model-value="(e) => changeValue(e, 'opacity')"
-        />
+        ></ClassSelect>
       </div>
 
       <div class="form-control w-full max-w-xs">
@@ -49,13 +49,14 @@
           :options="options.effect"
           :model-value="value.effect"
           @update:model-value="(e) => changeValue(e, 'effect')"
-        />
+        ></ClassSelect>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { daisyuiFilter, getDaisyui } from "@/constants/daisyui";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
 import { createOptions, usageClassFilter } from "@/views/utils";
@@ -81,7 +82,7 @@ const options = reactive<{
   opacity: ClassSelectOption[];
   effect: ClassSelectOption[];
 }>({
-  color: createOptions("background-color"),
+  color: getDaisyui("bg"),
   opacity: createOptions("background-opacity"),
   effect: createOptions("background"),
 });
@@ -100,7 +101,7 @@ const value = reactive<ValueType>({
 });
 
 watch(classList, (val) => {
-  value.color = usageClassFilter(val, "background-color");
+  value.color = daisyuiFilter(val, "bg");
   value.opacity = usageClassFilter(val, "background-opacity");
   value.effect = usageClassFilter(val, "background");
 });

@@ -52,9 +52,9 @@
 
 <script lang="ts" setup>
 import { TextNode } from "@/constants";
+import { getDaisyui, daisyuiFilter } from "@/constants/daisyui";
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { createOptions, usageClassFilter } from "@/views/utils";
 import { computed, reactive, ref, watch } from "vue";
 import type { ClassSelectOption } from "../components/class-select";
 import ClassSelect from "../components/class-select/index.vue";
@@ -119,7 +119,7 @@ const classList = computed(() =>
 const options = reactive<{
   color: ClassSelectOption[];
 }>({
-  color: createOptions("text-color"),
+  color: getDaisyui("text"),
 });
 
 interface ValueType {
@@ -128,7 +128,7 @@ interface ValueType {
 
 const value = reactive<ValueType>({ color: [] });
 watch(classList, (val) => {
-  value.color = usageClassFilter(val, "text-color");
+  value.color = daisyuiFilter(val, "text");
 });
 
 const changeValue = (modelValue: string[], name: keyof ValueType) => {
