@@ -1,7 +1,10 @@
 <template>
   <main class="flex-1 bg-base-300 bg-opacity-25 px-4 h-screen flex flex-col">
-    <div class="w-full flex p-5 flex-shrink-0">
+    <div class="w-full flex p-5 flex-shrink-0 justify-between">
       <ChooseTheme v-model="theme" />
+      <button class="btn btn-outline">
+        导出Code <i class="fa-solid fa-cloud-arrow-down ml-2"></i>
+      </button>
     </div>
     <Browser />
   </main>
