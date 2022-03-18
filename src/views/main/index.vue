@@ -1,7 +1,7 @@
 <template>
   <main class="flex-1 bg-base-300 bg-opacity-25 px-4 h-screen flex flex-col">
     <div class="w-full flex p-5 flex-shrink-0">
-      <Mode v-model="mode" />
+      <ChooseTheme v-model="theme" />
     </div>
     <Browser />
   </main>
@@ -11,21 +11,17 @@
 import { onMounted, ref, watch } from "vue";
 import { getIframe, initIframeElement } from "../iframe.io";
 import Browser from "./components/browser.vue";
-import Mode from "./components/mode.vue";
+import ChooseTheme from "./components/chooseTheme.vue";
 
-// false  =>  dark
-// true   =>  light
-const mode = ref<boolean>(false);
-watch(mode, (val) => {
+const theme = ref<string>("");
+watch(theme, (val) => {
   setDataTheme(document, val);
   const doc = getIframe().contentWindow?.document;
   doc && setDataTheme(doc, val);
 });
 
-const setDataTheme = (doc: Document | HTMLIFrameElement, mode: boolean) => {
-  doc
-    .querySelector("html")
-    ?.setAttribute("data-theme", mode ? "light" : "emerald");
+const setDataTheme = (doc: Document | HTMLIFrameElement, theme: string) => {
+  doc.querySelector("html")?.setAttribute("data-theme", theme);
 };
 
 onMounted(() => {
@@ -38,7 +34,7 @@ onMounted(() => {
   // 监听iframe是否加载完成
   let t = setInterval(() => {
     if (iframe.contentWindow?.document.querySelector("html")) {
-      mode.value = !res;
+      theme.value = res ? "dark" : "light";
       clearInterval(t);
     }
   }, 50);
