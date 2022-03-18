@@ -2,19 +2,27 @@
 
 acss-dnd 是一款基于原子类 css 特性，实现拖拽布局的一个工具。
 
-## ✨ 特点
+## 🐶 特点
 
 - 简单易用
 - 导出符合 html 规范代码，利于二次开发
 - 响应式
 - 多种主题模式
 
-## 💻 在线体验
+## 🐱 在线体验
 
 - [Github](https://meetqy.github.io/acss-dnd/)
 - [Gitee](https://meetqy.gitee.io/acss-dnd)
 
-## 项目结构
+## 🐭 安装
+
+```sh
+git clone https://github.com/meetqy/acss-dnd.git
+yarn
+yarn dev
+```
+
+## 🐹 项目结构
 
 ```
 - template   # 存放模板配置
@@ -29,13 +37,13 @@ acss-dnd 是一款基于原子类 css 特性，实现拖拽布局的一个工具
         ...
 ```
 
-## 基础库
+## 🐰 基础库
 
 - [vue3](https://vuejs.org/)
 - [vite](https://vitejs.dev/)
 - [tailwind](https://tailwindcss.com/)
 - [daisy ui](https://daisyui.com/)
 
-## 近期计划
+## 🦊 近期计划
 
-[github project](https://github.com/meetqy/acss-dnd/projects/1)
+**Github Project**: [https://github.com/meetqy/acss-dnd/projects/1](https://github.com/meetqy/acss-dnd/projects/1)
