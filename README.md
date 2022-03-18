@@ -1,6 +1,6 @@
-# acss-dnd (atomic css drag and drop)
+# acss-dnd
 
-acss-dnd 是一款基于 atomic css 特性，开发的 web 拖拽式网页编辑器。
+acss-dnd(atomic css drag and drop) 是一款基于 atomic css 特性，开发的 web 拖拽式网页编辑器。
 
 ## 🐶 特点
 
