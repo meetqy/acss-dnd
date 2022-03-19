@@ -30,7 +30,7 @@ export const useEditorStore = defineStore({
     },
 
     init(wrapElement: Element) {
-      // console.log("useEditorStore", wrapElement);
+      if (wrapElement.isEqualNode(this.wrapElement)) return;
       this.wrapElement = wrapElement;
 
       storage.value = this.wrapElement?.innerHTML;
@@ -48,11 +48,22 @@ export const useEditorStore = defineStore({
           `[data-uuid="${el.getAttribute("data-uuid")}"]`
         );
         if (referenceNode) {
-          // parentNode === wrapElement 的情况，如果不是暂未测试
+          // TODE: parentNode === wrapElement 的情况，如果不是暂未测试
           parentNode?.insertBefore(newEl, referenceNode.nextSibling);
         }
       } else {
         this.wrapElement?.append(newEl);
+      }
+
+      storage.value = this.wrapElement?.innerHTML;
+    },
+
+    deleteNode(uuid: string) {
+      const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
+
+      if (node) {
+        // 删除自身
+        node.remove();
       }
 
       storage.value = this.wrapElement?.innerHTML;

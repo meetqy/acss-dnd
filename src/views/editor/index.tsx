@@ -1,9 +1,16 @@
 import { useEditorStore } from "@/stores/editor";
-import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from "vue";
 import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
-import { useWindowScroll } from "@vueuse/core";
+import { useMagicKeys, useWindowScroll, whenever } from "@vueuse/core";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -29,7 +36,11 @@ export default defineComponent({
       if (val?.tagName) {
         const el: CheckedElement = {
           // className 替换为正常的 删除多余的 空格，以及末尾的空格
-          className: val?.className.replace(/\s+/g, ' ').replace(/^\s+/, '').replace(/\s+$/, '') || "",
+          className:
+            val?.className
+              .replace(/\s+/g, " ")
+              .replace(/^\s+/, "")
+              .replace(/\s+$/, "") || "",
           tagName: val.tagName,
           innerText: val?.innerText || "",
           innerHTML: val?.innerHTML || "",
@@ -98,19 +109,28 @@ export default defineComponent({
 
     const { x, y } = useWindowScroll();
 
+    // 删除选中元素
+    const keys = useMagicKeys();
+    whenever(keys.shift_backspace, (val) => {
+      const uuid = checkedElement.value?.getAttribute("data-uuid");
+      if (checkedElement.value && uuid) {
+        editorStore.deleteNode(uuid);
+      }
+    });
+
     onMounted(() => {
       // 接受iframe传过来的元素
       iframeIo.on(IframeIoType.tempToEditor, (data) => {
         _menuToEditorElementStr = data as string;
       });
 
-      iframeIo.on(IframeIoType.mainToEditor, data => {
-        if(data === 'notice') {
+      iframeIo.on(IframeIoType.mainToEditor, (data) => {
+        if (data === "notice") {
           const node = checkedElement.value;
           checkedElement.value = null;
           checkedElement.value = node;
         }
-      })
+      });
 
       // 修改属性
       iframeIo.on(IframeIoType.sideToEditor, (data) => {
@@ -128,14 +148,14 @@ export default defineComponent({
         }
       });
 
+      // 对main进行监听
       mainElement.value?.addEventListener("mouseover", mainMouseOverFn);
       mainElement.value?.addEventListener("mouseleave", mainMouseLeaveFn);
       mainElement.value?.addEventListener("click", mainClickFn);
 
-      // console.log('editor', mainElement.value)
       // 初始化editor，回显storage中的dom
-      if(mainElement.value) {
-        mainElement.value.innerHTML = localStorage.getItem("wrapElement") || "";;
+      if (mainElement.value) {
+        mainElement.value.innerHTML = localStorage.getItem("wrapElement") || "";
         editorStore.init(mainElement.value);
       }
     });
@@ -149,7 +169,7 @@ export default defineComponent({
     // 将页面渲染到画布
     watch(editorStore, (val) => {
       const el = val.wrapElement;
-      
+
       if (mainElement.value) {
         mainElement.value.innerHTML = el?.innerHTML || "";
       }
