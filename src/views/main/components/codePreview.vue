@@ -8,9 +8,15 @@
   <input type="checkbox" id="my-modal-4" class="modal-toggle" />
   <label for="my-modal-4" class="modal cursor-pointer scorllbar">
     <div class="modal-action mt-0 fixed justify-center py-2 z-50 top-10">
-      <label for="my-modal-5" class="btn" @click="copy(wrapElement)">
+      <label
+        for="my-modal-5"
+        class="btn"
+        v-if="!copied"
+        @click="copy(wrapElement)"
+      >
         复制代码
       </label>
+      <label for="my-modal-5" class="btn" v-else> 已复制 </label>
     </div>
     <label class="modal-box w-11/12 max-w-5xl p-0 relative scorllbar" for="">
       <highlightjs language="xml" :code="wrapElement" />
@@ -39,7 +45,7 @@ onMounted(() => {
   }
 });
 
-const { copy } = useClipboard();
+const { copy, copied } = useClipboard();
 </script>
 
 <style scoped>
