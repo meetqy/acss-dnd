@@ -6,7 +6,7 @@
     </label>
     <div
       tabindex="0"
-      class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-96 overflow-y-scroll scrollbar"
+      class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-96 overflow-y-auto"
     >
       <div class="grid grid-cols-1 gap-3 p-3">
         <div

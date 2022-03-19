@@ -51,7 +51,7 @@ export default defineComponent({
             class="fixed w-screen h-screen bg-neutral bg-opacity-40"
             onClick={ondragend}
           />
-          <div class={`component-preview scrollbar`}>
+          <div class="component-preview">
             <h2 class="text-2xl font-medium text-base-content my-4">
               {baseStore.curItem?.text}
             </h2>

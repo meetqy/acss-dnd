@@ -6,7 +6,7 @@
 
   <!-- Put this part before </body> tag -->
   <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-  <label for="my-modal-4" class="modal cursor-pointer scorllbar">
+  <label for="my-modal-4" class="modal cursor-pointer">
     <div class="modal-action mt-0 fixed justify-center py-2 z-50 top-10">
       <label
         for="my-modal-5"
@@ -18,7 +18,7 @@
       </label>
       <label for="my-modal-5" class="btn" v-else> 已复制 </label>
     </div>
-    <label class="modal-box w-11/12 max-w-5xl p-0 relative scorllbar" for="">
+    <label class="modal-box w-11/12 max-w-5xl p-0 relative" for="">
       <highlightjs language="xml" :code="wrapElement" />
     </label>
   </label>
@@ -50,6 +50,6 @@ const { copy, copied } = useClipboard();
 
 <style scoped>
 .modal-box pre {
-  @apply overflow-y-scroll h-full;
+  @apply overflow-y-auto h-full;
 }
 </style>

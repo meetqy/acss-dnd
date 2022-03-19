@@ -24,7 +24,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
 <template>
   <aside
     id="side-bar"
-    class="h-screen w-80 bg-base-100 flex-shrink-0 shadow overflow-y-scroll overflow-x-hidden scrollbar"
+    class="h-screen w-80 bg-base-100 flex-shrink-0 shadow overflow-y-auto overflow-x-hidden"
     :class="{ hidden: !checkedElement }"
   >
     <div

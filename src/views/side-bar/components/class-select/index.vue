@@ -31,7 +31,7 @@
         :id="dropdownContentId"
         tabindex="0"
         style="position: fixed"
-        class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-80 overflow-y-scroll scrollbar"
+        class="dropdown-content menu menu-compact p-2 shadow bg-base-100 rounded-box w-full max-h-80 overflow-y-auto"
       >
         <li v-for="item in searchResult" :key="item.value">
           <a class="flex justify-between" @click="change(item)">

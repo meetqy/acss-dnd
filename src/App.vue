@@ -26,7 +26,7 @@ const routeName = computed(() => route.name);
     <input id="drawer-left" type="checkbox" class="drawer-toggle" />
     <input id="drawer-right" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content flex justify-center scrollbar">
+    <div class="drawer-content flex justify-center">
       <RouterView></RouterView>
     </div>
 
