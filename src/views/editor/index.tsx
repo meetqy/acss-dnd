@@ -132,7 +132,12 @@ export default defineComponent({
       mainElement.value?.addEventListener("mouseleave", mainMouseLeaveFn);
       mainElement.value?.addEventListener("click", mainClickFn);
 
-      mainElement.value && editorStore.init(mainElement.value);
+      // console.log('editor', mainElement.value)
+      // 初始化editor，回显storage中的dom
+      if(mainElement.value) {
+        mainElement.value.innerHTML = localStorage.getItem("wrapElement") || "";;
+        editorStore.init(mainElement.value);
+      }
     });
 
     onUnmounted(() => {

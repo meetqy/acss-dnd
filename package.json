@@ -19,8 +19,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
     "@vueuse/core": "^7.7.0",
     "daisyui": "^2.6.4",
+    "highlight.js": "^11.5.0",
     "pinia": "^2.0.11",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",

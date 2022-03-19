@@ -1,7 +1,10 @@
 import { TextNode } from "@/constants";
 import type { CheckedElement } from "@/types";
 import { stringToNode } from "@/views/utils";
+import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
+
+const storage = useStorage("wrapElement", "");
 
 export const useEditorStore = defineStore({
   id: "editor",
@@ -20,11 +23,17 @@ export const useEditorStore = defineStore({
           (node as HTMLElement).innerHTML = el.innerHTML;
         }
       }
+
+      storage.value = this.wrapElement?.innerHTML;
+
       return node;
     },
 
     init(wrapElement: Element) {
+      // console.log("useEditorStore", wrapElement);
       this.wrapElement = wrapElement;
+
+      storage.value = this.wrapElement?.innerHTML;
     },
 
     // 添加元素到画布
@@ -45,6 +54,8 @@ export const useEditorStore = defineStore({
       } else {
         this.wrapElement?.append(newEl);
       }
+
+      storage.value = this.wrapElement?.innerHTML;
     },
   },
 });
