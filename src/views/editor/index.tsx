@@ -115,6 +115,7 @@ export default defineComponent({
       const uuid = checkedElement.value?.getAttribute("data-uuid");
       if (checkedElement.value && uuid) {
         editorStore.deleteNode(uuid);
+        checkedElement.value = null;
       }
     });
 
