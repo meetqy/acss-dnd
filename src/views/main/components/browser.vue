@@ -8,7 +8,7 @@
       class="bg-base-300 bg-opacity-60 w-full flex rounded-box 0 shadow-base-100 flex-col h-full overflow-hidden"
     >
       <div
-        class="h-12 w-full px-4 flex justify-between items-center bg-base flex-shrink-0 border-b border-base-100 relative z-10"
+        class="h-12 w-full px-4 flex justify-between items-center bg-base flex-shrink-0 shadow relative z-10"
       >
         <div class="flex h-full items-center w-14 justify-between">
           <div class="w-3 h-3 bg-red-500 rounded-full"></div>
