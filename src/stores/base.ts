@@ -1,5 +1,4 @@
 import type { Menu } from "./../template/d";
-import menu from "../template";
 import type { CheckedElement } from "@/types";
 import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";
@@ -10,7 +9,7 @@ export const useBaseStore = defineStore({
     current: "",
     component: -1,
     checkedElement: null, // editor中当前选中的元素
-    menu,
+    menu: [],
   }),
   getters: {
     curItem: (state): Menu | null => {
@@ -22,6 +21,10 @@ export const useBaseStore = defineStore({
     },
   },
   actions: {
+    initMenu(menu: Menu[]) {
+      this.menu = menu;
+    },
+
     setCurrent(id: string | null) {
       this.current = id;
       this.component = -1;

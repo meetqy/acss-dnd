@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { RouterView, useRoute } from "vue-router";
 import { useBaseStore } from "./stores/base";
+import initTemp from "./template";
+
+const baseStore = useBaseStore();
+
+onMounted(async () => {
+  // 初始化模板
+  const menu = await initTemp();
+  baseStore.initMenu(menu);
+});
 
 const isDrawEnd = ref<boolean>(false);
-const baseStore = useBaseStore();
+
 watch(baseStore, (store) => {
   isDrawEnd.value = !!store.checkedElement;
 });
