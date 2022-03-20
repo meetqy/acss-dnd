@@ -31,9 +31,8 @@ const checkedElement = computed(() => baseStore.checkedElement);
       class="navbar bg-base-100 sticky top-0 z-50 border-b border-base-300 border-opacity-30"
     >
       <div class="flex-1 w-full">
-        <a class="btn btn-ghost normal-case text-xl text-primary font-medium">
+        <a class="btn btn-ghost text-xl text-primary font-medium lowercase">
           {{ checkedElement?.tagName }}
-          <span class="lowercase">({{ checkedElement?.tagName }})</span>
         </a>
       </div>
       <div class="flex-none">
