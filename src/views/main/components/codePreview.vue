@@ -30,18 +30,49 @@ import "highlight.js/lib/common";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import { onMounted, ref } from "vue";
 import { useClipboard } from "@vueuse/core";
+// @ts-ignore
+import prettier from "https://unpkg.com/prettier@2.6.0/esm/standalone.mjs";
+// @ts-ignore
+import parserHtml from "https://unpkg.com/prettier@2.6.0/esm/parser-html.mjs";
 
 const highlightjs = hljsVuePlugin.component;
 const wrapElement = ref<string>("");
+
+const format = (code: string) => {
+  return prettier.format(code, {
+    parser: "html",
+    plugins: [parserHtml],
+    singleAttributePerLine: false,
+    arrowParens: "always",
+    bracketSameLine: true,
+    bracketSpacing: true,
+    embeddedLanguageFormatting: "auto",
+    htmlWhitespaceSensitivity: "ignore",
+    insertPragma: false,
+    jsxSingleQuote: false,
+    printWidth: 100,
+    proseWrap: "preserve",
+    quoteProps: "as-needed",
+    requirePragma: false,
+    semi: true,
+    singleQuote: false,
+    tabWidth: 2,
+    trailingComma: "es5",
+    useTabs: false,
+    vueIndentScriptAndStyle: false,
+  });
+};
+
 window.addEventListener("storage", (ev) => {
-  wrapElement.value = ev.newValue || "";
+  wrapElement.value = format(ev.newValue || "");
 });
 
 onMounted(() => {
   // 初始化复制代码内容
   const storage = localStorage.getItem("wrapElement");
   if (storage) {
-    wrapElement.value = storage;
+    wrapElement.value = format(storage);
+    console.log(wrapElement.value);
   }
 });
 
