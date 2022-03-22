@@ -121,8 +121,8 @@ export const initText = async (): Promise<Menu> => {
   }
 
   return {
-    id: "1",
-    text: "文本",
+    id: "text",
+    text: "Text 文本",
     wrapClass: ["prose"],
     components: text,
   };
