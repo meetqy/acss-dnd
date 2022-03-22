@@ -2,7 +2,7 @@ import { useableClasses } from "@/constants/useClasses";
 import { v4 } from "uuid";
 import type { ClassSelectOption } from "./side-bar/components/class-select";
 
-// 当前元素转为string outerHtml 有时候转不出来
+// 当前元素转为string， 直接使用outerHtml有时候转不出来
 export const elementToString = (el: Element): string => {
   const div = document.createElement("div");
   div.appendChild(el);

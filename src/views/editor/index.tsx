@@ -4,6 +4,7 @@ import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
 import { useMagicKeys, useWindowScroll, whenever } from "@vueuse/core";
+import { NotSwapNode } from "@/constants";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -169,6 +170,62 @@ export default defineComponent({
       }
     });
 
+    // 选中元素状态显示
+    // 选中的元素可以上下移动，行内元素禁止移动
+    const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
+      const rect = el.getBoundingClientRect();
+
+      const upFn = () => {
+        editorStore.swapNode(
+          el.getAttribute("data-uuid") || "",
+          "up",
+          (newEl) => {
+            checkedElement.value = null;
+            checkedElement.value = newEl;
+          }
+        );
+      };
+
+      const downFn = () =>
+        editorStore.swapNode(
+          el.getAttribute("data-uuid") || "",
+          "down",
+          (newEl) => {
+            checkedElement.value = null;
+            checkedElement.value = newEl;
+          }
+        );
+
+      const disable = NotSwapNode.has(el.tagName);
+
+      return (
+        el && (
+          <div
+            class="checked-element"
+            style={{
+              left: rect.left + "px",
+              width: rect.width + "px",
+              top: rect.top + scrollY + "px",
+              height: rect.height + "px",
+            }}
+          >
+            {disable ? null : (
+              <div class="absolute right-0 top-0 pointer-events-auto flex items-center justify-end h-full pr-2">
+                <div class="btn-group">
+                  <button class={"btn btn-xs btn-primary"} onClick={upFn}>
+                    <i class="fa-solid fa-angle-up"></i>
+                  </button>
+                  <button class={"btn btn-xs btn-primary"} onClick={downFn}>
+                    <i class="fa-solid fa-angle-down"></i>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )
+      );
+    };
+
     return () => (
       <>
         <main
@@ -221,24 +278,6 @@ const renderOverElementMask = (
     rect && (
       <div
         class="over-element"
-        style={{
-          left: rect.left + "px",
-          width: rect.width + "px",
-          top: rect.top + scrollY + "px",
-          height: rect.height + "px",
-        }}
-      />
-    )
-  );
-};
-
-// 选中元素状态显示
-const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
-  const rect = el.getBoundingClientRect();
-  return (
-    el && (
-      <div
-        class="checked-element"
         style={{
           left: rect.left + "px",
           width: rect.width + "px",

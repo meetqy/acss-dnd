@@ -47,6 +47,8 @@ export const useEditorStore = defineStore({
 
       if (el && el.id != "iframe-main") {
         el.appendChild(newEl);
+
+        // 插入元素后面
         // const parentNode = el.parentNode;
         // const referenceNode = this.wrapElement?.querySelector(
         //   `[data-uuid="${el.getAttribute("data-uuid")}"]`
@@ -60,6 +62,25 @@ export const useEditorStore = defineStore({
       }
 
       storage.value = this.wrapElement?.innerHTML;
+    },
+
+    swapNode(
+      uuid: string,
+      type: "up" | "down",
+      callback?: (node: HTMLElement) => void
+    ) {
+      const node = this.wrapElement?.querySelector(`[data-uuid="${uuid}"]`);
+      if (!node) return;
+      const parentNode = node?.parentNode;
+      if (type === "up") {
+        node.previousElementSibling &&
+          parentNode?.insertBefore(node, node.previousElementSibling);
+      } else {
+        node.nextSibling && parentNode?.insertBefore(node.nextSibling, node);
+      }
+
+      storage.value = this.wrapElement?.innerHTML;
+      callback && callback(node as HTMLElement);
     },
 
     deleteNode(uuid: string) {
