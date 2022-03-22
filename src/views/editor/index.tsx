@@ -1,12 +1,5 @@
 import { useEditorStore } from "@/stores/editor";
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-  watch,
-} from "vue";
+import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
@@ -27,7 +20,7 @@ export default defineComponent({
     const overElement = ref<HTMLElement>();
 
     // 拖拽时经过的元素
-    const dragEnterElement = ref<HTMLElement>();
+    const dragOverElement = ref<HTMLElement>();
 
     // 当前拖拽的元素，只有在drop触发时，并且在main标签中时，才会显示在画布上
     let _menuToEditorElementStr = "";
@@ -60,10 +53,10 @@ export default defineComponent({
       isEnter.value = false;
 
       if (_menuToEditorElementStr) {
-        editorStore.addNode(_menuToEditorElementStr, dragEnterElement.value);
+        editorStore.addNode(_menuToEditorElementStr, dragOverElement.value);
       }
 
-      dragEnterElement.value = undefined;
+      dragOverElement.value = undefined;
 
       console.log(e, "drop");
     };
@@ -83,7 +76,7 @@ export default defineComponent({
         isEnter.value = true;
       }
 
-      dragEnterElement.value = el;
+      dragOverElement.value = el;
     };
 
     const ondragleave = () => {
@@ -193,13 +186,13 @@ export default defineComponent({
         {checkedElement.value
           ? renderCheckedElementMask(checkedElement.value, y.value)
           : null}
-        {renderDragEnterElement(dragEnterElement.value, y.value)}
+        {renderDragOverElement(dragOverElement.value, y.value)}
       </>
     );
   },
 });
 
-const renderDragEnterElement = (
+const renderDragOverElement = (
   el: HTMLElement | undefined,
   scrollY: number
 ) => {
@@ -207,7 +200,7 @@ const renderDragEnterElement = (
   const rect = el.getBoundingClientRect();
   return (
     <div
-      class="drag-enter_element"
+      class="drag-over_element"
       style={{
         left: rect.left + "px",
         width: rect.width + "px",
