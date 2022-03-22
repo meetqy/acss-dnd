@@ -8,8 +8,8 @@
   z-index: 999999;
 }
 
-.drag-over_element {
-  @apply absolute border-b-2 border-primary pointer-events-none bg-info bg-opacity-20;
+.drag-enter_element {
+  @apply absolute pointer-events-none bg-secondary bg-opacity-5;
   z-index: 999999;
 }
 

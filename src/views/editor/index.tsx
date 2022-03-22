@@ -19,8 +19,8 @@ export default defineComponent({
     // 当前鼠标移上的元素
     const overElement = ref<HTMLElement>();
 
-    // 拖拽时经过的元素
-    const dragOverElement = ref<HTMLElement>();
+    // dragenter 可释放的元素
+    const dragEnterElement = ref<HTMLElement>();
 
     // 当前拖拽的元素，只有在drop触发时，并且在main标签中时，才会显示在画布上
     let _menuToEditorElementStr = "";
@@ -53,10 +53,10 @@ export default defineComponent({
       isEnter.value = false;
 
       if (_menuToEditorElementStr) {
-        editorStore.addNode(_menuToEditorElementStr, dragOverElement.value);
+        editorStore.addNode(_menuToEditorElementStr, dragEnterElement.value);
       }
 
-      dragOverElement.value = undefined;
+      dragEnterElement.value = undefined;
 
       console.log(e, "drop");
     };
@@ -76,7 +76,7 @@ export default defineComponent({
         isEnter.value = true;
       }
 
-      dragOverElement.value = el;
+      dragEnterElement.value = el;
     };
 
     const ondragleave = () => {
@@ -186,13 +186,13 @@ export default defineComponent({
         {checkedElement.value
           ? renderCheckedElementMask(checkedElement.value, y.value)
           : null}
-        {renderDragOverElement(dragOverElement.value, y.value)}
+        {renderDragEnterElement(dragEnterElement.value, y.value)}
       </>
     );
   },
 });
 
-const renderDragOverElement = (
+const renderDragEnterElement = (
   el: HTMLElement | undefined,
   scrollY: number
 ) => {
@@ -200,7 +200,7 @@ const renderDragOverElement = (
   const rect = el.getBoundingClientRect();
   return (
     <div
-      class="drag-over_element"
+      class="drag-enter_element"
       style={{
         left: rect.left + "px",
         width: rect.width + "px",

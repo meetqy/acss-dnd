@@ -36,21 +36,25 @@ export const useEditorStore = defineStore({
       storage.value = this.wrapElement?.innerHTML;
     },
 
-    // 添加元素到画布
-    // el存在 会放在el后面
-    addNode(str: string, el?: HTMLElement | null) {
+    /**
+     * 添加元素到画布
+     * @param str 模板中的str
+     * @param el 将str  append 到el中
+     */
+    addNode(str: string, el?: HTMLElement | null): void {
       const newEl = stringToNode(str);
       if (!newEl) return;
 
       if (el && el.id != "iframe-main") {
-        const parentNode = el.parentNode;
-        const referenceNode = this.wrapElement?.querySelector(
-          `[data-uuid="${el.getAttribute("data-uuid")}"]`
-        );
-        if (referenceNode) {
-          // TODE: parentNode === wrapElement 的情况，如果不是暂未测试
-          parentNode?.insertBefore(newEl, referenceNode.nextSibling);
-        }
+        el.appendChild(newEl);
+        // const parentNode = el.parentNode;
+        // const referenceNode = this.wrapElement?.querySelector(
+        //   `[data-uuid="${el.getAttribute("data-uuid")}"]`
+        // );
+        // if (referenceNode) {
+        //   // TODE: parentNode === wrapElement 的情况，如果不是暂未测试
+        //   parentNode?.insertBefore(newEl, referenceNode.nextSibling);
+        // }
       } else {
         this.wrapElement?.append(newEl);
       }
