@@ -14,3 +14,5 @@ export const TextNode = new Set([
   "BLOCKQUOTE",
   "LI",
 ]);
+
+export const NotSwapNode = new Set(["I", "SPAN", "A"]);
