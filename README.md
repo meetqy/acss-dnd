@@ -13,13 +13,13 @@ acss-dnd(atomic css drag and drop) 是一款基于 atomic css 特性，开发的
 
 ## 🐱 在线体验
 
-- [Github](https://meetqy.github.io/acss-dnd/)
+- [Github](https://cuyang.me/acss-dnd/)
 - [Gitee](https://meetqy.gitee.io/acss-dnd)
 
 ## 🐭 安装
 
 ```sh
-git clone https://github.com/meetqy/acss-dnd.git
+git clone https://github.com/cu-yang/acss-dnd.git
 yarn
 yarn dev
 ```
@@ -48,4 +48,4 @@ yarn dev
 
 ## 🦊 近期计划
 
-**Github Project**: [https://github.com/meetqy/acss-dnd/projects/1](https://github.com/meetqy/acss-dnd/projects/1)
+**Github Project**: [https://github.com/cu-yang/acss-dnd/projects/1](https://github.com/cu-yang/acss-dnd/projects/1)

@@ -50,14 +50,13 @@
     "vue-tsc": "^0.31.4"
   },
   "bugs": {
-    "url": "https://github.com/meetqy/acss-dnd/issues"
+    "url": "https://github.com/cu-yang/acss-dnd/issues"
   },
-  "homepage": "https://github.com/meetqy/acss-dnd#readme",
+  "homepage": "https://github.com/cu-yang/acss-dnd#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meetqy/acss-dnd.git"
+    "url": "git+https://github.com/cu-yang/acss-dnd.git"
   },
-  "main": ".eslintrc.js",
-  "author": "meetqy",
+  "author": "cuyang",
   "license": "MIT"
 }
