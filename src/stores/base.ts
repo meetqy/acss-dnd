@@ -42,7 +42,7 @@ export const useBaseStore = defineStore({
     // 初始化选中的元素
     initCheckedElement(el: CheckedElement | null) {
       this.checkedElement = el;
-      iframeIo.sideToEditor(el);
+      // iframeIo.sideToEditor(el);
     },
 
     updateCheckedElement(el: CheckedElement) {

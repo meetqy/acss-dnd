@@ -39,7 +39,7 @@ export default defineComponent({
           innerText: val?.innerText || "",
           innerHTML: val?.innerHTML || "",
         };
-        // console.log(el);
+        // console.log(el1);
 
         iframeIo.editorToSide(window, el);
       }
@@ -97,6 +97,8 @@ export default defineComponent({
     function mainClickFn(e: Event) {
       const el = e.target as HTMLElement;
       if (el.id === "iframe-main") return;
+      if (checkedElement.value?.isSameNode(el)) return;
+      // console.log(el.getBoundingClientRect(), "main1");
       checkedElement.value = el;
       overElement.value = undefined;
     }
@@ -138,7 +140,7 @@ export default defineComponent({
         const uuid = checkedElement.value?.getAttribute("data-uuid");
         if (uuid) {
           const newNode = editorStore.updateElement(uuid, el) as HTMLElement;
-          checkedElement.value = null; // 触发视图更新
+          checkedElement.value = null; // 触发视图更新1
           checkedElement.value = newNode;
         }
       });
@@ -171,9 +173,10 @@ export default defineComponent({
     });
 
     // 选中元素状态显示
-    // 选中的元素可以上下移动，行内元素禁止移动
+    // 选中的元素可以上下移动，行内元素禁止移动12
     const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
       const rect = el.getBoundingClientRect();
+      console.log("checked1", rect);
 
       const upFn = () => {
         editorStore.swapNode(
@@ -254,6 +257,7 @@ const renderDragEnterElement = (
   scrollY: number
 ) => {
   if (!el || el.id === "iframe-main") return null;
+  // console.log("drag");
   const rect = el.getBoundingClientRect();
   return (
     <div
@@ -273,6 +277,7 @@ const renderOverElementMask = (
   el: HTMLElement | undefined,
   scrollY: number
 ) => {
+  console.log("over", el);
   const rect = el?.getBoundingClientRect();
   return (
     rect && (

@@ -72,7 +72,7 @@ onMounted(() => {
   const storage = localStorage.getItem("wrapElement");
   if (storage) {
     wrapElement.value = format(storage);
-    console.log(wrapElement.value);
+    // console.log(wrapElement.value);
   }
 });
 
