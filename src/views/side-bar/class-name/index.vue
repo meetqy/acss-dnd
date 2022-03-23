@@ -32,14 +32,25 @@ watch(props, (val) => {
   }
 });
 
-watch(classList, (val) => {
+const changeValue = (modelValue: string[]) => {
+  classList.value = modelValue;
+
   if (props.element) {
     baseStore.updateCheckedElement({
       ...props.element,
-      className: val.join(" "),
+      className: modelValue.join(" "),
     });
   }
-});
+};
+
+// watch(classList, (val) => {
+//   if (props.element) {
+//     baseStore.updateCheckedElement({
+//       ...props.element,
+//       className: val.join(" "),
+//     });
+//   }
+// });
 </script>
 
 <template>
@@ -54,7 +65,12 @@ watch(classList, (val) => {
       </li>
     </ul>
     <div class="relative px-4">
-      <ClassSelect v-model="classList" :options="options" multiple />
+      <ClassSelect
+        :model-value="classList"
+        :options="options"
+        @update:model-value="changeValue"
+        multiple
+      />
     </div>
   </div>
 </template>
