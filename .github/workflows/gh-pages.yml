@@ -13,11 +13,16 @@ jobs:
       - run: |
           npm install
           npm run build
-          npm version patch
-          git push --tags
-          cp dist/index.html dist/404.html
+
+      - name: NPM-Version
+        uses: Reedyuk/NPM-Version@1.1.1
+        with: 
+          version: '0.0.5'
+          git-tag-version: 'true'
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        run: cp dist/index.html dist/404.html
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
