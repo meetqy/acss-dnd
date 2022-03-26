@@ -57,8 +57,6 @@ export default defineComponent({
         editorStore.addNode(_menuToEditorElementStr, dragEnterElement.value);
       }
 
-      dragEnterElement.value = undefined;
-
       console.log(e, "drop");
     };
 
@@ -118,6 +116,8 @@ export default defineComponent({
     onMounted(() => {
       // 接受iframe传过来的元素
       iframeIo.on(IframeIoType.tempToEditor, (data) => {
+        // dragend 拖拽取消|拖拽放入成功，data都会是""
+        if (data === "") return (dragEnterElement.value = undefined);
         _menuToEditorElementStr = data as string;
       });
 
@@ -173,10 +173,10 @@ export default defineComponent({
     });
 
     // 选中元素状态显示
-    // 选中的元素可以上下移动，行内元素禁止移动12
+    // 选中的元素可以上下移动，行内元素禁止移动
     const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
       const rect = el.getBoundingClientRect();
-      console.log("checked1", rect);
+      // console.log("checked1", rect);
 
       const upFn = () => {
         editorStore.swapNode(
@@ -277,7 +277,7 @@ const renderOverElementMask = (
   el: HTMLElement | undefined,
   scrollY: number
 ) => {
-  console.log("over", el);
+  // console.log("over", el);
   const rect = el?.getBoundingClientRect();
   return (
     rect && (

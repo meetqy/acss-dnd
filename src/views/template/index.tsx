@@ -1,6 +1,7 @@
 import { useBaseStore } from "@/stores/base";
 import { useEventListener } from "@vueuse/core";
 import { computed, defineComponent, ref } from "vue";
+import { iframeIo } from "../iframe.io";
 import "./index.css";
 
 export default defineComponent({
@@ -37,6 +38,7 @@ export default defineComponent({
     const ondragend = () => {
       baseStore.setComponent(-1);
       baseStore.setCurrent(null);
+      iframeIo.tempToEditor("");
     };
 
     return () => {
