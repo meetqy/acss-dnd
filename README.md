@@ -49,3 +49,8 @@ yarn dev
 ## 🦊 近期计划
 
 **Github Project**: [https://github.com/cu-yang/acss-dnd/projects/1](https://github.com/cu-yang/acss-dnd/projects/1)
+
+## 🐻 预览图
+
+<img src='docs/editor.png' />
+<img src='docs/side-bar.png'/>
