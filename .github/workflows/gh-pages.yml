@@ -16,7 +16,7 @@ jobs:
 
       - name: NPM-Version
         run: |
-          npm version patch
+          npm version patch -f
           git add .
           git commit -m 'release'
           git push
