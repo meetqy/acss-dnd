@@ -20,9 +20,11 @@ jobs:
           version: '0.0.5'
           git-tag-version: 'true'
 
+      - name: cp page
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        run: cp dist/index.html dist/404.html
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
