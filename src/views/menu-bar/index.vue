@@ -22,7 +22,7 @@ useEventListener(element, "mousemove", (e: Event) => {
   >
     <Logo />
     <div class="h-4"></div>
-    <ul class="menu menu-compact flex flex-col p-0 px-4" ref="element">
+    <ul class="menu flex flex-col p-0 px-4" ref="element">
       <li></li>
       <li class="menu-title"><span>基础</span></li>
       <li v-for="item in baseStore.menu" :key="item.id">
