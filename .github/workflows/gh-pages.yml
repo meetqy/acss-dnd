@@ -15,10 +15,12 @@ jobs:
           npm run build
 
       - name: NPM-Version
-        uses: Reedyuk/NPM-Version@1.1.1
-        with: 
-          version: '0.0.5'
-          git-tag-version: 'true'
+        run: |
+          npm version patch
+          git add .
+          git commit -m 'release'
+          git push
+          git push --tags
 
       - name: cp page
         run: cp dist/index.html dist/404.html
