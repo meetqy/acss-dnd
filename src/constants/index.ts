@@ -16,3 +16,6 @@ export const TextNode = new Set([
 ]);
 
 export const NotSwapNode = new Set(["I", "SPAN", "A"]);
+
+// 不可选中的node
+export const NotCheckedNode = new Set(["PATH", "SVG"]);

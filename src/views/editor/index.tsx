@@ -4,7 +4,7 @@ import "./index.css";
 import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
 import { useMagicKeys, useWindowScroll, whenever } from "@vueuse/core";
-import { NotSwapNode } from "@/constants";
+import { NotCheckedNode, NotSwapNode } from "@/constants";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -84,6 +84,7 @@ export default defineComponent({
 
     function mainMouseOverFn(e: Event) {
       const el = e.target as HTMLElement;
+      if (!el || NotCheckedNode.has(el.tagName.toUpperCase())) return;
       if (el.id === "iframe-main") return;
       overElement.value = el;
     }
@@ -94,8 +95,10 @@ export default defineComponent({
 
     function mainClickFn(e: Event) {
       const el = e.target as HTMLElement;
+      if (!el || NotCheckedNode.has(el.tagName.toUpperCase())) return;
       if (el.id === "iframe-main") return;
       if (checkedElement.value?.isSameNode(el)) return;
+
       // console.log(el.getBoundingClientRect(), "main1");
       checkedElement.value = el;
       overElement.value = undefined;
