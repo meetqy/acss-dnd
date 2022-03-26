@@ -173,7 +173,7 @@ export default defineComponent({
     });
 
     // 选中元素状态显示
-    // 选中的元素可以上下移动，行内元素禁止移动12
+    // 选中的元素可以上下移动，行内元素禁止移动
     const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
       const rect = el.getBoundingClientRect();
       console.log("checked1", rect);
