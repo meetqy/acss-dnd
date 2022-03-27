@@ -46,15 +46,15 @@ import { ref } from "vue";
 const kbds = ref([
   {
     title: "删除选中元素",
-    kbd: ["Shift", "Delete"],
+    kbd: ["Shift", "BackSpace"],
   },
   {
     title: "向上移动选中元素",
-    kbd: ["Shift", "Up"],
+    kbd: ["Shift", "ArrowUp"],
   },
   {
     title: "向下移动选中元素",
-    kbd: ["Shift", "Down"],
+    kbd: ["Shift", "ArrowDown"],
   },
 ]);
 </script>
