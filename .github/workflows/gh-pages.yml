@@ -13,14 +13,20 @@ jobs:
       - run: |
           npm install
 
-      - name: NPM-Version
+      - name: git config
         run: |
           git config --global user.email "cyou_yang@163.com"
           git config --global user.name "cuyang"
+          
+      - name: npm version
+        run: |
           npm version patch -f
+
+      - name: git push
+        run: |
           git commit -m 'release'
           git push
-          git push --tags
+          git push --tags     
 
       - name: build
         run: | 
