@@ -24,7 +24,6 @@ jobs:
 
       - name: git push
         run: |
-          git commit -m 'release'
           git push
           git push --tags     
 
