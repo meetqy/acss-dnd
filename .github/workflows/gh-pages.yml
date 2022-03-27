@@ -17,9 +17,7 @@ jobs:
         run: |
           git config --global user.email "cyou_yang@163.com"
           git config --global user.name "cuyang"
-          git checkout main
           npm version patch -f
-          git add .
           git commit -m 'release'
           git push
           git push --tags
