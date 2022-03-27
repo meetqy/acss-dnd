@@ -50,6 +50,13 @@ yarn dev
 
 **Github Project**: [https://github.com/cu-yang/acss-dnd/projects/1](https://github.com/cu-yang/acss-dnd/projects/1)
 
+## 🐼 提 Bug 或建议
+
+- 打开链接 👉🏻 https://github.com/cu-yang/acss-dnd/issues/new/choose
+- 选择对应模板
+
+![](./docs/issues.png)
+
 ## 🐻 预览图
 
 <img src='docs/editor.png' />
