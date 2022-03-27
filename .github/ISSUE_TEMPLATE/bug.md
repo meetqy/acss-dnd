@@ -1,7 +1,7 @@
 ---
 name: Bug
 about: 请大家一定要按照该模板填写，以方便我们更快复现
-title: ''
+title: "【Bug】"
 labels: bug
 assignees: ''
 
