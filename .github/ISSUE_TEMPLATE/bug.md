@@ -7,6 +7,14 @@ assignees: ''
 
 ---
 
+## bug大致位置
+
+- [ ] 菜单（Menu）
+- [ ] 模板预览（Template）
+- [ ] 编辑器（Editor）
+- [ ] 属性编辑（SideBar）
+- [ ] 其他（other）
+
 ## bug 描述
 
 *请输入内容……*
