@@ -1,12 +1,12 @@
 <template>
   <!-- The button to open modal -->
-  <label for="my-modal-4" class="btn modal-button">
+  <label for="my-modal-code__preview" class="btn modal-button">
     导出Code <i class="fa-solid fa-cloud-arrow-down ml-2"></i>
   </label>
 
   <!-- Put this part before </body> tag -->
-  <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-  <label for="my-modal-4" class="modal cursor-pointer">
+  <input type="checkbox" id="my-modal-code__preview" class="modal-toggle" />
+  <label for="my-modal-code__preview" class="modal cursor-pointer">
     <div class="modal-action mt-0 fixed justify-center py-2 z-50 top-10">
       <label
         for="my-modal-5"
@@ -18,7 +18,10 @@
       </label>
       <label for="my-modal-5" class="btn" v-else> 已复制 </label>
     </div>
-    <label class="modal-box w-11/12 max-w-5xl p-0 relative" for="">
+    <label
+      class="modal-box w-11/12 max-w-5xl p-0 relative"
+      for="my-modal-code__preview"
+    >
       <highlightjs language="xml" :code="wrapElement" />
     </label>
   </label>

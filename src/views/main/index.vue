@@ -2,7 +2,10 @@
   <main class="flex-1 bg-base-300 bg-opacity-25 px-4 h-screen flex flex-col">
     <div class="w-full flex p-5 flex-shrink-0 justify-between">
       <ChooseTheme v-model="theme" />
-      <CodePreview />
+      <div>
+        <Keyboard />
+        <CodePreview />
+      </div>
     </div>
     <Browser />
   </main>
@@ -11,9 +14,10 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
 import { getIframe, initIframeElement } from "../iframe.io";
-import Browser from "./components/browser.vue";
+import Browser from "./browser.vue";
 import ChooseTheme from "./components/chooseTheme.vue";
 import CodePreview from "./components/codePreview.vue";
+import Keyboard from "./components/keyboard.vue";
 
 const theme = ref<string>("");
 watch(theme, (val) => {
