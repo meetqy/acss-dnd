@@ -16,13 +16,27 @@
     "build": "cross-env NODE_ENV=production vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "commit": "git cz"
+    "cz": "git cz",
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
       "path": "git-cz"
     }
+  },
+  "bugs": {
+    "url": "https://github.com/cu-yang/acss-dnd/issues"
+  },
+  "homepage": "https://github.com/cu-yang/acss-dnd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cu-yang/acss-dnd.git"
+  },
+  "author": "cuyang",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
@@ -53,21 +67,12 @@
     "eslint-plugin-vue": "^8.2.0",
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
+    "lint-staged": ">=10",
     "postcss": "^8.4.7",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.23",
     "typescript": "~4.5.5",
     "vite": "^2.8.4",
     "vue-tsc": "^0.31.4"
-  },
-  "bugs": {
-    "url": "https://github.com/cu-yang/acss-dnd/issues"
-  },
-  "homepage": "https://github.com/cu-yang/acss-dnd#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cu-yang/acss-dnd.git"
-  },
-  "author": "cuyang",
-  "license": "MIT"
+  }
 }
