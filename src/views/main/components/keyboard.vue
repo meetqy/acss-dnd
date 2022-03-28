@@ -2,7 +2,7 @@
   <!-- The button to open modal -->
   <label for="my-modal-keyboard" class="btn modal-button mr-4">
     快捷键
-    <i class="fa-solid fa-keyboard ml-2"></i>
+    <i class="i text-xl ml-2 ic:baseline-keyboard"></i>
   </label>
 
   <!-- Put this part before </body> tag -->

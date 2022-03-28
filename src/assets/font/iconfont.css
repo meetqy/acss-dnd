@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "Iconify Explorer Font";
+  src: url("./iconfont.eot");
+  src: url("./iconfont.eot") format("embedded-opentype"),
+    url("./iconfont.ttf") format("truetype"),
+    url("./iconfont.woff") format("woff"),
+    url("./iconfont.woff2") format("woff2"), url("./iconfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.i {
+  font-family: "Iconify Explorer Font" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i.fa6-solid\:angle-down:before {
+  content: "\e001";
+}
+
+.i.fa6-solid\:angle-up:before {
+  content: "\e002";
+}
+
+.i.fa6-solid\:desktop:before {
+  content: "\e003";
+}
+
+.i.fa6-solid\:laptop:before {
+  content: "\e004";
+}
+
+.i.fa6-solid\:mobile-screen-button:before {
+  content: "\e005";
+}
+
+.i.fa6-solid\:tablet-screen-button:before {
+  content: "\e006";
+}
+
+.i.fa6-solid\:xmark:before {
+  content: "\e007";
+}
+
+.i.ic\:baseline-cameraswitch:before {
+  content: "\e008";
+}
+
+.i.ic\:baseline-cloud-download:before {
+  content: "\e009";
+}
+
+.i.ic\:baseline-keyboard:before {
+  content: "\e00a";
+}
+
+.i.radix-icons\:space-between-horizontally:before {
+  content: "\e00b";
+}

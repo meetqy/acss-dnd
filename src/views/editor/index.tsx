@@ -219,10 +219,10 @@ export default defineComponent({
               <div class="absolute right-0 top-0 pointer-events-auto flex items-center justify-end h-full pr-2">
                 <div class="btn-group">
                   <button class={"btn btn-xs btn-primary"} onClick={upFn}>
-                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="i relative left-0.5 fa6-solid:angle-up"></i>
                   </button>
                   <button class={"btn btn-xs btn-primary"} onClick={downFn}>
-                    <i class="fa-solid fa-angle-down"></i>
+                    <i class="i relative left-0.5 fa6-solid:angle-down"></i>
                   </button>
                 </div>
               </div>

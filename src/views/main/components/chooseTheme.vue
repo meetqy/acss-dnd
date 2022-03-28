@@ -2,7 +2,7 @@
   <div class="dropdown">
     <label tabindex="0" class="btn btn-primary">
       主题切换
-      <i class="fa-solid fa-arrows-rotate m-2"></i>
+      <i class="i text-lg ml-2 ic:baseline-cameraswitch"></i>
     </label>
     <div
       tabindex="0"

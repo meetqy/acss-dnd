@@ -26,7 +26,7 @@
         </div>
         <div class="flex w-28 h-full justify-between items-center">
           <i
-            class="fa-solid cursor-pointer fa-lg"
+            class="i cursor-pointer text-lg"
             :class="[item.icon, { 'text-primary': index === curIndex }]"
             v-for="(item, index) in device"
             :key="item.icon"
@@ -51,15 +51,15 @@ import { iframeIo } from "@/views/iframe.io";
 import { computed, reactive, ref, watch } from "vue";
 
 const device = reactive([
-  { icon: "fa-desktop", width: "1280", className: "max-w-screen-xl" },
-  { icon: "fa-laptop", width: "1024", className: "max-w-screen-lg" },
+  { icon: "fa6-solid:desktop", width: "1280", className: "max-w-screen-xl" },
+  { icon: "fa6-solid:laptop", width: "1024", className: "max-w-screen-lg" },
   {
-    icon: "fa-tablet-screen-button",
+    icon: "fa6-solid:tablet-screen-button relative left-1",
     width: "768",
     className: "max-w-screen-md",
   },
   {
-    icon: "fa-mobile-screen-button",
+    icon: "fa6-solid:mobile-screen-button",
     width: "640",
     className: "max-w-screen-sm",
   },
