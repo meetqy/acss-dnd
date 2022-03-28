@@ -18,14 +18,9 @@ jobs:
           git config --global user.email "cyou_yang@163.com"
           git config --global user.name "cuyang"
           
-      - name: npm version
+      - name: release
         run: |
-          npm version patch -f
-
-      - name: git push
-        run: |
-          git push
-          git push --tags     
+          npm run release
 
       - name: build
         run: | 
