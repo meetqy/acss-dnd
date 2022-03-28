@@ -10,7 +10,6 @@ export const bgColors: string[] = [
   "bg-accent-content",
   "bg-neutral",
   "bg-neutral-focus",
-  "bg-neutral-focus",
   "bg-neutral-content",
   "bg-base-100",
   "bg-base-200",
