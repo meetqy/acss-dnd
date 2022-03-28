@@ -19,11 +19,6 @@
     "cz": "git cz",
     "prepare": "husky install"
   },
-  "config": {
-    "commitizen": {
-      "path": "git-cz"
-    }
-  },
   "bugs": {
     "url": "https://github.com/cu-yang/acss-dnd/issues"
   },
@@ -34,6 +29,11 @@
   },
   "author": "cuyang",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
   "lint-staged": {
     "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
