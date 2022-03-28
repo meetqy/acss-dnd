@@ -21,6 +21,8 @@ jobs:
       - name: release
         run: |
           npm run release
+          git push --follow-tags origin main
+          npm publish
 
       - name: build
         run: | 
