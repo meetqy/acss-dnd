@@ -7,18 +7,38 @@
       Flex
     </div>
     <div class="collapse-content">
-      <div class="btn-group">
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">方向（默认：row）</span>
+          <input type="checkbox" class="toggle toggle-primary" checked />
+        </label>
+      </div>
+      <div class="btn-group mt-4">
         <button class="btn btn-active btn-outline">
-          <i class="fa-solid fa-align-left" />
+          <span title="justify-start">
+            <ic:baseline-align-horizontal-left />
+          </span>
+        </button>
+
+        <button class="btn btn-outline">
+          <span title="justify-between">
+            <radix-icons:space-between-horizontally />
+          </span>
         </button>
         <button class="btn btn-outline">
-          <i class="fa-solid fa-align-center" />
+          <span title="justify-around">
+            <fluent:align-space-between-horizontal-20-filled />
+          </span>
         </button>
         <button class="btn btn-outline">
-          <i class="fa-solid fa-align-right" />
+          <span title="justify-center">
+            <ic:baseline-align-horizontal-center />
+          </span>
         </button>
         <button class="btn btn-outline">
-          <i class="fa-solid fa-arrows-left-right" />
+          <span title="justify-end">
+            <ic:baseline-align-horizontal-right />
+          </span>
         </button>
       </div>
     </div>

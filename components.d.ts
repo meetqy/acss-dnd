@@ -14,6 +14,11 @@ declare module 'vue' {
     'Fa6Solid:mobileScreenButton': typeof import('~icons/fa6-solid/mobile-screen-button')['default']
     'Fa6Solid:tabletScreenButton': typeof import('~icons/fa6-solid/tablet-screen-button')['default']
     'Fa6Solid:xmark': typeof import('~icons/fa6-solid/xmark')['default']
+    'Fluent:alignSpaceBetweenHorizontal20Filled': typeof import('~icons/fluent/align-space-between-horizontal20-filled')['default']
+    'Ic:baselineAlignHorizontalCenter': typeof import('~icons/ic/baseline-align-horizontal-center')['default']
+    'Ic:baselineAlignHorizontalLeft': typeof import('~icons/ic/baseline-align-horizontal-left')['default']
+    'Ic:baselineAlignHorizontalRight': typeof import('~icons/ic/baseline-align-horizontal-right')['default']
+    'RadixIcons:spaceBetweenHorizontally': typeof import('~icons/radix-icons/space-between-horizontally')['default']
   }
 }
 

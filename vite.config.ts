@@ -16,7 +16,13 @@ export default defineConfig({
     Components({
       resolvers: [
         IconsResolver({
-          enabledCollections: ["fa6-solid", "fa6-regular"],
+          enabledCollections: [
+            "fa6-solid",
+            "fa6-regular",
+            "ic",
+            "radix-icons",
+            "fluent",
+          ],
           prefix: "",
         }),
       ],
