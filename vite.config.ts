@@ -22,6 +22,7 @@ export default defineConfig({
             "ic",
             "radix-icons",
             "fluent",
+            "mdi",
           ],
           prefix: "",
         }),

@@ -18,6 +18,10 @@ declare module 'vue' {
     'Ic:baselineAlignHorizontalCenter': typeof import('~icons/ic/baseline-align-horizontal-center')['default']
     'Ic:baselineAlignHorizontalLeft': typeof import('~icons/ic/baseline-align-horizontal-left')['default']
     'Ic:baselineAlignHorizontalRight': typeof import('~icons/ic/baseline-align-horizontal-right')['default']
+    'Ic:baselineKeyboardDoubleArrowDown': typeof import('~icons/ic/baseline-keyboard-double-arrow-down')['default']
+    'Ic:baselineKeyboardDoubleArrowRight': typeof import('~icons/ic/baseline-keyboard-double-arrow-right')['default']
+    'Mdi:arrowLeftRightBold': typeof import('~icons/mdi/arrow-left-right-bold')['default']
+    'Mdi:arrowUpDownBold': typeof import('~icons/mdi/arrow-up-down-bold')['default']
     'RadixIcons:spaceBetweenHorizontally': typeof import('~icons/radix-icons/space-between-horizontally')['default']
   }
 }

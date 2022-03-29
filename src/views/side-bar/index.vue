@@ -45,6 +45,6 @@ const checkedElement = computed(() => baseStore.checkedElement);
     <ClassName :element="checkedElement" />
     <Text :element="checkedElement" />
     <Background :element="checkedElement" />
-    <Flex />
+    <Flex :element="checkedElement" />
   </aside>
 </template>

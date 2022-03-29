@@ -629,6 +629,13 @@
   dependencies:
     "@iconify/types" "^1.0.12"
 
+"@iconify-json/mdi@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@iconify-json/mdi/-/mdi-1.1.5.tgz#a364cc3f35763241ac75da8fe5257a1b35d5a80a"
+  integrity sha512-KaZnM51bM6b0hooW1+J7Tx3pWzMy8qWrcomauhOj61c8+dMIPqtkmuKU3ceEe6P9z/TEX5TxKJCDfD/Vw8BSng==
+  dependencies:
+    "@iconify/types" "^1.0.12"
+
 "@iconify-json/radix-icons@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@iconify-json/radix-icons/-/radix-icons-1.1.2.tgz#7844974de2e1d65c1f8024af85f525b59b9ad2f2"
