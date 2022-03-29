@@ -5,6 +5,7 @@ import { iframeIo, IframeIoType } from "../iframe.io";
 import type { CheckedElement } from "@/types";
 import { useMagicKeys, useWindowScroll, whenever } from "@vueuse/core";
 import { NotCheckedNode, NotSwapNode } from "@/constants";
+import icons from "./icon";
 
 // iframe store 无法直接通信
 export default defineComponent({
@@ -219,10 +220,10 @@ export default defineComponent({
               <div class="absolute right-0 top-0 pointer-events-auto flex items-center justify-end h-full pr-2">
                 <div class="btn-group">
                   <button class={"btn btn-xs btn-primary"} onClick={upFn}>
-                    <i class="fa-solid fa-angle-up"></i>
+                    {icons["fa6-solid:angle-down"]}
                   </button>
                   <button class={"btn btn-xs btn-primary"} onClick={downFn}>
-                    <i class="fa-solid fa-angle-down"></i>
+                    {icons["fa6-solid:angle-down"]}
                   </button>
                 </div>
               </div>

@@ -24,14 +24,51 @@
           </span>
           <span class="cursor-pointer text-base-content">PC端优先</span>
         </div>
-        <div class="flex w-28 h-full justify-between items-center">
-          <i
-            class="fa-solid cursor-pointer fa-lg"
+        <div class="flex w-32 h-full justify-between items-center">
+          <span
+            @click="() => (curIndex = 0)"
+            class="text-lg cursor-pointer"
+            :class="[{ 'text-primary': curIndex === 0 }]"
+          >
+            <fa6-solid:desktop />
+          </span>
+          <span
+            @click="() => (curIndex = 1)"
+            class="text-xl cursor-pointer"
+            :class="[{ 'text-primary': curIndex === 1 }]"
+          >
+            <fa6-solid:laptop />
+          </span>
+          <span
+            @click="() => (curIndex = 2)"
+            class="cursor-pointer"
+            :class="[{ 'text-primary': curIndex === 2 }]"
+          >
+            <fa6-solid:tablet-screen-button />
+          </span>
+          <span
+            @click="() => (curIndex = 3)"
+            class="text-lg cursor-pointer"
+            :class="[{ 'text-primary': curIndex === 3 }]"
+          >
+            <fa6-solid:mobile-screen-button />
+          </span>
+          <!-- <span
+            class="text-lg"
             :class="[item.icon, { 'text-primary': index === curIndex }]"
             v-for="(item, index) in device"
             :key="item.icon"
             @click="() => (curIndex = index)"
-          />
+          >
+            <component :is="item.icon" />
+          </span> -->
+          <!-- <i
+            class="i cursor-pointer text-lg"
+            :class="[item.icon, { 'text-primary': index === curIndex }]"
+            v-for="(item, index) in device"
+            :key="item.icon"
+            @click="() => (curIndex = index)"
+          /> -->
         </div>
       </div>
       <iframe
@@ -51,15 +88,15 @@ import { iframeIo } from "@/views/iframe.io";
 import { computed, reactive, ref, watch } from "vue";
 
 const device = reactive([
-  { icon: "fa-desktop", width: "1280", className: "max-w-screen-xl" },
-  { icon: "fa-laptop", width: "1024", className: "max-w-screen-lg" },
+  { icon: "fa6-solid:desktop", width: "1280", className: "max-w-screen-xl" },
+  { icon: "fa6-solid:laptop", width: "1024", className: "max-w-screen-lg" },
   {
-    icon: "fa-tablet-screen-button",
+    icon: "fa6-solid:mobile",
     width: "768",
     className: "max-w-screen-md",
   },
   {
-    icon: "fa-mobile-screen-button",
+    icon: "fa6-solid:mobile-screen-button",
     width: "640",
     className: "max-w-screen-sm",
   },
