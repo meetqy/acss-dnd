@@ -1,3 +1,4 @@
 tsconfig.vite-config.json
 *.js
 .eslintcache
+components.d.ts

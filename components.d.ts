@@ -2,19 +2,19 @@
 // We suggest you to commit this file into source control
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
-declare module "vue" {
+declare module 'vue' {
   export interface GlobalComponents {
-    "Fa6Regular:keyboard": typeof import("~icons/fa6-regular/keyboard")["default"];
-    "Fa6Solid:arrowsRotate": typeof import("~icons/fa6-solid/arrows-rotate")["default"];
-    "Fa6Solid:check": typeof import("~icons/fa6-solid/check")["default"];
-    "Fa6Solid:cloudArrowDown": typeof import("~icons/fa6-solid/cloud-arrow-down")["default"];
-    "Fa6Solid:desktop": typeof import("~icons/fa6-solid/desktop")["default"];
-    "Fa6Solid:laptop": typeof import("~icons/fa6-solid/laptop")["default"];
-    "Fa6Solid:mobile": typeof import("~icons/fa6-solid/mobile")["default"];
-    "Fa6Solid:mobileScreenButton": typeof import("~icons/fa6-solid/mobile-screen-button")["default"];
-    "Fa6Solid:tabletScreenButton": typeof import("~icons/fa6-solid/tablet-screen-button")["default"];
-    "Fa6Solid:xmark": typeof import("~icons/fa6-solid/xmark")["default"];
+    'Fa6Regular:keyboard': typeof import('~icons/fa6-regular/keyboard')['default']
+    'Fa6Solid:arrowsRotate': typeof import('~icons/fa6-solid/arrows-rotate')['default']
+    'Fa6Solid:check': typeof import('~icons/fa6-solid/check')['default']
+    'Fa6Solid:cloudArrowDown': typeof import('~icons/fa6-solid/cloud-arrow-down')['default']
+    'Fa6Solid:desktop': typeof import('~icons/fa6-solid/desktop')['default']
+    'Fa6Solid:laptop': typeof import('~icons/fa6-solid/laptop')['default']
+    'Fa6Solid:mobile': typeof import("~icons/fa6-solid/mobile")["default"];
+    'Fa6Solid:mobileScreenButton': typeof import('~icons/fa6-solid/mobile-screen-button')['default']
+    'Fa6Solid:tabletScreenButton': typeof import('~icons/fa6-solid/tablet-screen-button')['default']
+    'Fa6Solid:xmark': typeof import('~icons/fa6-solid/xmark')['default']
   }
 }
 
-export {};
+export { }
