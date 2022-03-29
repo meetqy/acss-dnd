@@ -6,6 +6,7 @@ import { iframeIo, IframeIoType } from "../iframe.io";
 import ClassName from "./class-name/index.vue";
 import Text from "./text/index.vue";
 import Background from "./background/index.vue";
+import Flex from "./flex/index.vue";
 
 const baseStore = useBaseStore();
 onMounted(() => {
@@ -37,25 +38,13 @@ const checkedElement = computed(() => baseStore.checkedElement);
       </div>
       <div class="flex-none">
         <button class="btn btn-square btn-ghost" @click="close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <fa6-solid:xmark />
         </button>
       </div>
     </div>
     <ClassName :element="checkedElement" />
     <Text :element="checkedElement" />
     <Background :element="checkedElement" />
+    <Flex :element="checkedElement" />
   </aside>
 </template>

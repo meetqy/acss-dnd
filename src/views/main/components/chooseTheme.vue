@@ -2,7 +2,9 @@
   <div class="dropdown">
     <label tabindex="0" class="btn btn-primary">
       主题切换
-      <i class="fa-solid fa-arrows-rotate m-2"></i>
+      <span class="ml-2">
+        <fa6-solid:arrows-rotate />
+      </span>
     </label>
     <div
       tabindex="0"
