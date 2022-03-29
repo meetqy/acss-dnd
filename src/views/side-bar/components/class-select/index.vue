@@ -39,21 +39,12 @@
               <slot name="lead" :item="item"></slot>
               {{ item.label }}
             </span>
-            <svg
+            <span
+              class="text-success"
               v-show="props.modelValue.includes(item.value)"
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-success"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+              <fa6-solid:check />
+            </span>
           </a>
         </li>
       </ul>

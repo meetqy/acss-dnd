@@ -37,7 +37,7 @@ const checkedElement = computed(() => baseStore.checkedElement);
       </div>
       <div class="flex-none">
         <button class="btn btn-square btn-ghost" @click="close">
-          <i class="i fa6-solid:xmark relative left-1.5 text-xl" />
+          <fa6-solid:xmark />
         </button>
       </div>
     </div>

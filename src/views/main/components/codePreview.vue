@@ -1,7 +1,10 @@
 <template>
   <!-- The button to open modal -->
   <label for="my-modal-code__preview" class="btn modal-button">
-    导出Code <i class="i text-xl ic:baseline-cloud-download ml-2"></i>
+    导出Code
+    <span class="ml-2 text-lg">
+      <fa6-solid:cloud-arrow-down />
+    </span>
   </label>
 
   <!-- Put this part before </body> tag -->

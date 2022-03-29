@@ -7,7 +7,6 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 import App from "./App.vue";
 import router from "./router";
 import "./index.css";
-import "./assets/font/iconfont.css";
 
 hljs.registerLanguage("xml", xml);
 

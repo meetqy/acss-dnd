@@ -16,13 +16,12 @@ export default defineConfig({
     Components({
       resolvers: [
         IconsResolver({
-          enabledCollections: ["fa6-solid"],
+          enabledCollections: ["fa6-solid", "fa6-regular"],
           prefix: "",
         }),
       ],
     }),
     Icons({
-      compiler: "vue3",
       autoInstall: true,
     }),
     vueJsx(),
