@@ -13,7 +13,12 @@
             方向 （<span class="text-secondary"> 横向 or 垂直 </span>）
           </span>
           <label class="swap swap-flip">
-            <input type="checkbox" :checked="direction" />
+            <input
+              type="checkbox"
+              :value="direction"
+              :checked="direction === 'flex-col'"
+              @input="changeDirection"
+            />
 
             <span class="swap-on fill-current text-warning text-xl">
               <mdi:arrow-up-down-bold />
@@ -34,8 +39,8 @@
         <div class="btn-group">
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curJustify === 0 }"
-            @click="changeJustify(0)"
+            :class="{ 'btn-active': curJustify === 'justify-start' }"
+            @click="changeJustify('justify-start')"
           >
             <span title="justify-start">
               <ic:baseline-align-horizontal-left />
@@ -44,8 +49,8 @@
 
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curJustify === 1 }"
-            @click="changeJustify(1)"
+            :class="{ 'btn-active': curJustify === 'justify-between' }"
+            @click="changeJustify('justify-between')"
           >
             <span title="justify-between">
               <radix-icons:space-between-horizontally />
@@ -53,8 +58,8 @@
           </button>
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curJustify === 2 }"
-            @click="changeJustify(2)"
+            :class="{ 'btn-active': curJustify === 'justify-around' }"
+            @click="changeJustify('justify-around')"
           >
             <span title="justify-around">
               <fluent:align-space-between-horizontal-20-filled />
@@ -62,8 +67,8 @@
           </button>
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curJustify === 3 }"
-            @click="changeJustify(3)"
+            :class="{ 'btn-active': curJustify === 'justify-center' }"
+            @click="changeJustify('justify-center')"
           >
             <span title="justify-center">
               <ic:baseline-align-horizontal-center />
@@ -71,8 +76,8 @@
           </button>
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curJustify === 4 }"
-            @click="changeJustify(4)"
+            :class="{ 'btn-active': curJustify === 'justify-end' }"
+            @click="changeJustify('justify-end')"
           >
             <span title="justify-end">
               <ic:baseline-align-horizontal-right />
@@ -89,28 +94,28 @@
         <div class="btn-group">
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curItem === 0 }"
-            @click="changeItem(0)"
+            :class="{ 'btn-active': curItems === 'items-start' }"
+            @click="changeItem('items-start')"
           >
-            <span title="item-start" class="rotate-90">
+            <span title="items-start" class="rotate-90">
               <ic:baseline-align-horizontal-left />
             </span>
           </button>
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curItem === 1 }"
-            @click="changeItem(1)"
+            :class="{ 'btn-active': curItems === 'items-center' }"
+            @click="changeItem('items-center')"
           >
-            <span title="item-center" class="rotate-90">
+            <span title="items-center" class="rotate-90">
               <ic:baseline-align-horizontal-center />
             </span>
           </button>
           <button
             class="btn btn-outline"
-            :class="{ 'btn-active': curItem === 2 }"
-            @click="changeItem(2)"
+            :class="{ 'btn-active': curItems === 'items-end' }"
+            @click="changeItem('items-end')"
           >
-            <span title="item-end" class="rotate-90">
+            <span title="items-end" class="rotate-90">
               <ic:baseline-align-horizontal-right />
             </span>
           </button>
@@ -123,43 +128,79 @@
 <script lang="ts" setup>
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
+import { useableClasses } from "@/constants/useClasses";
 
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
+import { usageClassFilter } from "@/views/utils";
 
 interface Props {
   element: CheckedElement | null;
 }
+
+const props = defineProps<Props>();
+
+type Direction = "flex-col" | "flex-row";
 
 // 当前元素的所有class
 const classList = computed(() =>
   props.element?.className ? props.element?.className.split(" ") : []
 );
 
-const props = defineProps<Props>();
+watch(classList, (val) => {
+  curJustify.value =
+    usageClassFilter(val, "flex-justify")[0] || "justify-start";
+  curItems.value = usageClassFilter(val, "flex-items")[0] || "items-start";
+});
 
-const direction = ref<boolean>(false);
+// 处理 className
+const handleClass = (origin: string[], value: string): string[] => {
+  const temp = classList.value;
+  const index = temp.findIndex((item) => origin.includes(item));
+  index > -1 ? temp.splice(index, 1, value) : temp.push(value);
+
+  // 判断是否存在flex
+  if (!temp.includes("flex")) temp.push("flex");
+  return temp;
+};
+
+const direction = ref<Direction>("flex-row");
+const changeDirection = (e: Event) => {
+  const value = (e.currentTarget as HTMLInputElement).value;
+  direction.value = value === "flex-row" ? "flex-col" : "flex-row";
+
+  props.element &&
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: handleClass(
+        useableClasses["flex-direction"],
+        direction.value
+      ).join(" "),
+    });
+};
 
 const baseStore = useBaseStore();
 
-const curJustify = ref(0);
-const justify = [
-  "justify-start",
-  "justify-between",
-  "justify-around",
-  "justify-center",
-  "justify-end",
-];
-const changeJustify = (num: number) => {
-  curJustify.value = num;
+const curJustify = ref("justify-start");
+const justify = useableClasses["flex-justify"];
+const changeJustify = (str: string) => {
+  curJustify.value = str;
+
+  props.element &&
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: handleClass(justify, curJustify.value).join(" "),
+    });
 };
 
-const item = ["item-start", "item-center", "item-end"];
-const curItem = ref(0);
-const changeItem = (num: number) => {
-  curItem.value = num;
-  // baseStore.updateCheckedElement({
-  //   ...props.element,
-  //   className:
-  // });
+const items = useableClasses["flex-items"];
+const curItems = ref("items-start");
+const changeItem = (str: string) => {
+  curItems.value = str;
+
+  props.element &&
+    baseStore.updateCheckedElement({
+      ...props.element,
+      className: handleClass(items, curItems.value).join(" "),
+    });
 };
 </script>

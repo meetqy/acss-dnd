@@ -37,7 +37,6 @@ export const textColors: string[] = [
   "text-accent-content",
   "text-neutral",
   "text-neutral-focus",
-  "text-neutral-focus",
   "text-neutral-content",
   "text-base-100",
   "text-base-200",

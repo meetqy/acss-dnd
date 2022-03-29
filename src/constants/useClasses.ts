@@ -3,9 +3,6 @@
  * https://tailwind.build/classes
  * 执行以下代码
  */
-
-import { bgColors, textColors } from "./daisyui";
-
 //  const wrapper = document.querySelectorAll('.w-full.mb-6');
 //  let json = {
 
@@ -16,22 +13,7 @@ import { bgColors, textColors } from "./daisyui";
 //  })
 //  console.log(json);
 
-export const useableClassesTransition = [
-  "transition",
-  "transition-none",
-  "transition-all",
-  "transition-colors",
-  "transition-opacity",
-  "transition-shadow",
-  "transition-transform",
-];
-
-export const useableClassesEase = [
-  "ease-linear",
-  "ease-in",
-  "ease-out",
-  "ease-in-out",
-];
+import { bgColors, textColors } from "./daisyui";
 
 // 可以使用的classes
 export const useableClasses: { [key: string]: string[] } = {
@@ -81,12 +63,21 @@ export const useableClasses: { [key: string]: string[] } = {
     "bg-opacity-95",
     "bg-opacity-100",
   ],
+  "flex-direction": ["flex-col", "flex-row"],
+  "flex-justify": [
+    "justify-start",
+    "justify-between",
+    "justify-around",
+    "justify-center",
+    "justify-end",
+  ],
+  "flex-items": ["items-start", "items-center", "items-end"],
 
   "text-color": textColors,
 };
 
+// 所有的class
 let _useableClassesArr: string[] = [];
-
 export const getClasses = (): string[] => {
   if (_useableClassesArr.length > 0) return _useableClassesArr;
   for (const key in useableClasses) {
