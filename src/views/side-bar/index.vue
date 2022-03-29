@@ -6,6 +6,7 @@ import { iframeIo, IframeIoType } from "../iframe.io";
 import ClassName from "./class-name/index.vue";
 import Text from "./text/index.vue";
 import Background from "./background/index.vue";
+import Flex from "./flex/index.vue";
 
 const baseStore = useBaseStore();
 onMounted(() => {
@@ -44,5 +45,6 @@ const checkedElement = computed(() => baseStore.checkedElement);
     <ClassName :element="checkedElement" />
     <Text :element="checkedElement" />
     <Background :element="checkedElement" />
+    <Flex :element="checkedElement" />
   </aside>
 </template>
