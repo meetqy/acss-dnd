@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { getClasses } from "@/constants/useClasses";
 import { useBaseStore } from "@/stores/base";
+import { useClassesStore } from "@/stores/classes";
 import type { CheckedElement } from "@/types";
 import { ref, watch } from "vue";
 import ClassSelect from "../components/class-select/index.vue";
@@ -12,14 +12,9 @@ interface Props {
 
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
+const classesStore = useClassesStore();
 
-const useableClasses = getClasses();
-const options = useableClasses.map((item) => {
-  return {
-    label: item,
-    value: item,
-  };
-});
+const options = classesStore.getClassesOptions();
 
 // 当前元素的所有class
 const classList = ref<string[]>([]);
@@ -42,15 +37,6 @@ const changeValue = (modelValue: string[]) => {
     });
   }
 };
-
-// watch(classList, (val) => {
-//   if (props.element) {
-//     baseStore.updateCheckedElement({
-//       ...props.element,
-//       className: val.join(" "),
-//     });
-//   }
-// });
 </script>
 
 <template>
