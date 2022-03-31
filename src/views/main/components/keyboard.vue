@@ -58,5 +58,9 @@ const kbds = ref([
     title: "向下移动选中元素",
     kbd: ["Shift", "ArrowDown"],
   },
+  {
+    title: "查找选中元素的父级并选中",
+    kbd: ["shift", "p"],
+  },
 ]);
 </script>

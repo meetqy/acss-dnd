@@ -107,8 +107,9 @@ export default defineComponent({
 
     const { x, y } = useWindowScroll();
 
-    // 删除选中元素
     const keys = useMagicKeys();
+
+    // 删除选中元素
     whenever(keys.shift_backspace, (val) => {
       const uuid = checkedElement.value?.getAttribute("data-uuid");
       if (checkedElement.value && uuid) {
@@ -116,6 +117,24 @@ export default defineComponent({
         checkedElement.value = null;
       }
     });
+
+    // 找父级元素
+    whenever(keys.shift_p, (_val) => {
+      const newEl = checkedElement.value?.parentElement;
+      checkedElement.value = newEl;
+    });
+
+    // 向上移动
+    whenever(
+      keys.shift_arrowUp,
+      () => checkedElement.value && upFn(checkedElement.value)
+    );
+
+    // 向下移动
+    whenever(
+      keys.shift_arrowDown,
+      () => checkedElement.value && downFn(checkedElement.value)
+    );
 
     onMounted(() => {
       // 接受iframe传过来的元素
@@ -176,32 +195,32 @@ export default defineComponent({
       }
     });
 
+    const upFn = (el: HTMLElement) => {
+      editorStore.swapNode(
+        el.getAttribute("data-uuid") || "",
+        "up",
+        (newEl) => {
+          checkedElement.value = null;
+          checkedElement.value = newEl;
+        }
+      );
+    };
+
+    const downFn = (el: HTMLElement) =>
+      editorStore.swapNode(
+        el.getAttribute("data-uuid") || "",
+        "down",
+        (newEl) => {
+          checkedElement.value = null;
+          checkedElement.value = newEl;
+        }
+      );
+
     // 选中元素状态显示
     // 选中的元素可以上下移动，行内元素禁止移动
     const renderCheckedElementMask = (el: HTMLElement, scrollY: number) => {
       const rect = el.getBoundingClientRect();
       // console.log("checked1", rect);
-
-      const upFn = () => {
-        editorStore.swapNode(
-          el.getAttribute("data-uuid") || "",
-          "up",
-          (newEl) => {
-            checkedElement.value = null;
-            checkedElement.value = newEl;
-          }
-        );
-      };
-
-      const downFn = () =>
-        editorStore.swapNode(
-          el.getAttribute("data-uuid") || "",
-          "down",
-          (newEl) => {
-            checkedElement.value = null;
-            checkedElement.value = newEl;
-          }
-        );
 
       const disable = NotSwapNode.has(el.tagName);
 
@@ -219,10 +238,16 @@ export default defineComponent({
             {disable ? null : (
               <div class="absolute right-0 top-0 pointer-events-auto flex items-center justify-end h-full pr-2">
                 <div class="btn-group">
-                  <button class={"btn btn-xs btn-primary"} onClick={upFn}>
+                  <button
+                    class={"btn btn-xs btn-primary"}
+                    onClick={() => upFn(el)}
+                  >
                     {icons["fa6-solid:angle-down"]}
                   </button>
-                  <button class={"btn btn-xs btn-primary"} onClick={downFn}>
+                  <button
+                    class={"btn btn-xs btn-primary"}
+                    onClick={() => downFn(el)}
+                  >
                     {icons["fa6-solid:angle-down"]}
                   </button>
                 </div>
