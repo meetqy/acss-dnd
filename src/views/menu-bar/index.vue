@@ -21,7 +21,7 @@ useEventListener(element, "mousemove", (e: Event) => {
     :class="{ hidden: baseStore.checkedElement }"
   >
     <Logo />
-    <div class="h-4"></div>
+    <div class="h-2"></div>
     <ul class="menu flex flex-col p-0 px-4" ref="element">
       <li></li>
       <li class="menu-title"><span>基础</span></li>
