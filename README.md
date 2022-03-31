@@ -27,7 +27,13 @@ yarn dev
 ## 🐹 项目结构
 
 ```
+- classname  # ui库css原子类
 - template   # 存放模板配置
+- contants   # 除了ui库原子类的常量
+- store
+    - base                  # menu、template、sidebar状态管理，编辑器以外的状态
+    - editor                # 编辑器中内容的状态
+    - classes               # classname操作的工具类方法
 - views      # 模块
     - main                  # 编辑器外部的样式
     - editor                # 画布
