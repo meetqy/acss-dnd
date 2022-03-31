@@ -1,6 +1,6 @@
 <div align="center">
 
-<img style="width: 200px" src='https://cdn.cuyang.me/acss-dnd/logo.png?acss-dnd'>
+<img style="width: 300px" src='https://cdn.cuyang.me/acss-dnd/logo.png?acss-dnd'>
 
 **An web dnd editor on atomic css features**  
 **一款基于原子类 css 特性的 web 拖拽式编辑器**
