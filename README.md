@@ -47,6 +47,8 @@ yarn dev
 
 ## 🐻‍❄️ 快捷键
 
+![](https://cdn.cuyang.me/acss-dnd/keyboard.gif)
+
 | 快捷键                | 作用                     |
 | --------------------- | ------------------------ |
 | `Shift` + `BackSpace` | 删除选中元素             |
@@ -66,7 +68,7 @@ yarn dev
 - 打开链接 👉🏻 https://github.com/cu-yang/acss-dnd/issues/new/choose
 - 选择对应模板
 
-![](./docs/issues.png)
+![](https://cdn.cuyang.me/acss-dnd/issues.png)
 
 ## 🦊 近期计划
 
@@ -74,5 +76,5 @@ yarn dev
 
 ## 🐻 预览图
 
-<img src='docs/editor.png' />
-<img src='docs/side-bar.png'/>
+<img src='https://cdn.cuyang.me/acss-dnd/editor.png' />
+<img src='https://cdn.cuyang.me/acss-dnd/side-bar.png'/>
