@@ -51,9 +51,10 @@
 </template>
 
 <script lang="ts" setup>
+import { Attribute } from "@/classname";
 import { TextNode } from "@/constants";
-import { getDaisyui, daisyuiFilter } from "@/constants/daisyui";
 import { useBaseStore } from "@/stores/base";
+import { useClassesStore } from "@/stores/classes";
 import type { CheckedElement } from "@/types";
 import { computed, reactive, ref, watch } from "vue";
 import type { ClassSelectOption } from "../components/class-select";
@@ -64,6 +65,7 @@ interface Props {
 }
 
 const baseStore = useBaseStore();
+const classesStore = useClassesStore();
 
 const collapse = ref<HTMLInputElement>();
 const isShow = computed(() => TextNode.has(props.element?.tagName || ""));
@@ -119,7 +121,7 @@ const classList = computed(() =>
 const options = reactive<{
   color: ClassSelectOption[];
 }>({
-  color: getDaisyui("text"),
+  color: classesStore.getClassesOptions(Attribute.textColor),
 });
 
 interface ValueType {
@@ -128,7 +130,7 @@ interface ValueType {
 
 const value = reactive<ValueType>({ color: [] });
 watch(classList, (val) => {
-  value.color = daisyuiFilter(val, "text");
+  value.color = classesStore.filterByAttr(val, Attribute.textColor);
 });
 
 const changeValue = (modelValue: string[], name: keyof ValueType) => {

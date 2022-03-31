@@ -56,10 +56,10 @@
 </template>
 
 <script lang="ts" setup>
-import { daisyuiFilter, getDaisyui } from "@/constants/daisyui";
+import { Attribute } from "@/classname";
 import { useBaseStore } from "@/stores/base";
+import { useClassesStore } from "@/stores/classes";
 import type { CheckedElement } from "@/types";
-import { createOptions, usageClassFilter } from "@/views/utils";
 import { computed, reactive, watch } from "vue";
 import type { ClassSelectOption } from "../components/class-select";
 import ClassSelect from "../components/class-select/index.vue";
@@ -70,6 +70,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const baseStore = useBaseStore();
+const classesStore = useClassesStore();
 
 // 当前元素的所有class
 const classList = computed(() =>
@@ -82,9 +83,9 @@ const options = reactive<{
   opacity: ClassSelectOption[];
   effect: ClassSelectOption[];
 }>({
-  color: getDaisyui("bg"),
-  opacity: createOptions("background-opacity"),
-  effect: createOptions("background"),
+  color: classesStore.getClassesOptions(Attribute.backgroundColor),
+  opacity: classesStore.getClassesOptions(Attribute.backgroundOpacity),
+  effect: classesStore.getClassesOptions(Attribute.background),
 });
 
 interface ValueType {
@@ -101,9 +102,9 @@ const value = reactive<ValueType>({
 });
 
 watch(classList, (val) => {
-  value.color = daisyuiFilter(val, "bg");
-  value.opacity = usageClassFilter(val, "background-opacity");
-  value.effect = usageClassFilter(val, "background");
+  value.color = classesStore.filterByAttr(val, Attribute.backgroundColor);
+  value.opacity = classesStore.filterByAttr(val, Attribute.backgroundOpacity);
+  value.effect = classesStore.filterByAttr(val, Attribute.background);
 });
 
 const changeValue = (modelValue: string[], name: keyof ValueType) => {

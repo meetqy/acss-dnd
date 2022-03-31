@@ -15,8 +15,8 @@
           <label class="swap swap-flip">
             <input
               type="checkbox"
-              :value="direction"
-              :checked="direction === 'flex-col'"
+              :value="curDirection"
+              :checked="curDirection === 'flex-col'"
               @input="changeDirection"
             />
 
@@ -128,16 +128,19 @@
 <script lang="ts" setup>
 import { useBaseStore } from "@/stores/base";
 import type { CheckedElement } from "@/types";
-import { useableClasses } from "@/constants/useClasses";
 
 import { computed, ref, watch } from "vue";
-import { usageClassFilter } from "@/views/utils";
+import { useClassesStore } from "@/stores/classes";
+import { Attribute } from "@/classname";
 
 interface Props {
   element: CheckedElement | null;
 }
 
 const props = defineProps<Props>();
+
+const baseStore = useBaseStore();
+const classesStore = useClassesStore();
 
 type Direction = "flex-col" | "flex-row";
 
@@ -146,10 +149,12 @@ const classList = computed(() =>
   props.element?.className ? props.element?.className.split(" ") : []
 );
 
+// 初始化
 watch(classList, (val) => {
   curJustify.value =
-    usageClassFilter(val, "flex-justify")[0] || "justify-start";
-  curItems.value = usageClassFilter(val, "flex-items")[0] || "items-start";
+    classesStore.filterByAttr(val, Attribute.flexJustify)[0] || "justify-start";
+  curItems.value =
+    classesStore.filterByAttr(val, Attribute.flexItems)[0] || "items-start";
 });
 
 // 处理 className
@@ -163,25 +168,21 @@ const handleClass = (origin: string[], value: string): string[] => {
   return temp;
 };
 
-const direction = ref<Direction>("flex-row");
+const curDirection = ref<Direction>("flex-row");
+const direction = classesStore.getClassesByAttr(Attribute.flexDirection);
 const changeDirection = (e: Event) => {
   const value = (e.currentTarget as HTMLInputElement).value;
-  direction.value = value === "flex-row" ? "flex-col" : "flex-row";
+  curDirection.value = value === "flex-row" ? "flex-col" : "flex-row";
 
   props.element &&
     baseStore.updateCheckedElement({
       ...props.element,
-      className: handleClass(
-        useableClasses["flex-direction"],
-        direction.value
-      ).join(" "),
+      className: handleClass(direction, curDirection.value).join(" "),
     });
 };
 
-const baseStore = useBaseStore();
-
 const curJustify = ref("justify-start");
-const justify = useableClasses["flex-justify"];
+const justify = classesStore.getClassesByAttr(Attribute.flexJustify);
 const changeJustify = (str: string) => {
   curJustify.value = str;
 
@@ -192,8 +193,8 @@ const changeJustify = (str: string) => {
     });
 };
 
-const items = useableClasses["flex-items"];
 const curItems = ref("items-start");
+const items = classesStore.getClassesByAttr(Attribute.flexItems);
 const changeItem = (str: string) => {
   curItems.value = str;
 

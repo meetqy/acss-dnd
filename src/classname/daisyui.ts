@@ -1,4 +1,8 @@
-export const bgColors: string[] = [
+/**
+ * daisyui class
+ */
+
+export const backgroundColor: string[] = [
   "bg-primary",
   "bg-primary-focus",
   "bg-primary-content",
@@ -25,7 +29,7 @@ export const bgColors: string[] = [
   "bg-error-content",
 ];
 
-export const textColors: string[] = [
+export const textColor: string[] = [
   "text-primary",
   "text-primary-focus",
   "text-primary-content",
@@ -52,29 +56,28 @@ export const textColors: string[] = [
   "text-error-content",
 ];
 
+const typography: string[] = ["prose"];
+
 interface Daisyui {
+  /**
+   * Layout & Typography
+   * https://daisyui.com/docs/layout-and-typography/
+   */
   typography: string[];
-  bg: string[];
-  text: string[];
+  /**
+   * 背景色
+   */
+  backgroundColor: string[];
+  /**
+   * 文本色
+   */
+  textColor: string[];
 }
 
 const daisyui: Daisyui = {
-  bg: bgColors,
-  text: textColors,
-  typography: ["prose"],
+  backgroundColor,
+  textColor,
+  typography,
 };
 
 export default daisyui;
-
-export const getDaisyui = (name: keyof Daisyui) => {
-  return daisyui[name].map((item) => {
-    return {
-      label: item,
-      value: item,
-    };
-  });
-};
-
-export const daisyuiFilter = (classes: string[], name: keyof Daisyui) => {
-  return classes.filter((item) => daisyui[name].includes(item));
-};
