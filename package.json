@@ -2,6 +2,7 @@
   "name": "acss-dnd",
   "version": "0.0.11",
   "description": "acss-dnd是一款基于原子类 css 特性，实现拖拽布局的一个工具。",
+  "private": true,
   "keywords": [
     "tailwindcss",
     "acss-dnd",
@@ -20,6 +21,9 @@
     "release": "standard-version",
     "prepare": "husky install"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/cu-yang/acss-dnd/issues"
   },
@@ -77,6 +81,7 @@
     "eslint-plugin-vue": "^8.2.0",
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
+    "lerna": "^4.0.0",
     "lint-staged": ">=10",
     "postcss": "^8.4.7",
     "prettier": "^2.5.1",
