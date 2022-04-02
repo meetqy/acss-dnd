@@ -5,6 +5,7 @@
     "src/**/*.vue"
   ],
   "compilerOptions": {
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@": [

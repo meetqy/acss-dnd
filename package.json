@@ -51,7 +51,8 @@
     "pinia": "^2.0.11",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "@acss-dnd/template": "*"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
