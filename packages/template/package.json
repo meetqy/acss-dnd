@@ -14,6 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "dev": "vite build --watch",
     "build": "vite build"
   },
   "devDependencies": {

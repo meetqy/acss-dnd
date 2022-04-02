@@ -1,3 +1,5 @@
+import "vue";
+
 export enum TemplateType {
   // 元素
   element = "element",

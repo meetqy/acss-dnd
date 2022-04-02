@@ -7,10 +7,6 @@ import { initLayout } from "./layout";
 import { initText } from "./text";
 import temp from "@acss-dnd/template";
 
-const footer = [{ jsx: <p>这是footer</p>, str: `<p>这是footer</p>` }];
-
-console.log(temp.Footer, footer);
-
 const initTemp = async (): Promise<Menu[]> => {
   const menu: Menu[] = [];
   menu.push({
