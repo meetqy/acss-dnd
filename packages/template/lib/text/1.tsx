@@ -1,7 +1,7 @@
 import { Template, TemplateType } from "../types";
 
 export const temp: Template = {
-  type: TemplateType.element,
+  type: TemplateType.temp,
   jsx: (
     <article class="prose m-auto mt-4">
       <h1>acss-dnd</h1>

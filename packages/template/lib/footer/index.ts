@@ -6,3 +6,5 @@ export * as _5 from "./5";
 export * as _6 from "./6";
 export * as _7 from "./7";
 export * as _8 from "./8";
+
+export const name = "Footer 底部";

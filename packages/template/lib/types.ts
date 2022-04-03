@@ -1,9 +1,15 @@
 /// <amd-module name="@acss-dnd/template" />
 
-type t = { [key: string]: Template };
+interface T {
+  name: string;
+  [key: string]: Template | string;
+}
 
-export const footer: t = {};
-export const hero: t = {};
+export declare const breadcrumbs: T;
+export declare const countdown: T;
+export declare const footer: T;
+export declare const hero: T;
+export declare const text: T;
 
 import "@vue/runtime-dom";
 export enum TemplateType {
