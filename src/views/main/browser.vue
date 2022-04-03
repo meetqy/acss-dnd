@@ -109,5 +109,6 @@ const curDevice = computed(() => device[curIndex.value]);
 watch(curDevice, () => {
   iframeIo.mainToEditor("notice");
 });
+
 const baseUrl = import.meta.env.BASE_URL;
 </script>
