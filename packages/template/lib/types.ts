@@ -2,7 +2,9 @@
 
 interface T {
   name: string;
-  [key: string]: Template | string;
+  // component的预览 有些子组件展示需要外部依赖 比如 文本的`prose`
+  wrapClass?: string[];
+  [key: string]: Template | string | string[];
 }
 
 export declare const breadcrumbs: T;

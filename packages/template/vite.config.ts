@@ -11,6 +11,16 @@ export default defineConfig({
       name: "lib",
       fileName: "index",
     },
+
+    // 解决 `jsx symbol() xxx` 问题
+    rollupOptions: {
+      external: ["vue"],
+      output: {
+        globals: {
+          vue: "Vue",
+        },
+      },
+    },
   },
   plugins: [vue(), vueJsx()],
 });
