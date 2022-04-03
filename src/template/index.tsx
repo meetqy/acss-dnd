@@ -1,20 +1,14 @@
 import * as ad_temp from "@acss-dnd/template";
 
-// ad_temp.breadcrumbs
+const initTemp = (): Menu[] => [
+  createMenu(ad_temp.breadcrumbs),
+  createMenu(ad_temp.countdown),
+  createMenu(ad_temp.footer),
+  createMenu(ad_temp.hero),
+  createMenu(ad_temp.text),
+];
 
-const initTemp = async (): Promise<Menu[]> => {
-  const menu: Menu[] = [
-    createMenu(ad_temp.breadcrumbs),
-    createMenu(ad_temp.countdown),
-    createMenu(ad_temp.footer),
-    createMenu(ad_temp.hero),
-    createMenu(ad_temp.text),
-  ];
-
-  return menu;
-};
-
-interface Menu {
+export interface Menu {
   id: string;
   text: string;
   // 组件外部携带的className

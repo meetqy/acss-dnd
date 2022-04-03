@@ -1,6 +1,6 @@
 import { renderToString } from "vue/server-renderer";
 
-import type { Menu } from "./../template/d";
+import type { Menu } from "./../template";
 import type { CheckedElement } from "@/types";
 import { iframeIo } from "@/views/iframe.io";
 import { defineStore } from "pinia";

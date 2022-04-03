@@ -8,7 +8,7 @@ const baseStore = useBaseStore();
 
 onMounted(async () => {
   // 初始化模板
-  const menu = await initTemp();
+  const menu = initTemp();
   baseStore.initMenu(menu);
 });
 
