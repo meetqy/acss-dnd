@@ -1,6 +1,6 @@
-import { Template, TemplateType } from "../d";
+import { Template, TemplateType } from "@acss-dnd/template";
 
-export default {
+export const temp: Template = {
   type: TemplateType.temp,
   jsx: (
     <footer class="footer p-10 bg-neutral text-neutral-content">
@@ -120,4 +120,4 @@ export default {
     </div>
   </div>
 </footer>`,
-} as Template;
+};

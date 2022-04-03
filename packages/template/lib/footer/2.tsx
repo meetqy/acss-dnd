@@ -1,6 +1,6 @@
-import { Template, TemplateType } from "../d";
+import { Template, TemplateType } from "@acss-dnd/template";
 
-export default {
+export const temp: Template = {
   type: TemplateType.temp,
   jsx: (
     <footer class="footer p-10 bg-base-200 text-base-content">
@@ -84,4 +84,4 @@ export default {
     <a class="link link-hover">Cookie policy</a>
   </div>
 </footer>`,
-} as Template;
+};

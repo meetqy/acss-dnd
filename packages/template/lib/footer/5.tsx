@@ -1,6 +1,6 @@
-import { Template, TemplateType } from "../d";
+import { Template, TemplateType } from "@acss-dnd/template";
 
-export default {
+export const temp: Template = {
   type: TemplateType.temp,
   jsx: (
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
@@ -14,4 +14,4 @@ export default {
     <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
   </div>
 </footer>`,
-} as Template;
+};

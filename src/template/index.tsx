@@ -5,16 +5,16 @@ import type { Menu } from "./d";
 import { initHero } from "./hero";
 import { initLayout } from "./layout";
 import { initText } from "./text";
-import temp from "@acss-dnd/template";
+import * as temp from "@acss-dnd/template";
 
 const initTemp = async (): Promise<Menu[]> => {
   const menu: Menu[] = [];
-  menu.push({
-    id: "Footer",
-    text: "Footer 底部说明",
-    wrapClass: [""],
-    components: temp.Footer,
-  });
+  // menu.push({
+  //   id: "Footer",
+  //   text: "Footer 底部说明",
+  //   wrapClass: [""],
+  //   components: temp.Footer,
+  // });
   menu.push(await initText());
   menu.push(await initLayout());
   // menu.push(await initFooter());
