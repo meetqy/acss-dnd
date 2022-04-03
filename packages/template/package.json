@@ -13,6 +13,15 @@
       "require": "./dist/index.umd.js"
     }
   },
+  "bugs": {
+    "url": "https://github.com/cu-yang/acss-dnd/issues"
+  },
+  "homepage": "https://github.com/cu-yang/acss-dnd/packages/template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cu-yang/acss-dnd.git"
+  },
+  "author": "cuyang",
   "license": "MIT",
   "scripts": {
     "dev": "vite build --watch",
