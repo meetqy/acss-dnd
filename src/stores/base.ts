@@ -1,3 +1,5 @@
+import { renderToString } from "vue/server-renderer";
+
 import type { Menu } from "./../template/d";
 import type { CheckedElement } from "@/types";
 import { iframeIo } from "@/views/iframe.io";
@@ -30,9 +32,11 @@ export const useBaseStore = defineStore({
       this.component = -1;
     },
 
-    setComponent(index: number) {
+    async setComponent(index: number) {
       if (index < 0) return;
-      const jsxStr = this.curItem?.components[index].str;
+      const item = this.curItem?.components[index];
+      const jsxStr = await renderToString(item.jsx);
+      // const jsxStr = this.curItem?.components[index].str;
       if (this.component != index && jsxStr) {
         iframeIo.tempToEditor(jsxStr);
         this.component = index;
