@@ -6,6 +6,7 @@ const initTemp = (): Menu[] => [
   createMenu(ad_temp.footer),
   createMenu(ad_temp.hero),
   createMenu(ad_temp.text),
+  createMenu(ad_temp.navigation),
 ];
 
 export interface Menu {

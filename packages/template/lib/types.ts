@@ -12,6 +12,7 @@ export declare const countdown: T;
 export declare const footer: T;
 export declare const hero: T;
 export declare const text: T;
+export declare const navigation: T;
 
 import "@vue/runtime-dom";
 export enum TemplateType {
