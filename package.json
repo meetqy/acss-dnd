@@ -1,6 +1,6 @@
 {
   "name": "acss-dnd",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "acss-dnd是一款基于原子类 css 特性，实现拖拽布局的一个工具。",
   "private": true,
   "keywords": [
@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "dev": "cross-env DEBUG=unplugin-icons:* vite",
+    "lerna:build": "lerna run build",
     "build": "cross-env NODE_ENV=production vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
@@ -52,7 +53,7 @@
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
-    "@acss-dnd/template": "*"
+    "@acss-dnd/template": "^0.0.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
