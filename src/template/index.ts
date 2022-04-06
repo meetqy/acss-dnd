@@ -1,13 +1,13 @@
 import * as ad_temp from "@acss-dnd/template";
 
-const initTemp = (): Menu[] => [
-  createMenu(ad_temp.breadcrumbs),
-  createMenu(ad_temp.countdown),
-  createMenu(ad_temp.footer),
-  createMenu(ad_temp.hero),
-  createMenu(ad_temp.text),
-  createMenu(ad_temp.navigation),
-];
+const initTemp = (): Menu[] => {
+  const t = [];
+  for (const i in ad_temp) {
+    t.push(createMenu(ad_temp[i]));
+  }
+
+  return t;
+};
 
 export interface Menu {
   id: string;
@@ -22,7 +22,7 @@ const createMenu = (module: ad_temp.T): Menu => {
   const m: Menu = {
     id: "",
     text: "",
-    wrapClass: module.wrapClass || [],
+    wrapClass: module?.wrapClass || [],
     components: [],
   };
   for (const i in module) {

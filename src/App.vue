@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import { RouterView, useRoute } from "vue-router";
 import { useBaseStore } from "./stores/base";
 import initTemp from "./template";
+import "@acss-dnd/template/dist/style.css";
 
 const baseStore = useBaseStore();
 
