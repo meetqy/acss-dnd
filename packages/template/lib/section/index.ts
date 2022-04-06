@@ -4,5 +4,7 @@ export { temp as _3 } from "./3";
 export { temp as _4 } from "./4";
 export { temp as _5 } from "./5";
 export { temp as _6 } from "./6";
+export { temp as _7 } from "./7";
+export { temp as _8 } from "./8";
 
-export const name = "Hero 人物";
+export const name = "Section";
