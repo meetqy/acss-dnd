@@ -52,7 +52,7 @@
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
-    "@acss-dnd/template": "*"
+    "@acss-dnd/template": "^0.0.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
