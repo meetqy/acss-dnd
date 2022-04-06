@@ -6,8 +6,12 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "preserve",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": [
         "./src/*"
