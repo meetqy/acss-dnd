@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "dev": "cross-env DEBUG=unplugin-icons:* vite",
+    "lerna:build": "lerna run build",
     "build": "cross-env NODE_ENV=production vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",

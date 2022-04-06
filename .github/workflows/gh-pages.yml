@@ -11,24 +11,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          npm install
+          yarn
 
       - name: git config
         run: |
           git config --global user.email "cyou_yang@163.com"
           git config --global user.name "cuyang"
-          
-      - name: release
-        run: |
-          npm run release
-          git add .
-          git push
-          git push --follow-tags origin main
 
       - name: build
         run: | 
-          npm run build
+          yarn lerna:build
+          yarn build
           cp dist/index.html dist/404.html
+
+      - name: release
+        run: |
+          yarn release
+          git add .
+          git push
+          git push --follow-tags origin main          
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
