@@ -88,3 +88,22 @@ _Revision 2.2. Posted 4 February 2016._
 _Revision 2.1. Posted 23 June 2014._
 
 _Revision 2.0, adopted by the [Stumptown Syndicate](http://stumptownsyndicate.org) board on 10 January 2013. Posted 17 March 2013._
+
+# 发布
+
+dev 发布@acss-dnd/template
+
+```
+npx lerna publish --no-git-tag-version
+```
+
+1. 合并 dev 到 main
+2. 自动发布网站并生成 tag (standard-version github-action 生成的 changlog 空的，没有找到原因)
+3. 本地 dev 分支 执行
+
+```sh
+yarn run release -- --dry-run
+```
+
+4. github 创建 Realease (内容为第三部生成的内容)
+5. 创建 pr **main 合并到 dev** (内容为第三部生成的内容)
