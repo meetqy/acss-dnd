@@ -35,6 +35,9 @@ yarn dev
 - classname  # ui库css原子类
 - template   # 存放模板配置
 - contants   # 除了ui库原子类的常量
+- packages   # 库
+  - template                # 所有的模板
+  - tpvw                    # 模板调试和预览
 - store
     - base                  # menu、template、sidebar状态管理，编辑器以外的状态
     - editor                # 编辑器中内容的状态
@@ -42,7 +45,7 @@ yarn dev
 - views      # 模块
     - main                  # 编辑器外部的样式
     - editor                # 画布
-    - template              # 模板预览 选中菜单，弹出对应的template
+    - template              # 模板 选中菜单，弹出对应的template
     - menu-bar              # 菜单
     - side-bar              # 属性操作
         - file-a            # 一个文件夹相当于一个分类

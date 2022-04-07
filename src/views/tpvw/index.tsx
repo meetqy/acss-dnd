@@ -56,11 +56,6 @@ export default defineComponent({
                 </a>
               </li>
             ))}
-            {/* <li v-for="(item, key) in ad_temp" :key="key">
-          <a :class="{ active: key === cur }" @click="() => (cur = key)">
-            {{ item.name }}
-          </a>
-        </li> */}
           </ul>
         </div>
       </div>
