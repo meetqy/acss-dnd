@@ -6,5 +6,6 @@ export { temp as _5 } from "./5";
 export { temp as _6 } from "./6";
 export { temp as _7 } from "./7";
 export { temp as _8 } from "./8";
+export { temp as _9 } from "./9";
 
 export const name = "Section";
