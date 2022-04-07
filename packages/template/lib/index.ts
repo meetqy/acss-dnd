@@ -7,4 +7,4 @@ export * as footer from "./footer";
 export * as form from "./form";
 export * as hero from "./section";
 export * as navbar from "./navbar";
-export * as text from "./text";
+// export * as text from "./text";
