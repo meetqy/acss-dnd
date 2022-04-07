@@ -62,5 +62,9 @@ const kbds = ref([
     title: "查找选中元素的父级并选中",
     kbd: ["shift", "p"],
   },
+  {
+    title: "查找选中元素的子级第一个并选中",
+    kbd: ["shift", "c"],
+  },
 ]);
 </script>

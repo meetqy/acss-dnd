@@ -121,7 +121,15 @@ export default defineComponent({
     // 找父级元素
     whenever(keys.shift_p, (_val) => {
       const newEl = checkedElement.value?.parentElement;
+      if (newEl.id === "iframe-main") return;
       checkedElement.value = newEl;
+    });
+
+    // 查找子级元素
+    whenever(keys.shift_c, (_val) => {
+      const newEl = checkedElement.value?.children;
+      if (!newEl.length) return;
+      checkedElement.value = newEl[0] as HTMLElement;
     });
 
     // 向上移动
