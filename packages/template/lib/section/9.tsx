@@ -3,7 +3,7 @@ import { Template, TemplateType } from "../types";
 export const temp: Template = {
   type: TemplateType.temp,
   jsx: (
-    <div class="bg-gradient-to-b from-pink-100 to-purple-200">
+    <div class="bg-gradient-to-b from-base-100 to-base-200">
       <div class="container m-auto px-6 py-20 md:px-12 lg:px-20">
         <div class="m-auto text-center lg:w-8/12 xl:w-7/12">
           <h2 class="text-2xl text-pink-900 font-bold md:text-4xl">
@@ -15,7 +15,7 @@ export const temp: Template = {
           <div class="relative z-10 -mx-4 group md:w-6/12 md:mx-0 lg:w-5/12">
             <div
               aria-hidden="true"
-              class="absolute top-0 w-full h-full rounded-2xl bg-white shadow-xl transition duration-500 group-hover:scale-105 lg:group-hover:scale-110"
+              class="absolute top-0 w-full h-full rounded-2xl bg-base-content shadow-xl transition duration-500 group-hover:scale-105 lg:group-hover:scale-110"
             ></div>
             <div class="relative p-6 space-y-6 lg:p-8">
               <h3 class="text-3xl text-gray-700 font-semibold text-center">
