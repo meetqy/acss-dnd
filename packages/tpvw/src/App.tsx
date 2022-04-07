@@ -16,7 +16,6 @@ export default defineComponent({
         component.push(item);
       }
 
-      console.log(component);
       return component;
     });
 
@@ -25,15 +24,21 @@ export default defineComponent({
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
           <div class="grid grid-cols-2 gap-4 p-4">
-            {curTemps.value.map((item) => (
-              <div
-                class="border border-base-200 flex justify-center items-center cursor-pointer rounded-md shadow-sm hover:shadow-md transition-all"
-                style={{ minHeight: "300px" }}
-              >
-                {item.jsx}
+            {curTemps.value.map((item, index) => (
+              <div>
+                <div
+                  class="border border-base-200 flex justify-center items-center cursor-pointer rounded-md shadow-sm hover:shadow-md transition-all"
+                  style={{ minHeight: "300px" }}
+                >
+                  {item.jsx}
+                </div>
+                <p class="text-base text-center mt-4">
+                  <a href="javascript:;" class="text-primary">
+                    _{index + 1}
+                  </a>
+                </p>
               </div>
             ))}
-            {/* <div >{{ item.jsx }}</div> */}
           </div>
         </div>
         <div class="drawer-side">
