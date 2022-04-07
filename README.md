@@ -60,6 +60,7 @@ yarn dev
 | `Shift` + `ArrowUp`   | 向上移动选中元素         |
 | `Shift` + `ArrowDown` | 向下移动选中元素         |
 | `Shift` + `p`         | 查找选中元素的父级并选中 |
+| `Shift` + `c`         | 查找选中元素的子级并选中 |
 
 ## 🐰 基础库
 
@@ -78,8 +79,3 @@ yarn dev
 ## 🦊 近期计划
 
 **Github Project**: [https://github.com/cu-yang/acss-dnd/projects/1](https://github.com/cu-yang/acss-dnd/projects/1)
-
-## 🐻 预览图
-
-<img src='https://cdn.cuyang.me/acss-dnd/editor.png' />
-<img src='https://cdn.cuyang.me/acss-dnd/side-bar.png'/>
