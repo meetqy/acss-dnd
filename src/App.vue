@@ -31,7 +31,7 @@ const routeName = computed(() => route.name);
   <div
     v-else
     class="drawer h-screen w-full drawer-mobile"
-    :class="{ 'drawer-end': isDrawEnd }"
+    :class="{ 'drawer-end': false }"
   >
     <input id="drawer-left" type="checkbox" class="drawer-toggle" />
     <input id="drawer-right" type="checkbox" class="drawer-toggle" />
@@ -40,20 +40,20 @@ const routeName = computed(() => route.name);
       <RouterView></RouterView>
     </div>
 
-    <div class="drawer-side" :class="{ 'draw-hidden': isDrawEnd }">
+    <div class="drawer-side" :class="{ 'draw-hidden': false }">
       <label for="drawer-left" class="drawer-overlay"></label>
       <RouterView name="MenuBar" />
       <RouterView name="ComponentPreview" />
     </div>
 
-    <div
+    <!-- <div
       class="drawer-side"
       style="overflow: hidden"
       :class="{ 'draw-hidden': !isDrawEnd }"
     >
       <label for="drawer-right" class="drawer-overlay"></label>
       <RouterView name="SideBar" />
-    </div>
+    </div> -->
   </div>
 </template>
 <style scoped>
