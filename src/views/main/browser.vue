@@ -18,11 +18,11 @@
         <div
           class="bg-base-200 w-96 h-8 flex items-center justify-center rounded"
         >
-          <span class="cursor-pointer text-primary"> 移动端优先 </span>
-          <span class="mx-4 text-base-300">
-            &lt; <i class="text-info">{{ curDevice.width }}px</i> &gt;
+          <!-- <span class="cursor-pointer text-primary"> 移动端优先 </span> -->
+          <span class="mx-4 text-base">
+            &lt; <i class="text-primary">{{ curDevice.width }}px</i> &gt;
           </span>
-          <span class="cursor-pointer text-base-content">PC端优先</span>
+          <!-- <span class="cursor-pointer text-base-content">PC端优先</span> -->
         </div>
         <div class="flex w-32 h-full justify-between items-center">
           <span
