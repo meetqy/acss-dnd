@@ -9,8 +9,8 @@
     "css",
     "daisyui",
     "dnd",
-    "drag and drop",
-    "atomic css"
+    "drag-and-drop",
+    "atomic-css"
   ],
   "scripts": {
     "dev": "cross-env DEBUG=unplugin-icons:* vite",

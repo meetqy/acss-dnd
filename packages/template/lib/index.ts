@@ -1,5 +1,3 @@
-import "./index.css";
-
 export * as breadcrumbs from "./breadcrumbs";
 export * as countdown from "./countdown";
 export * as description from "./description";
