@@ -45,6 +45,7 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
+    "@acss-dnd/template": "^0.0.12",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@vueuse/core": "^7.7.0",
     "daisyui": "^2.6.4",
@@ -52,8 +53,7 @@
     "pinia": "^2.0.11",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.12",
-    "@acss-dnd/template": "^0.0.12"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
@@ -68,6 +68,7 @@
     "@iconify-json/radix-icons": "^1.1.2",
     "@rushstack/eslint-patch": "^1.1.0",
     "@svgr/core": "^6.2.1",
+    "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "^16.11.25",
     "@types/uuid": "^8.3.4",
